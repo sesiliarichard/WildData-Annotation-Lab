@@ -6,6 +6,7 @@
     <title>WildData Annotation Lab</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* All your existing CSS remains exactly the same */
         /* Color Variables - Updated to match medical marijuana palette */
         :root {
             --deep-forest-green-1: #1a3d34;
@@ -93,180 +94,174 @@
             padding: 80px 0;
         }
 
-/* Updated Header Styles with Angled Logo Background */
-header {
-    background-color: var(--dark-navy);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
+        /* Header Styles */
+        header {
+            background-color: var(--dark-navy);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0;
-    position: relative;
-}
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0;
+            position: relative;
+        }
 
-/* Angled Logo Container */
-.logo {
-    display: flex;
-    align-items: center;
-    position: relative;
-    background-color: var(--white);
-    padding: 15px 60px 15px 30px;
-    clip-path: polygon(0 0, calc(100% - 40px) 0, 100% 100%, 0 100%);
-    margin-right: 20px;
-    z-index: 2;
-}
+        /* Angled Logo Container */
+        .logo {
+            display: flex;
+            align-items: center;
+            position: relative;
+            background-color: var(--white);
+            padding: 15px 60px 15px 30px;
+            clip-path: polygon(0 0, calc(100% - 40px) 0, 100% 100%, 0 100%);
+            margin-right: 20px;
+            z-index: 2;
+        }
 
-/* Logo Image Styles */
-.logo-image {
-    height: 70px;
-    width: auto;
-    max-width: 250px;
-    object-fit: contain;
-    transition: all 0.3s ease;
-}
+        /* Logo Image Styles */
+        .logo-image {
+            height: 70px;
+            width: auto;
+            max-width: 250px;
+            object-fit: contain;
+            transition: all 0.3s ease;
+        }
 
-.logo-image:hover {
-    transform: scale(1.05);
-}
+        .logo-image:hover {
+            transform: scale(1.05);
+        }
 
-/* Navigation Styles */
-nav {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 30px;
-}
+        /* Navigation Styles */
+        nav {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 30px;
+        }
 
-nav ul {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 40px;
-}
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 40px;
+        }
 
-nav ul li {
-    margin: 0;
-}
+        nav ul li {
+            margin: 0;
+        }
 
-nav ul li a {
-    font-weight: 600;
-    font-size: 1rem;
-    position: relative;
-    color: var(--white);
-    padding: 10px 0;
-    transition: color 0.3s ease;
-}
+        nav ul li a {
+            font-weight: 600;
+            font-size: 1rem;
+            position: relative;
+            color: var(--white);
+            padding: 10px 0;
+            transition: color 0.3s ease;
+        }
 
-nav ul li a.active {
-    color: var(--lime-chartreuse-1);
-}
+        nav ul li a.active {
+            color: var(--lime-chartreuse-1);
+        }
 
-/* Underline effect */
-nav ul li a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 5px;
-    left: 0;
-    background-color: var(--lime-chartreuse-1);
-    transition: width 0.3s ease;
-}
+        /* Underline effect */
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 5px;
+            left: 0;
+            background-color: var(--lime-chartreuse-1);
+            transition: width 0.3s ease;
+        }
 
-nav ul li a:hover::after, 
-nav ul li a.active::after {
-    width: 100%;
-}
+        nav ul li a:hover::after, 
+        nav ul li a.active::after {
+            width: 100%;
+        }
 
-nav ul li a:hover {
-    color: var(--lime-chartreuse-1);
-}
+        nav ul li a:hover {
+            color: var(--lime-chartreuse-1);
+        }
 
-/* Mobile Menu */
-.mobile-menu {
-    display: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--white);
-    padding-right: 20px;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .logo {
-        padding: 10px 40px 10px 20px;
-        clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 100%, 0 100%);
-    }
-    
-    .logo-image {
-        height: 50px;
-        max-width: 180px;
-    }
-    
-    .mobile-menu {
-        display: block;
-    }
-    
-    nav {
-        padding-right: 0;
-    }
-    
-    nav ul {
-        position: fixed;
-        top: 80px;
-        left: -100%;
-        width: 100%;
-        height: calc(100vh - 80px);
-        background-color: var(--deep-forest-green-1);
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        padding-top: 50px;
-        gap: 0;
-        transition: left 0.3s ease;
-    }
-    
-    nav ul.active {
-        left: 0;
-    }
-    
-    nav ul li {
-        margin: 15px 0;
-        width: 100%;
-        text-align: center;
-    }
-    
-    nav ul li a {
-        display: block;
-        padding: 15px 20px;
-    }
-}
-
-@media (max-width: 576px) {
-    .logo {
-        padding: 8px 30px 8px 15px;
-    }
-    
-    .logo-image {
-        height: 45px;
-        max-width: 150px;
-    }
-}
+        /* Mobile Menu */
         .mobile-menu {
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--white);
+            padding-right: 20px;
         }
 
- /* Hero Slider Section */
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .logo {
+                padding: 10px 40px 10px 20px;
+                clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 100%, 0 100%);
+            }
+            
+            .logo-image {
+                height: 50px;
+                max-width: 180px;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            nav {
+                padding-right: 0;
+            }
+            
+            nav ul {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--deep-forest-green-1);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 50px;
+                gap: 0;
+                transition: left 0.3s ease;
+            }
+            
+            nav ul.active {
+                left: 0;
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 15px 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo {
+                padding: 8px 30px 8px 15px;
+            }
+            
+            .logo-image {
+                height: 45px;
+                max-width: 150px;
+            }
+        }
+
+        /* Hero Slider Section */
         .hero-slider {
             position: relative;
             height: 100vh;
@@ -294,7 +289,7 @@ nav ul li a:hover {
             object-fit: cover;
         }
 
-.slide-overlay {
+        .slide-overlay {
             position: absolute;
             top: 0;
             left: 0;
@@ -306,6 +301,7 @@ nav ul li a:hover {
             justify-content: center;
             text-align: center;
         }
+
         .slide-content {
             max-width: 800px;
             padding: 0 20px;
@@ -1072,46 +1068,46 @@ nav ul li a:hover {
             }
         }
         /* Service Icon Styling with White Background */
-.service-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 20px;
-    background-color: #ffffff; /* White background */
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-}
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background-color: #ffffff; /* White background */
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        }
 
-.service-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
+        .service-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
 
-/* Hover effect */
-.service-card:hover .service-icon {
-    background-color: #f8f9fa; /* Slightly off-white on hover */
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-}
+        /* Hover effect */
+        .service-card:hover .service-icon {
+            background-color: #f8f9fa; /* Slightly off-white on hover */
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
 
-/* Service Card Styling (if needed) */
-.service-card {
-    background-color: rgba(255, 255, 255, 0.05);
-    padding: 30px;
-    border-radius: 12px;
-    text-align: center;
-    transition: all 0.3s ease;
-}
+        /* Service Card Styling (if needed) */
+        .service-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
 
-.service-card:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    transform: translateY(-5px);
-}
+        .service-card:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
     </style>
 </head>
 <body>
@@ -1120,8 +1116,7 @@ nav ul li a:hover {
         <div class="container header-container">
             <div class="logo">
                 <!-- Your logo with increased size -->
-              <img src="file:///C:/Users/RICHARD/OneDrive/Pictures/WildData-Annotation-Lab/public/images/logo.jpg" alt="WildData" class="logo-image">
-
+                <img src="images/logo.jpg" alt="WildData" class="logo-image">
             </div>
             <div class="mobile-menu">☰</div>
             <nav>
@@ -1189,64 +1184,64 @@ nav ul li a:hover {
             </div>
         </section>
 
-  <!-- Content Section -->
-<section class="content-section">
-    <div class="container">
-        <div class="content-container">
-            <div class="content-text">
-                <h2>4 <span>WHAT WE OFFER</span></h2>
-                <p><strong>Excellent IT Services</strong></p>
-                <p>WildData Annotation Lab is dedicated to advancing wildlife research through accurate data annotation and analytics. Our mission is to help scientists, conservationists, and AI developers unlock the potential of wildlife datasets for research, protection, and innovation.</p>
-                <a href="#services" class="btn">Our Services <i class="fas fa-arrow-right"></i></a>
+        <!-- Content Section -->
+        <section class="content-section">
+            <div class="container">
+                <div class="content-container">
+                    <div class="content-text">
+                        <h2>4 <span>WHAT WE OFFER</span></h2>
+                        <p><strong>Excellent IT Services</strong></p>
+                        <p>WildData Annotation Lab is dedicated to advancing wildlife research through accurate data annotation and analytics. Our mission is to help scientists, conservationists, and AI developers unlock the potential of wildlife datasets for research, protection, and innovation.</p>
+                        <a href="#services" class="btn">Our Services <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="content-image">
+                        <img src="images/Excellent IT Services.jpg" alt="WildData Mission">
+                    </div>
+                </div>
             </div>
-            <div class="content-image">
-                <img src="images/Excellent IT Services.jpg" alt="WildData Mission">
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
 
- <!-- Services Section -->
-<section id="services" class="services">
-    <div class="container">
-        <h2>Our Services</h2>
-        <p>We offer specialized data annotation and analytics services tailored for wildlife research and conservation.</p>
-        
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">
-                    <img src="images/freepik__wildlife_image_&_video_annotation.png" alt="Wildlife Image & Video Annotation">
+        <!-- Services Section -->
+        <section id="services" class="services">
+            <div class="container">
+                <h2>Our Services</h2>
+                <p>We offer specialized data annotation and analytics services tailored for wildlife research and conservation.</p>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="images/freepik__wildlife_image_&_video_annotation.png" alt="Wildlife Image & Video Annotation">
+                        </div>
+                        <h3>Wildlife Image & Video Annotation</h3>
+                        <p>We annotate visual data of wildlife for various research and conservation purposes, enabling accurate species identification and behavior analysis.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="images/freepik__data_cleaning_&_preprocessing.png" alt="Data Cleaning & Preprocessing">
+                        </div>
+                        <h3>Data Cleaning & Preprocessing</h3>
+                        <p>We prepare and clean datasets for analysis, ensuring high-quality data that researchers can trust for their critical work.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="images/freepik__machine_learning_dataset_preparation_.png" alt="Machine Learning Dataset Preparation">
+                        </div>
+                        <h3>Machine Learning Dataset Preparation</h3>
+                        <p>We create properly formatted datasets for ML applications, helping AI developers build more accurate wildlife recognition models.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="images/freepik__research_analytics_&_visualization.png" alt="Research Analytics & Visualization">
+                        </div>
+                        <h3>Research Analytics & Visualization</h3>
+                        <p>We provide analytical services and data visualization to help researchers gain insights from complex wildlife datasets.</p>
+                    </div>
                 </div>
-                <h3>Wildlife Image & Video Annotation</h3>
-                <p>We annotate visual data of wildlife for various research and conservation purposes, enabling accurate species identification and behavior analysis.</p>
             </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <img src="images/freepik__data_cleaning_&_preprocessing.png" alt="Data Cleaning & Preprocessing">
-                </div>
-                <h3>Data Cleaning & Preprocessing</h3>
-                <p>We prepare and clean datasets for analysis, ensuring high-quality data that researchers can trust for their critical work.</p>
-            </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <img src="images/freepik__machine_learning_dataset_preparation_.png" alt="Machine Learning Dataset Preparation">
-                </div>
-                <h3>Machine Learning Dataset Preparation</h3>
-                <p>We create properly formatted datasets for ML applications, helping AI developers build more accurate wildlife recognition models.</p>
-            </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <img src="images/freepik__research_analytics_&_visualization.png" alt="Research Analytics & Visualization">
-                </div>
-                <h3>Research Analytics & Visualization</h3>
-                <p>We provide analytical services and data visualization to help researchers gain insights from complex wildlife datasets.</p>
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
 
         <!-- Blog Section -->
         <section class="blog-section">
@@ -1302,23 +1297,23 @@ nav ul li a:hover {
             </div>
         </section>
 
-<!-- Mission Section -->
-<section class="mission">
-    <div class="container">
-        <div class="mission-container">
-            <div class="mission-text">
-                <h2>Our <span>Mission</span></h2>
-                <p>WildData Annotation Lab is dedicated to advancing wildlife research through accurate data annotation and analytics. Our mission is to help scientists, conservationists, and AI developers unlock the potential of wildlife datasets for research, protection, and innovation.</p>
-                <p>We believe that high-quality data is the foundation of meaningful research and effective conservation efforts. By providing precise annotation services, we enable researchers to focus on analysis and insights rather than data preparation.</p>
-                <p>Our team combines expertise in data science, ecology, and machine learning to deliver services that meet the unique challenges of wildlife research.</p>
-               <a href="#" class="btn nav-link" data-page="services">Our Services <i class="fas fa-arrow-right"></i></a>
+        <!-- Mission Section -->
+        <section class="mission">
+            <div class="container">
+                <div class="mission-container">
+                    <div class="mission-text">
+                        <h2>Our <span>Mission</span></h2>
+                        <p>WildData Annotation Lab is dedicated to advancing wildlife research through accurate data annotation and analytics. Our mission is to help scientists, conservationists, and AI developers unlock the potential of wildlife datasets for research, protection, and innovation.</p>
+                        <p>We believe that high-quality data is the foundation of meaningful research and effective conservation efforts. By providing precise annotation services, we enable researchers to focus on analysis and insights rather than data preparation.</p>
+                        <p>Our team combines expertise in data science, ecology, and machine learning to deliver services that meet the unique challenges of wildlife research.</p>
+                        <a href="#" class="btn nav-link" data-page="services">Our Services <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="mission-image">
+                        <img src="images/Our-Mission.jpg" alt="WildData Mission">
+                    </div>
+                </div>
             </div>
-            <div class="mission-image">
-                <img src="images/Our-Mission.jpg" alt="WildData Mission">
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
 
         <!-- Values Section -->
         <section class="values">
@@ -1417,47 +1412,47 @@ nav ul li a:hover {
             </div>
         </section>
 
-<!-- Services Section -->
-<section id="services" class="services">
-    <div class="container">
-        <h2>Our Services</h2>
-        <p>We offer specialized data annotation and analytics services tailored for wildlife research and conservation.</p>
-        
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">
-                    <img src="images/freepik__wildlife_image_&_video_annotation.png" alt="Wildlife Image & Video Annotation">
+        <!-- Services Section -->
+        <section id="services" class="services">
+            <div class="container">
+                <h2>Our Services</h2>
+                <p>We offer specialized data annotation and analytics services tailored for wildlife research and conservation.</p>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="images/freepik__wildlife_image_&_video_annotation.png" alt="Wildlife Image & Video Annotation">
+                        </div>
+                        <h3>Wildlife Image & Video Annotation</h3>
+                        <p>We annotate visual data of wildlife for various research and conservation purposes, enabling accurate species identification and behavior analysis. Our team uses state-of-the-art tools to label, classify, and track wildlife in images and videos.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="images/freepik__data_cleaning_&_preprocessing.png" alt="Data Cleaning & Preprocessing">
+                        </div>
+                        <h3>Data Cleaning & Preprocessing</h3>
+                        <p>We prepare and clean datasets for analysis, ensuring high-quality data that researchers can trust for their critical work. Our processes include noise reduction, outlier detection, and data normalization.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="images/freepik__machine_learning_dataset_preparation_.png" alt="Machine Learning Dataset Preparation">
+                        </div>
+                        <h3>Machine Learning Dataset Preparation</h3>
+                        <p>We create properly formatted datasets for ML applications, helping AI developers build more accurate wildlife recognition models. We specialize in creating training, validation, and test sets for machine learning algorithms.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="images/freepik__research_analytics_&_visualization.png" alt="Research Analytics & Visualization">
+                        </div>
+                        <h3>Research Analytics & Visualization</h3>
+                        <p>We provide analytical services and data visualization to help researchers gain insights from complex wildlife datasets. Our visualizations make complex data accessible and understandable for stakeholders.</p>
+                    </div>
                 </div>
-                <h3>Wildlife Image & Video Annotation</h3>
-                <p>We annotate visual data of wildlife for various research and conservation purposes, enabling accurate species identification and behavior analysis. Our team uses state-of-the-art tools to label, classify, and track wildlife in images and videos.</p>
             </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <img src="images/freepik__data_cleaning_&_preprocessing.png" alt="Data Cleaning & Preprocessing">
-                </div>
-                <h3>Data Cleaning & Preprocessing</h3>
-                <p>We prepare and clean datasets for analysis, ensuring high-quality data that researchers can trust for their critical work. Our processes include noise reduction, outlier detection, and data normalization.</p>
-            </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <img src="images/freepik__machine_learning_dataset_preparation_.png" alt="Machine Learning Dataset Preparation">
-                </div>
-                <h3>Machine Learning Dataset Preparation</h3>
-                <p>We create properly formatted datasets for ML applications, helping AI developers build more accurate wildlife recognition models. We specialize in creating training, validation, and test sets for machine learning algorithms.</p>
-            </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <img src="images/freepik__research_analytics_&_visualization.png" alt="Research Analytics & Visualization">
-                </div>
-                <h3>Research Analytics & Visualization</h3>
-                <p>We provide analytical services and data visualization to help researchers gain insights from complex wildlife datasets. Our visualizations make complex data accessible and understandable for stakeholders.</p>
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
 
         <!-- Process Section -->
         <section class="content-section">
