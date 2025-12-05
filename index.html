@@ -1112,6 +1112,140 @@ nav ul li a:hover {
     background-color: rgba(255, 255, 255, 0.1);
     transform: translateY(-5px);
 }
+/* Tools Recommend Section - Separate from Services */
+.tools-recommend {
+    background-color: var(--deep-forest-green-2);
+    padding: 80px 0;
+}
+
+.tools-recommend h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--white);
+}
+
+.tools-recommend p {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--footer-text);
+    max-width: 700px;
+    margin: 0 auto 40px;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.tool-card {
+    background-color: var(--deep-forest-green-1);
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.tool-card:hover {
+    transform: translateY(-10px);
+}
+
+.tool-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.tool-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.tool-icon:hover {
+    background-color: #f8f9fa;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.tool-icon:hover img {
+    transform: scale(1.1);
+}
+
+.tool-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--white);
+}
+
+.tool-card p {
+    text-align: center;
+    color: var(--footer-text);
+}
+
+/* Image Modal */
+.image-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    align-items: center;
+    justify-content: center;
+}
+
+.image-modal.active {
+    display: flex;
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.modal-close:hover {
+    color: var(--lime-chartreuse-1);
+}
     </style>
 </head>
 <body>
@@ -1353,6 +1487,7 @@ nav ul li a:hover {
         </section>
 
         <!-- Team Section -->
+  <!-- Team Section -->
         <section class="team">
             <div class="container">
                 <h2>Our Team</h2>
@@ -1361,52 +1496,51 @@ nav ul li a:hover {
                 <div class="team-grid">
                     <div class="team-member">
                         <div class="member-image">
-                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Dr. Sarah Johnson">
+                            <img src="images/JULIUS S.MMAGA.jpeg" alt="Julius S. Mmaga">
                         </div>
                         <div class="member-info">
-                            <h3>Dr. Sarah Johnson</h3>
-                            <p>Chief Ecologist & Founder</p>
-                            <p class="bio">With over 15 years in wildlife research, Dr. Johnson founded WildData to bridge the gap between ecological science and data technology.</p>
+                            <h3>Julius S. Mmaga</h3>
+                            <p>Co-Founder – Wildlife Specialist</p>
+                            <p class="bio">Julius oversees wildlife data quality including species identification, animal behavior, and ecological context. He develops annotation guidelines, leads QA for wildlife-related annotations, and serves as the primary contact for clients in the wildlife and conservation sector.</p>
                         </div>
                     </div>
                     
                     <div class="team-member">
                         <div class="member-image">
-                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Michael Chen">
+                            <img src="images/Wenceslaus magesa.jpeg" alt="Wenceslaus Magesa">
                         </div>
                         <div class="member-info">
-                            <h3>Michael Chen</h3>
-                            <p>Data Science Director</p>
-                            <p class="bio">Michael leads our data annotation team and develops machine learning pipelines for processing complex wildlife datasets.</p>
+                            <h3>Wenceslaus Magesa</h3>
+                            <p>Co-Founder – Wildlife & Data Interpretation Lead</p>
+                            <p class="bio">Wenceslaus analyzes environmental and ecological datasets, creates data labeling rules for environmental features, and performs verification and QA before client delivery. He integrates field knowledge into annotation processes and communicates with wildlife and research partners to understand data needs.</p>
                         </div>
                     </div>
                     
                     <div class="team-member">
                         <div class="member-image">
-                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Dr. Elena Rodriguez">
+                            <img src="images/PENDO PETER KIPARA.jpeg" alt="Pendo Peter Kipara">
                         </div>
                         <div class="member-info">
-                            <h3>Dr. Elena Rodriguez</h3>
-                            <p>Research Coordinator</p>
-                            <p class="bio">Dr. Rodriguez manages our partnerships with research institutions and ensures our annotation methodologies meet scientific standards.</p>
+                            <h3>Pendo Peter Kipara</h3>
+                            <p>Co-Founder – Technical Lead / CTO</p>
+                            <p class="bio">Pendo manages all technical infrastructure including CVAT/Label Studio servers, cloud storage, and system security. She builds AI-assisted automation tools, maintains annotation platforms, and leads the annotator team from the technical side, ensuring data security compliance and optimal workflows.</p>
                         </div>
                     </div>
                     
                     <div class="team-member">
                         <div class="member-image">
-                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="James Wilson">
+                            <img src="images/Howard fredrick.jpeg" alt="Howard Frederick">
                         </div>
                         <div class="member-info">
-                            <h3>James Wilson</h3>
-                            <p>Technology Lead</p>
-                            <p class="bio">James develops our annotation tools and platforms, focusing on creating intuitive interfaces for complex data annotation tasks.</p>
+                            <h3>Howard Frederick</h3>
+                            <p>Chief Biotechnology Advisor</p>
+                            <p class="bio">Howard has been instrumental in bridging biology and technology for our team. He provides extensive software training, offers critical biology consultations, and guides our technical capabilities with strategic advisory on biotechnology applications.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     </div>
-
     <!-- Services Page -->
     <div id="services-page" class="page">
         <!-- Hero Section -->
@@ -1484,7 +1618,7 @@ nav ul li a:hover {
             </div>
         </section>
     </div>
-    <!-- Tools Page -->
+ <!-- Tools Page -->
     <div id="tools" class="page">
         <!-- Hero Section -->
         <section class="about-hero">
@@ -1507,7 +1641,7 @@ nav ul li a:hover {
             <div class="container">
                 <div class="content-container">
                     <div class="content-image">
-                        <img src="images/cvat-tool.jpg" alt="CVAT Interface">
+                        <img src="images/CVAT.jpg" alt="CVAT Interface">
                     </div>
                     <div class="content-text">
                         <span style="display: inline-block; background-color: var(--teal-1); color: var(--white); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 15px;">Video & Image Annotation</span>
@@ -1544,7 +1678,7 @@ nav ul li a:hover {
             <div class="container">
                 <div class="mission-container" style="flex-direction: row-reverse;">
                     <div class="mission-image">
-                        <img src="images/surveyscope-tool.jpg" alt="SurveyScope Interface">
+                        <img src="images/SurveyScope  DetWab.jpg" alt="SurveyScope Interface">
                     </div>
                     <div class="mission-text">
                         <span style="display: inline-block; background-color: var(--teal-1); color: var(--white); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 15px;">Geospatial Annotation</span>
@@ -1581,7 +1715,7 @@ nav ul li a:hover {
             <div class="container">
                 <div class="content-container">
                     <div class="content-image">
-                        <img src="images/scoutbeast-tool.jpg" alt="ScoutBeast Platform">
+                        <img src="images/ScoutBeast.jpg" alt="ScoutBeast Platform">
                     </div>
                     <div class="content-text">
                         <span style="display: inline-block; background-color: var(--teal-1); color: var(--white); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 15px;">Camera Trap Management</span>
@@ -1613,69 +1747,70 @@ nav ul li a:hover {
             </div>
         </section>
 
-        <!-- Recommended Additional Tools -->
-        <section class="services">
-            <div class="container">
-                <h2>Additional Tools We Recommend</h2>
-                <p>Depending on your project requirements, we also work with these professional annotation platforms</p>
-                
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-tag"></i>
-                        </div>
-                        <h3>LabelImg</h3>
-                        <p>Simple and efficient tool for creating bounding box annotations. Ideal for quick labeling tasks and small to medium datasets.</p>
-                        <a href="https://github.com/tzutalin/labelImg" target="_blank" style="color: var(--lime-chartreuse-1); font-weight: 600; margin-top: 15px; display: inline-block;">Learn More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-draw-polygon"></i>
-                        </div>
-                        <h3>Labelbox</h3>
-                        <p>Enterprise-grade platform with advanced features for managing large annotation teams and complex ML pipelines.</p>
-                        <a href="https://labelbox.com/" target="_blank" style="color: var(--lime-chartreuse-1); font-weight: 600; margin-top: 15px; display: inline-block;">Learn More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-project-diagram"></i>
-                        </div>
-                        <h3>Roboflow</h3>
-                        <p>Complete solution for dataset preparation, annotation, augmentation, and model training for computer vision projects.</p>
-                        <a href="https://roboflow.com/" target="_blank" style="color: var(--lime-chartreuse-1); font-weight: 600; margin-top: 15px; display: inline-block;">Learn More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-camera"></i>
-                        </div>
-                        <h3>Wildlife Insights</h3>
-                        <p>Specialized platform for camera trap data management with AI-assisted species identification and analytics.</p>
-                        <a href="https://www.wildlifeinsights.org/" target="_blank" style="color: var(--lime-chartreuse-1); font-weight: 600; margin-top: 15px; display: inline-block;">Learn More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-vector-square"></i>
-                        </div>
-                        <h3>VGG Image Annotator</h3>
-                        <p>Lightweight browser-based tool for manual annotation of images. No installation required, works offline.</p>
-                        <a href="https://www.robots.ox.ac.uk/~vgg/software/via/" target="_blank" style="color: var(--lime-chartreuse-1); font-weight: 600; margin-top: 15px; display: inline-block;">Learn More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-microscope"></i>
-                        </div>
-                        <h3>Timelapse</h3>
-                        <p>Desktop application specifically designed for reviewing and annotating camera trap images with temporal data.</p>
-                        <a href="http://saul.cpsc.ucalgary.ca/timelapse/" target="_blank" style="color: var(--lime-chartreuse-1); font-weight: 600; margin-top: 15px; display: inline-block;">Learn More <i class="fas fa-arrow-right"></i></a>
-                    </div>
+<!-- Recommended Additional Tools -->
+<section class="tools-recommend">
+    <div class="container">
+        <h2>Additional Tools We Recommend</h2>
+        <p>Depending on your project requirements, we also work with these professional annotation platforms</p>
+        
+        <div class="tools-grid">
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <img src="images/labelimg.jpg" alt="LabelImg">
                 </div>
+                <h3>LabelImg</h3>
+                <p>Simple and efficient tool for creating bounding box annotations. Ideal for quick labeling tasks and small to medium datasets.</p>
+                <a href="https://github.com/tzutalin/labelImg" target="_blank" style="color: var(--lime-chartreuse-1); font-weight: 600; margin-top: 15px; display: inline-block;">Learn More <i class="fas fa-arrow-right"></i></a>
             </div>
-        </section>
+
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <img src="images/Labelbox.png" alt="Labelbox">
+                </div>
+                <h3>Labelbox</h3>
+                <p>Enterprise-grade platform with advanced features for managing large annotation teams and complex ML pipelines.</p>
+                <a href="https://labelbox.com/" target="_blank" style="color: var(--lime-chartreuse-1); font-weight: 600; margin-top: 15px; display: inline-block;">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <img src="images/Roboflow.jpg" alt="Roboflow">
+                </div>
+                <h3>Roboflow</h3>
+                <p>Complete solution for dataset preparation, annotation, augmentation, and model training for computer vision projects.</p>
+                <a href="https://roboflow.com/" target="_blank" style="color: var(--lime-chartreuse-1); font-weight: 600; margin-top: 15px; display: inline-block;">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <img src="images/Wildlife Insights.jpg" alt="Wildlife Insights">
+                </div>
+                <h3>Wildlife Insights</h3>
+                <p>Specialized platform for camera trap data management with AI-assisted species identification and analytics.</p>
+                <a href="https://www.wildlifeinsights.org/" target="_blank" style="color: var(--lime-chartreuse-1); font-weight: 600; margin-top: 15px; display: inline-block;">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <img src="images/VGG Image Annotator.jpg" alt="VGG Image Annotator">
+                </div>
+                <h3>VGG Image Annotator</h3>
+                <p>Lightweight browser-based tool for manual annotation of images. No installation required, works offline.</p>
+                <a href="https://www.robots.ox.ac.uk/~vgg/software/via/" target="_blank" style="color: var(--lime-chartreuse-1); font-weight: 600; margin-top: 15px; display: inline-block;">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <img src="images/Timelapse.jpg" alt="Timelapse">
+                </div>
+                <h3>Timelapse</h3>
+                <p>Desktop application specifically designed for reviewing and annotating camera trap images with temporal data.</p>
+                <a href="http://saul.cpsc.ucalgary.ca/timelapse/" target="_blank" style="color: var(--lime-chartreuse-1); font-weight: 600; margin-top: 15px; display: inline-block;">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
 
         <!-- Call to Action -->
         <section class="mission">
@@ -1769,7 +1904,11 @@ nav ul li a:hover {
             </div>
         </section>
     </div>
-
+<!-- Image Modal -->
+<div id="imageModal" class="image-modal">
+    <span class="modal-close">&times;</span>
+    <img class="modal-content" id="modalImage">
+</div>
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -1808,9 +1947,9 @@ nav ul li a:hover {
                 
                 <div class="footer-column">
                     <h3>Contact Us</h3>
-                    <p><i class="fas fa-phone"></i> +123 456 7890</p>
-                    <p><i class="fas fa-envelope"></i> info@wilddata.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> 7284 Jefferson Street, Springfield, Ohio 45503</p>
+                    <p><i class="fas fa-phone"></i> +255717240523</p>
+                    <p><i class="fas fa-envelope"></i> mmbagaj97@gmail.com</p>
+                 <p><i class="fas fa-map-marker-alt"></i> Safari Hotel - Room 411, Opposite TTCL, Regional Commissioner's Area, Arusha, Tanzania</p>
                 </div>
             </div>
             
@@ -1920,6 +2059,39 @@ nav ul li a:hover {
                 this.reset();
             });
         }
+        // Image Modal - Only for Tool Icons
+const modal = document.getElementById('imageModal');
+const modalImg = document.getElementById('modalImage');
+const closeModal = document.querySelector('.modal-close');
+
+// Add click event ONLY to tool-icon images
+document.querySelectorAll('.tool-icon img').forEach(img => {
+    img.addEventListener('click', function() {
+        modal.classList.add('active');
+        modalImg.src = this.src;
+    });
+});
+
+// Close modal
+if (closeModal) {
+    closeModal.addEventListener('click', function() {
+        modal.classList.remove('active');
+    });
+}
+
+if (modal) {
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+        }
+    });
+}
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+        modal.classList.remove('active');
+    }
+});
     </script>
 </body>
 </html>
