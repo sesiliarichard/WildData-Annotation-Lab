@@ -11,46 +11,9 @@
     <link rel="icon" type="image/png" sizes="48x48" href="images/logo2.png">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        /* Color Variables - Updated to match medical marijuana palette */
-        :root {
-            --deep-forest-green-1: #1a3d34;
-            --deep-forest-green-2: #234b3c;
-            --deep-forest-green-3: #2d5347;
-            --lime-chartreuse-1: #b4d333;
-            --lime-chartreuse-2: #c4e154;
-            --white: #ffffff;
-            --cream-1: #f5f3ed;
-            --cream-2: #e8e6df;
-            --gold-1: #d4a843;
-            --gold-2: #c9a747;
-            --teal-1: #4a8b7f;
-            --teal-2: #3d7a70;
-            --charcoal-1: #2b2b2b;
-            --charcoal-2: #333333;
-            
-            /* Mapping old variables to new ones */
-            --dark-navy: var(--deep-forest-green-1);
-            --dark-bg: var(--deep-forest-green-2);
-            --blue-accent: var(--teal-1);
-            --blue-accent-alt: var(--teal-2);
-            --hero-overlay: rgba(26, 61, 52, 0.85);
-            --light-blue: var(--lime-chartreuse-1);
-            --light-blue-alt: var(--lime-chartreuse-2);
-            --btn-primary: var(--lime-chartreuse-1);
-            --btn-primary-alt: var(--lime-chartreuse-2);
-            --btn-hover: #a0c02e;
-            --btn-hover-alt: #b0d13c;
-            --icon-bg: var(--teal-1);
-            --footer-bg: var(--deep-forest-green-1);
-            --footer-alt: var(--deep-forest-green-2);
-            --footer-text: rgba(255, 255, 255, 0.8);
-            --footer-text-alt: rgba(255, 255, 255, 0.7);
-            --social-border: var(--teal-1);
-            --light-bg: var(--cream-1);
-            --light-bg-alt: var(--cream-2);
-        }
-
+  
         /* Global Styles */
         * {
             margin: 0;
@@ -60,8 +23,8 @@
         }
 
         body {
-            color: var(--charcoal-1);
-            background-color: var(--white);
+            color: #2b2b2b;
+            background-color: #ffffff;
             line-height: 1.6;
         }
 
@@ -81,8 +44,8 @@
         .btn {
             display: inline-block;
             padding: 12px 24px;
-            background-color: var(--btn-primary);
-            color: var(--charcoal-1);
+            background-color: #b4d333;
+            color: #2b2b2b;
             border: none;
             border-radius: 4px;
             cursor: pointer;
@@ -91,8 +54,8 @@
         }
 
         .btn:hover {
-            background-color: var(--btn-hover);
-            color: var(--charcoal-1);
+            background-color: #a0c02e;
+            color: #2b2b2b;
         }
 
         section {
@@ -101,11 +64,12 @@
 
 /* Updated Header Styles with Angled Logo Background */
 header {
-    background-color: var(--dark-navy);
+    background-color: #1a3d34;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
     z-index: 1000;
+    position: relative;
 }
 
 .header-container {
@@ -121,7 +85,7 @@ header {
     display: flex;
     align-items: center;
     position: relative;
-    background-color: var(--white);
+    background-color: #ffffff;
     padding: 15px 60px 15px 30px;
     clip-path: polygon(0 0, calc(100% - 40px) 0, 100% 100%, 0 100%);
     margin-right: 20px;
@@ -130,9 +94,10 @@ header {
 
 /* Logo Image Styles */
 .logo-image {
-    height: 100px;  /* Increased from 70px */
+    height: 100px;  
+    
     width: auto;
-    max-width: 350px;  /* Increased from 250px */
+    max-width: 350px;  
     object-fit: contain;
     transition: all 0.3s ease;
 }
@@ -191,7 +156,7 @@ header {
 }
 
 .modal-close:hover {
-    color: var(--lime-chartreuse-1);
+    color: #b4d333;
     transform: rotate(90deg);
 }
 
@@ -219,6 +184,7 @@ nav ul {
     margin: 0;
     padding: 0;
     gap: 40px;
+    position: static
 }
 
 nav ul li {
@@ -229,13 +195,13 @@ nav ul li a {
     font-weight: 600;
     font-size: 1rem;
     position: relative;
-    color: var(--white);
+    color: #ffffff;
     padding: 10px 0;
     transition: color 0.3s ease;
 }
 
 nav ul li a.active {
-    color: var(--lime-chartreuse-1);
+    color: #b4d333;
 }
 
 /* Underline effect */
@@ -246,7 +212,7 @@ nav ul li a::after {
     height: 2px;
     bottom: 5px;
     left: 0;
-    background-color: var(--lime-chartreuse-1);
+    background-color:#b4d333;
     transition: width 0.3s ease;
 }
 
@@ -256,7 +222,7 @@ nav ul li a.active::after {
 }
 
 nav ul li a:hover {
-    color: var(--lime-chartreuse-1);
+    color: #b4d333;
 }
 
 /* Mobile Menu */
@@ -264,7 +230,7 @@ nav ul li a:hover {
     display: none;
     font-size: 1.5rem;
     cursor: pointer;
-    color: var(--white);
+    color: #ffffff;
     padding-right: 20px;
 }
 
@@ -294,7 +260,7 @@ nav ul li a:hover {
         left: -100%;
         width: 100%;
         height: calc(100vh - 80px);
-        background-color: var(--deep-forest-green-1);
+        background-color: #1a3d34;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
@@ -333,7 +299,7 @@ nav ul li a:hover {
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
-            color: var(--white);
+            color: #ffffff;
         }
 
  /* Hero Slider Section */
@@ -379,7 +345,7 @@ nav ul li a:hover {
         .slide-content {
             max-width: 800px;
             padding: 0 20px;
-            color: var(--white);
+            color: #ffffff;
         }
 
         .slide-content h2 {
@@ -389,7 +355,7 @@ nav ul li a:hover {
         }
 
         .slide-content h2 span {
-            color: var(--lime-chartreuse-1);
+            color: #b4d333;
         }
 
         .slide-content p {
@@ -421,7 +387,7 @@ nav ul li a:hover {
         }
 
         .slider-dot.active {
-            background-color: var(--lime-chartreuse-1);
+            background-color: #b4d333;
         }
 
         /* Navigation Buttons */
@@ -436,7 +402,7 @@ nav ul li a:hover {
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--white);
+            color: #ffffff;
             font-size: 1.5rem;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -444,7 +410,7 @@ nav ul li a:hover {
         }
 
         .slider-btn:hover {
-            background-color: var(--lime-chartreuse-1);
+            background-color:#b4d333;
         }
 
         .prev-btn {
@@ -457,8 +423,8 @@ nav ul li a:hover {
 
         /* Content Section */
         .content-section {
-            background-color: var(--light-bg);
-            color: var(--charcoal-1);
+            background-color: #f5f3ed;
+            color: #2b2b2b;
             padding: 80px 0;
         }
 
@@ -475,33 +441,33 @@ nav ul li a:hover {
         .content-text h2 {
             font-size: 2.5rem;
             margin-bottom: 20px;
-            color: var(--charcoal-1);
+            color: #2b2b2b;
         }
 
         .content-text h2 span {
-            color: var(--teal-1);
+            color: #4a8b7f;
         }
 
         .content-text p {
             margin-bottom: 30px;
             font-size: 1.1rem;
-            color: var(--charcoal-1);
+            color: #2b2b2b;
         }
 
         .content-text strong {
-            color: var(--teal-1);
+            color: #4a8b7f;
             font-size: 1.2rem;
         }
 
         .content-image {
             flex: 1;
             height: 400px;
-            background-color: var(--teal-1);
+            background-color: #4a8b7f;
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--white);
+            color: #ffffff;
             font-size: 1.2rem;
             overflow: hidden;
         }
@@ -514,7 +480,7 @@ nav ul li a:hover {
 
         /* Services Section */
         .services {
-            background-color: var(--deep-forest-green-2);
+            background-color:#234b3c;
             padding: 80px 0;
         }
 
@@ -522,13 +488,13 @@ nav ul li a:hover {
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 20px;
-            color: var(--white);
+            color:#ffffff;
         }
 
         .services p {
             text-align: center;
             font-size: 1.1rem;
-            color: var(--footer-text);
+            color: rgba(255, 255, 255, 0.8);
             max-width: 700px;
             margin: 0 auto 40px;
         }
@@ -541,7 +507,7 @@ nav ul li a:hover {
         }
 
         .service-card {
-            background-color: var(--deep-forest-green-1);
+            background-color: #1a3d34;
             border-radius: 8px;
             padding: 30px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -556,31 +522,31 @@ nav ul li a:hover {
         .service-icon {
             width: 70px;
             height: 70px;
-            background-color: var(--teal-1);
+            background-color: #4a8b7f;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 20px;
-            color: var(--white);
+            color: #ffffff;
             font-size: 1.8rem;
         }
 
         .service-card h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
-            color: var(--white);
+            color: #ffffff;
         }
 
         .service-card p {
             text-align: center;
-            color: var(--footer-text);
+            color:rgba(255, 255, 255, 0.8);
         }
 
         /* Blog Section */
         .blog-section {
-            background-color: var(--light-bg);
-            color: var(--charcoal-1);
+            background-color: #f5f3ed;
+            color: #2b2b2b;
             padding: 80px 0;
         }
 
@@ -588,13 +554,13 @@ nav ul li a:hover {
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 20px;
-            color: var(--charcoal-1);
+            color:#2b2b2b;
         }
 
         .blog-section p {
             text-align: center;
             font-size: 1.1rem;
-            color: var(--charcoal-1);
+            color: #2b2b2b;
             max-width: 700px;
             margin: 0 auto 40px;
         }
@@ -607,7 +573,7 @@ nav ul li a:hover {
         }
 
         .blog-card {
-            background-color: var(--white);
+            background-color:#ffffff;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -641,7 +607,7 @@ nav ul li a:hover {
         .blog-content h3 {
             font-size: 1.3rem;
             margin-bottom: 15px;
-            color: var(--charcoal-1);
+            color: #2b2b2b;
         }
 
         .blog-content p {
@@ -652,7 +618,7 @@ nav ul li a:hover {
         }
 
         .blog-link {
-            color: var(--teal-1);
+            color: #4a8b7f;
             font-weight: 600;
             display: flex;
             align-items: center;
@@ -660,13 +626,13 @@ nav ul li a:hover {
         }
 
         .blog-link:hover {
-            color: var(--teal-2);
+            color: #3d7a70;
         }
 
         /* Footer */
         footer {
-            background-color: var(--footer-bg);
-            color: var(--footer-text);
+            background-color: #1a3d34;
+            color: rgba(255, 255, 255, 0.8);
             padding: 70px 0 20px;
         }
 
@@ -681,7 +647,7 @@ nav ul li a:hover {
             font-size: 1.3rem;
             margin-bottom: 25px;
             position: relative;
-            color: var(--white);
+            color: #ffffff;
         }
 
         .footer-column h3::after {
@@ -689,7 +655,7 @@ nav ul li a:hover {
             position: absolute;
             width: 40px;
             height: 2px;
-            background-color: var(--lime-chartreuse-1);
+            background-color: #b4d333;
             bottom: -10px;
             left: 0;
         }
@@ -721,11 +687,11 @@ nav ul li a:hover {
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            border: 1px solid var(--teal-1);
+            border: 1px solid #4a8b7f;
         }
 
         .social-link:hover {
-            background-color: var(--lime-chartreuse-1);
+            background-color: #b4d333;
             transform: translateY(-3px);
         }
 
@@ -734,7 +700,7 @@ nav ul li a:hover {
             padding-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.9rem;
-            color: var(--footer-text);
+            color: rgba(255, 255, 255, 0.8);
         }
 
         /* Page Styles */
@@ -762,23 +728,23 @@ nav ul li a:hover {
             font-size: 3.5rem;
             margin-bottom: 20px;
             font-weight: 700;
-            color: var(--white);
+            color: #ffffff;
         }
 
         .hero-content h1 span {
-            color: var(--lime-chartreuse-1);
+            color: #b4d333;
         }
 
         .hero-content p {
             font-size: 1.2rem;
             max-width: 700px;
             margin: 0 auto;
-            color: var(--white);
+            color: #ffffff;
         }
 
         .mission {
-            background-color: var(--light-bg);
-            color: var(--charcoal-1);
+            background-color: #f5f3ed;
+            color: #2b2b2b;
         }
 
         .mission-container {
@@ -794,17 +760,17 @@ nav ul li a:hover {
         .mission-text h2 {
             font-size: 2.5rem;
             margin-bottom: 20px;
-            color: var(--charcoal-1);
+            color: #2b2b2b;
         }
 
         .mission-text h2 span {
-            color: var(--teal-1);
+            color: #4a8b7f;
         }
 
         .mission-text p {
             margin-bottom: 20px;
             font-size: 1.1rem;
-            color: var(--charcoal-1);
+            color:#2b2b2b;
         }
 
         .mission-image {
@@ -822,14 +788,14 @@ nav ul li a:hover {
         }
 
         .values {
-            background-color: var(--deep-forest-green-2);
+            background-color:#234b3c;
         }
 
         .values h2 {
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 50px;
-            color: var(--white);
+            color: #ffffff;
         }
 
         .values-grid {
@@ -839,7 +805,7 @@ nav ul li a:hover {
         }
 
         .value-card {
-            background-color: var(--deep-forest-green-1);
+            background-color:#1a3d34;
             border-radius: 8px;
             padding: 30px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -854,43 +820,43 @@ nav ul li a:hover {
         .value-icon {
             width: 70px;
             height: 70px;
-            background-color: var(--teal-1);
+            background-color: #4a8b7f;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 20px;
-            color: var(--white);
+            color: #ffffff;
             font-size: 1.8rem;
         }
 
         .value-card h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
-            color: var(--white);
+            color: #ffffff;
         }
 
         .value-card p {
             text-align: center;
-            color: var(--footer-text);
+            color: rgba(255, 255, 255, 0.8);
         }
 
         .team {
-            background-color: var(--light-bg);
-            color: var(--charcoal-1);
+            background-color:#f5f3ed;
+            color: #2b2b2b;
         }
 
         .team h2 {
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 20px;
-            color: var(--charcoal-1);
+            color: #2b2b2b;
         }
 
         .team p {
             text-align: center;
             font-size: 1.1rem;
-            color: var(--charcoal-1);
+            color: #2b2b2b;
             max-width: 700px;
             margin: 0 auto 50px;
         }
@@ -902,7 +868,7 @@ nav ul li a:hover {
         }
 
         .team-member {
-            background-color: var(--white);
+            background-color: #ffffff;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -937,11 +903,11 @@ nav ul li a:hover {
         .member-info h3 {
             font-size: 1.3rem;
             margin-bottom: 5px;
-            color: var(--charcoal-1);
+            color: #2b2b2b;
         }
 
         .member-info p {
-            color: var(--teal-1);
+            color: #4a8b7f;
             font-weight: 500;
             margin-bottom: 10px;
         }
@@ -965,8 +931,8 @@ nav ul li a:hover {
         }
 
         .contact-section {
-            background-color: var(--light-bg);
-            color: var(--charcoal-1);
+            background-color: #f5f3ed;
+            color: #2b2b2b;
         }
 
         .contact-container {
@@ -981,13 +947,13 @@ nav ul li a:hover {
         .contact-info h2 {
             font-size: 2.5rem;
             margin-bottom: 20px;
-            color: var(--charcoal-1);
+            color: #2b2b2b;
         }
 
         .contact-info p {
             margin-bottom: 30px;
             font-size: 1.1rem;
-            color: var(--charcoal-1);
+            color: #2b2b2b;
         }
 
         .contact-details {
@@ -1003,18 +969,18 @@ nav ul li a:hover {
         .contact-detail i {
             width: 40px;
             height: 40px;
-            background-color: var(--teal-1);
+            background-color: #4a8b7f;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-right: 15px;
-            color: var(--white);
+            color: #ffffff;
         }
 
         .contact-form {
             flex: 1;
-            background-color: var(--white);
+            background-color: #ffffff;
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -1028,7 +994,7 @@ nav ul li a:hover {
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
-            color: var(--charcoal-1);
+            color:#2b2b2b;
         }
 
         .form-group input,
@@ -1043,7 +1009,7 @@ nav ul li a:hover {
 
         .form-group input:focus,
         .form-group textarea:focus {
-            border-color: var(--teal-1);
+            border-color: #4a8b7f;
             outline: none;
         }
 
@@ -1074,7 +1040,7 @@ nav ul li a:hover {
                 left: -100%;
                 width: 100%;
                 height: calc(100vh - 80px);
-                background-color: var(--deep-forest-green-1);
+                background-color: #1a3d34;
                 flex-direction: column;
                 align-items: center;
                 justify-content: flex-start;
@@ -1184,7 +1150,7 @@ nav ul li a:hover {
 }
 /* Tools Recommend Section - Separate from Services */
 .tools-recommend {
-    background-color: var(--deep-forest-green-2);
+    background-color: #234b3c;
     padding: 80px 0;
 }
 
@@ -1192,13 +1158,13 @@ nav ul li a:hover {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 20px;
-    color: var(--white);
+    color: #ffffff;
 }
 
 .tools-recommend p {
     text-align: center;
     font-size: 1.1rem;
-    color: var(--footer-text);
+    color:rgba(255, 255, 255, 0.8);
     max-width: 700px;
     margin: 0 auto 40px;
 }
@@ -1211,7 +1177,7 @@ nav ul li a:hover {
 }
 
 .tool-card {
-    background-color: var(--deep-forest-green-1);
+    background-color: #1a3d34;
     border-radius: 8px;
     padding: 30px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -1258,12 +1224,12 @@ nav ul li a:hover {
 .tool-card h3 {
     font-size: 1.5rem;
     margin-bottom: 15px;
-    color: var(--white);
+    color: #ffffff;
 }
 
 .tool-card p {
     text-align: center;
-    color: var(--footer-text);
+    color:rgba(255, 255, 255, 0.8);
 }
 
 /* Image Modal */
@@ -1319,8 +1285,319 @@ footer a img:hover {
 }
 
 .modal-close:hover {
-    color: var(--lime-chartreuse-1);
+    color: #b4d333;
 }
+/* Blog Grid */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  margin-top: 30px;
+}
+
+/* Centered grid variant (for single featured card) */
+.blog-grid-centered {
+  justify-content: center;
+  grid-template-columns: 1fr;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Featured blog card */
+.blog-card-featured {
+  max-width: 600px;
+}
+
+/* If you have multiple cards, remove the centered variant */
+.blog-grid.blog-grid-multi {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  max-width: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .blog-grid,
+  .blog-grid-centered {
+    grid-template-columns: 1fr;
+  }
+  
+  .blog-card-featured {
+    max-width: 100%;
+  }
+}
+.process-list {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+.section-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.section-subtitle {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 60px;
+}
+
+.badge {
+    display: inline-block;
+    background-color: #4a8b7f;
+    color: #ffffff;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.check-list {
+    list-style: none;
+    margin: 20px 0;
+}
+
+.check-list li {
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.check-list li i {
+    color: #b4d333;
+}
+
+.btn-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+.mission-reverse {
+    flex-direction: row-reverse;
+}
+.tool-link {
+    color: #b4d333;
+    font-weight: 600;
+    margin-top: 15px;
+    display: inline-block;
+}
+
+.cta-container {
+    text-align: center;
+}
+
+.cta-text {
+    max-width: 700px;
+    margin: 0 auto 30px;
+}
+.admin-link {
+    display: inline-block;
+    margin-top: 15px;
+}
+
+.admin-img {
+    width: 150px;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+/* Team Read More Button */
+.member-role {
+    color: #4a8b7f;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+}
+
+.read-more-btn {
+    background: none;
+    border: none;
+    color: #b4d333;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.3s ease;
+}
+
+.read-more-btn:hover {
+    gap: 10px;
+    color: #a0c02e;
+}
+
+/* Profile Modal */
+.profile-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-modal.active {
+    display: flex;
+}
+
+.profile-modal-content {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    animation: zoomIn 0.3s ease;
+}
+
+.profile-modal-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.profile-modal-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-modal-body h3 {
+    font-size: 1.4rem;
+    color: #2b2b2b;
+    margin-bottom: 5px;
+}
+
+.profile-modal-body .bio {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-top: 12px;
+}
+
+.profile-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.profile-modal-close:hover {
+    color: #b4d333;
+}
+
+@media (max-width: 576px) {
+    .profile-modal-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+.dropdown {
+    position: relative !important;
+}
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-70%);
+    width: 1200px;
+    background-color: #1a3d34;
+    border-top: 3px solid #b4d333;
+    padding: 40px 60px;
+    z-index: 998;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    animation: fadeDown 0.25s ease;
+}
+
+/* Bridge to prevent gap between nav and dropdown */
+.dropdown::after {
+    content: '';
+    position: absolute;
+    height: 20px;
+    width: 100%;
+    bottom: -20px;
+    left: 0;
+}
+
+
+.dropdown:hover > .dropdown-menu {
+    display: block;
+}
+
+@keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.mega-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.mega-item {
+    padding: 18px 20px;
+    border-radius: 8px;
+    border-left: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.mega-item:hover {
+    background-color: rgba(255,255,255,0.08);
+    border-left: 3px solid #b4d333;
+}
+
+.mega-item h4 {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mega-item h4 i {
+    color: #b4d333;
+    font-size: 0.9rem;
+}
+
+.mega-item p {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    text-align: left;
+    margin: 0;
+}
+
+.mega-item:hover h4 {
+    color: #b4d333;
+}
+
+.mega-item:hover p {
+    color: rgba(255,255,255,0.85);
+}
+
     </style>
 </head>
 <body>
@@ -1332,15 +1609,73 @@ footer a img:hover {
                 <img src="images/logo.jpg" alt="WildData" class="logo-image">
             </div>
             <div class="mobile-menu">☰</div>
-            <nav>
-                <ul>
-                    <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
-                    <li><a href="#" class="nav-link" data-page="about">About</a></li>
-                    <li><a href="#" class="nav-link" data-page="services">Services</a></li>
-                    <li><a href="#" class="nav-link" data-page="tools">Tools</a></li> 
-                    <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
-                </ul>
-            </nav>
+ <nav>
+    <ul>
+        <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+
+        <li class="dropdown">
+            <a href="#" class="nav-link" data-page="about">About <i class="fas fa-chevron-down" style="font-size:0.7rem"></i></a>
+            <div class="dropdown-menu">
+                <div class="mega-grid">
+                    <div class="mega-item" onclick="navigateTo('about', '.mission-container')">
+                        <h4><i class="fas fa-bullseye"></i> Our Mission</h4>
+                        <p>Learn about our dedication to advancing wildlife research through accurate data annotation</p>
+                    </div>
+                    <div class="mega-item" onclick="navigateTo('about', '.values')">
+                        <h4><i class="fas fa-leaf"></i> Our Values</h4>
+                        <p>Accuracy, conservation focus, innovation and collaboration drive everything we do</p>
+                    </div>
+                    <div class="mega-item" onclick="navigateTo('about', '.team')">
+                        <h4><i class="fas fa-users"></i> Our Team</h4>
+                        <p>Meet the wildlife specialists, engineers and researchers behind WildData</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+        <li class="dropdown">
+            <a href="#" class="nav-link" data-page="services">Services <i class="fas fa-chevron-down" style="font-size:0.7rem"></i></a>
+            <div class="dropdown-menu">
+                <div class="mega-grid">
+                    <div class="mega-item" onclick="navigateTo('services', '#services-section')">
+                        <h4><i class="fas fa-camera"></i> Wildlife Image Annotation</h4>
+                        <p>Annotate visual data for species identification, behavior analysis and conservation research</p>
+                    </div>
+                    <div class="mega-item" onclick="navigateTo('services', '#services-section')">
+                        <h4><i class="fas fa-database"></i> ML Dataset Preparation</h4>
+                        <p>Properly formatted datasets for AI developers building wildlife recognition models</p>
+                    </div>
+                    <div class="mega-item" onclick="navigateTo('services', '.content-section')">
+                        <h4><i class="fas fa-tasks"></i> Our Process</h4>
+                        <p>Rigorous multi-stage methodology from consultation to final validation and delivery</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+        <li class="dropdown">
+            <a href="#" class="nav-link" data-page="tools">Tools <i class="fas fa-chevron-down" style="font-size:0.7rem"></i></a>
+            <div class="dropdown-menu">
+                <div class="mega-grid">
+                    <div class="mega-item" onclick="navigateTo('tools', '.content-section')">
+                        <h4><i class="fas fa-video"></i> CVAT</h4>
+                        <p>Powerful open-source platform for video and image annotation with precision and scalability</p>
+                    </div>
+                    <div class="mega-item" onclick="navigateTo('tools', '.mission-reverse')">
+                        <h4><i class="fas fa-map-marked-alt"></i> SurveyScope / DetWab</h4>
+                        <p>Specialized platform for annotating aerial and satellite imagery with geospatial context</p>
+                    </div>
+                    <div class="mega-item" onclick="navigateTo('tools', '.tools-recommend')">
+                        <h4><i class="fas fa-tools"></i> Additional Tools</h4>
+                        <p>LabelImg, Roboflow, Wildlife Insights and more platforms we recommend</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+        <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+    </ul>
+</nav>
         </div>
     </header>
 
@@ -1403,7 +1738,7 @@ footer a img:hover {
     <div class="container">
         <div class="content-container">
             <div class="content-text">
-                <h2>4 <span>WHAT WE OFFER</span></h2>
+                <h2> <span>WHAT WE OFFER</span></h2>
                 <p><strong>Excellent IT Services</strong></p>
                 <p>WildData Annotation Lab is dedicated to advancing wildlife research through accurate data annotation and analytics. Our mission is to help scientists, conservationists, and AI developers unlock the potential of wildlife datasets for research, protection, and innovation.</p>
                 <a href="#services" class="btn">Our Services <i class="fas fa-arrow-right"></i></a>
@@ -1445,20 +1780,21 @@ footer a img:hover {
 
       <!-- Blog Section -->
 <section class="blog-section">
-    <div class="container">
-        <h2>Research & Insights</h2>
-        <p>How our data annotation work contributed to global conservation technology</p>
-        
-        <div class="blog-grid" style="justify-content: center;">
-            <div class="blog-card" style="max-width: 600px;">
-                <div class="blog-image">
-                    <img src="https://images.unsplash.com/photo-1564760055775-d63b17a55c44?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="KAZA Wildlife Conservation">
-                </div>
+  <div class="container">
+    <h2>Research & Insights</h2>
+    <p>How our data annotation work contributed to global conservation technology</p>
+    
+    <div class="blog-grid blog-grid-centered">
+      <div class="blog-card blog-card-featured">
+        <div class="blog-image">
+          <img src="https://images.unsplash.com/photo-1564760055775-d63b17a55c44?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+               alt="KAZA Wildlife Conservation">
+        </div>
                 <div class="blog-content">
                     <h3>How KAZA Data Supported the New Scoutbot Model</h3>
                     <p>The Kavango–Zambezi Transfrontier Conservation Area (KAZA) is home to some of Africa's most important wildlife populations. In 2024, our team meticulously prepared a high-quality dataset of animal images and observations from the region through careful labeling, metadata validation, and accuracy checks.</p>
                     <p>Wild Me integrated this well-structured dataset into their new Scoutbot AI model, making it more accurate and faster at identifying wildlife across different habitats. What began as a regional project evolved into a global contribution—strengthening conservation technology used worldwide to protect wildlife.</p>
-                    <a href="https://www.wildme.org/" target="_blank" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    <a href="https://www.wildme.org/" target="_blank" rel="noopener noreferrer" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
      </div>
@@ -1528,61 +1864,75 @@ footer a img:hover {
 
 
   <!-- Team Section -->
-        <section class="team">
-            <div class="container">
-                <h2>Our Team</h2>
-                <p>Meet the experts behind WildData Annotation Lab</p>
-                
-                <div class="team-grid">
-                     <div class="team-member">
-                        <div class="member-image">
-                            <img src="images/Howard fredrick.jpeg" alt="Howard Frederick">
-                        </div>
-                        <div class="member-info">
-                            <h3>Howard Frederick</h3>
-                            <p>Chief Biotechnology Advisor</p>
-                            <p class="bio">Howard has been instrumental in bridging biology and technology for our team. He provides extensive software training, offers critical biology consultations, and guides our technical capabilities with strategic advisory on biotechnology applications.</p>
-                        </div>
-                    </div>
+      <section class="team">
+    <div class="container">
+        <h2>Our Team</h2>
+        <p>Meet the experts behind WildData Annotation Lab</p>
+        
+        <div class="team-grid">
 
-                    <div class="team-member">
-                        <div class="member-image">
-                            <img src="images/JULIUS S.MMAGA.jpeg" alt="Julius S. Mmaga">
-                        </div>
-                        <div class="member-info">
-                            <h3>Julius S. Mmaga</h3>
-                            <p>Founder – Wildlife Specialist</p>
-                            <p class="bio">Julius oversees wildlife data quality including species identification, animal behavior, and ecological context. He develops annotation guidelines, leads QA for wildlife-related annotations, and serves as the primary contact for clients in the wildlife and conservation sector.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="team-member">
-                        <div class="member-image">
-                            <img src="images/Wenceslaus magesa.jpeg" alt="Wenceslaus Magesa">
-                        </div>
-                        <div class="member-info">
-                            <h3>Wenceslaus Magesa</h3>
-                            <p>Manager– Wildlife Specialist</p>
-                            <p class="bio">Wenceslaus analyzes environmental and ecological datasets, creates data labeling rules for environmental features, and performs verification and QA before client delivery. He integrates field knowledge into annotation processes and communicates with wildlife and research partners to understand data needs.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="team-member">
-                        <div class="member-image">
-                            <img src="images/PENDO PETER KIPARA.jpeg" alt="Pendo Peter Kipara">
-                        </div>
-                        <div class="member-info">
-                            <h3>Pendo Peter Kipara</h3>
-                            <p>Tech Lead– Wildlife Specialist</p>
-                            <p class="bio">Pendo manages all technical infrastructure including CVAT/Label Studio servers, cloud storage, and system security. She builds AI-assisted automation tools, maintains annotation platforms, and leads the annotator team from the technical side, ensuring data security compliance and optimal workflows.</p>
-                        </div>
-                    </div>
-                    
-                   
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="images/Howard fredrick.jpeg" alt="Howard Frederick">
+                </div>
+                <div class="member-info">
+                    <h3>Howard Frederick</h3>
+                    <p class="member-role">Chief Biotechnology Advisor</p>
+                    <button class="read-more-btn" onclick="openProfile('howard')">Read More <i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
-        </section>
+
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="images/JULIUS S.MMAGA.jpeg" alt="Julius S. Mmaga">
+                </div>
+                <div class="member-info">
+                    <h3>Julius S. Mmaga</h3>
+                    <p class="member-role">Founder & Wildlife Specialist</p>
+                    <button class="read-more-btn" onclick="openProfile('julius')">Read More <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="images/Wenceslaus magesa.jpeg" alt="Wenceslaus Magesa">
+                </div>
+                <div class="member-info">
+                    <h3>Wenceslaus Magesa</h3>
+                    <p class="member-role">Operations Manager & Wildlife Specialist</p>
+                    <button class="read-more-btn" onclick="openProfile('wenceslaus')">Read More <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="images/PENDO PETER KIPARA.jpeg" alt="Pendo Peter Kipara">
+                </div>
+                <div class="member-info">
+                    <h3>Pendo Peter Kipara</h3>
+                    <p class="member-role">Tech Lead & Wildlife Specialist</p>
+                    <button class="read-more-btn" onclick="openProfile('pendo')">Read More <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
     </div>
+  </section>
+    </div>
+
+<!-- Profile Modal -->
+<div id="profileModal" class="profile-modal">
+    <div class="profile-modal-content">
+        <span class="profile-modal-close" onclick="closeProfile()">&times;</span>
+        <div class="profile-modal-image">
+            <img id="profileModalImage" src="" alt="">
+        </div>
+        <div class="profile-modal-body">
+            <h3 id="profileModalName"></h3>
+            <p id="profileModalRole" class="member-role"></p>
+            <p id="profileModalBio" class="bio"></p>
+        </div>
+    </div>
+</div>
     <!-- Services Page -->
     <div id="services-page" class="page">
         <!-- Hero Section -->
@@ -1594,7 +1944,7 @@ footer a img:hover {
         </section>
 
 <!-- Services Section -->
-<section id="services" class="services">
+<section id="services-section" class="services">
     <div class="container">
         <h2>Our Services</h2>
         <p>We offer specialized data annotation and analytics services tailored for wildlife research and conservation.</p>
@@ -1623,14 +1973,14 @@ footer a img:hover {
 </section>
 
         <!-- Process Section -->
-        <section class="content-section">
-            <div class="container">
-                <div class="content-container">
-                    <div class="content-text">
-                        <h2>Our <span>Process</span></h2>
-                        <p><strong>How We Deliver Excellence</strong></p>
-                        <p>Our annotation process follows a rigorous methodology to ensure the highest quality results:</p>
-                        <ul style="margin-left: 20px; margin-bottom: 20px;">
+       <section class="content-section">
+    <div class="container">
+        <div class="content-container">
+            <div class="content-text">
+                <h2>Our <span>Process</span></h2>
+                <p><strong>How We Deliver Excellence</strong></p>
+                <p>Our annotation process follows a rigorous methodology to ensure the highest quality results:</p>
+                    <ul class="process-list">
                             <li>Initial consultation to understand project requirements</li>
                             <li>Data assessment and quality evaluation</li>
                             <li>Annotation guideline development</li>
@@ -1646,7 +1996,10 @@ footer a img:hover {
                 </div>
             </div>
         </section>
-    </div>
+    </div> <!-- close services page -->
+
+
+
  <!-- Tools Page -->
     <div id="tools" class="page">
         <!-- Hero Section -->
@@ -1658,124 +2011,122 @@ footer a img:hover {
         </section>
 
         <!-- Tools Introduction -->
-        <section class="mission">
-            <div class="container">
-                <h2 style="text-align: center; margin-bottom: 20px;">Our Technology Stack</h2>
-                <p style="text-align: center; max-width: 800px; margin: 0 auto 60px;">We use industry-leading annotation tools to ensure precision, efficiency, and quality in every wildlife research project. Our team is expertly trained on multiple platforms to meet your specific needs.</p>
-            </div>
-        </section>
+       <section class="mission">
+    <div class="container">
+        <h2 class="section-title">Our Technology Stack</h2>
+        <p class="section-subtitle">We use industry-leading annotation tools to ensure precision, efficiency, and quality in every wildlife research project. Our team is expertly trained on multiple platforms to meet your specific needs.</p>
+    </div>
+</section>
 
         <!-- CVAT Tool -->
-        <section class="content-section">
-            <div class="container">
-                <div class="content-container">
-                    <div class="content-image">
-                        <img src="images/CVAT.jpeg" alt="CVAT Interface">
-                    </div>
-                    <div class="content-text">
-                        <span style="display: inline-block; background-color: var(--teal-1); color: var(--white); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 15px;">Video & Image Annotation</span>
-                        <h2><span>CVAT</span> (Computer Vision Annotation Tool)</h2>
-                        <p>CVAT is a powerful open-source annotation platform designed for computer vision tasks. We use CVAT for complex video and image annotation projects that require precision and scalability.</p>
-                        <ul style="list-style: none; margin: 20px 0;">
-                            <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px;">
-                                <i class="fas fa-check-circle" style="color: var(--lime-chartreuse-1);"></i>
-                                Advanced video frame annotation
-                            </li>
-                            <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px;">
-                                <i class="fas fa-check-circle" style="color: var(--lime-chartreuse-1);"></i>
-                                Multiple annotation formats (bounding boxes, polygons)
-                            </li>
-                            <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px;">
-                                <i class="fas fa-check-circle" style="color: var(--lime-chartreuse-1);"></i>
-                                Track wildlife across video sequences
-                            </li>
-                            <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px;">
-                                <i class="fas fa-check-circle" style="color: var(--lime-chartreuse-1);"></i>
-                                Collaborative team annotation workspace
-                            </li>
-                        </ul>
-                        <div style="display: flex; gap: 15px; margin-top: 20px;">
-                            <a href="https://www.cvat.ai/" target="_blank" class="btn">Visit CVAT Website <i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                    </div>
+       <section class="content-section">
+    <div class="container">
+        <div class="content-container">
+            <div class="content-image">
+                <img src="images/CVAT.jpeg" alt="CVAT Interface">
+            </div>
+            <div class="content-text">
+                <span class="badge">Video & Image Annotation</span>
+                <h2><span>CVAT</span> (Computer Vision Annotation Tool)</h2>
+                <p>CVAT is a powerful open-source annotation platform designed for computer vision tasks. We use CVAT for complex video and image annotation projects that require precision and scalability.</p>
+                <ul class="check-list">
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        Advanced video frame annotation
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        Multiple annotation formats (bounding boxes, polygons)
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        Track wildlife across video sequences
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        Collaborative team annotation workspace
+                    </li>
+                </ul>
+                <div class="btn-group">
+                    <a href="https://www.cvat.ai/" target="_blank" rel="noopener noreferrer" class="btn">Visit CVAT Website <i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
         <!-- SurveyScope/DetWab Tool -->
-        <section class="mission">
-            <div class="container">
-                <div class="mission-container" style="flex-direction: row-reverse;">
-                    <div class="mission-image">
-                        <img src="images/SurveyScope  DetWab.jpg" alt="SurveyScope Interface">
-                    </div>
-                    <div class="mission-text">
-                        <span style="display: inline-block; background-color: var(--teal-1); color: var(--white); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 15px;">Geospatial Annotation</span>
-                        <h2><span>SurveyScope</span> / DetWab</h2>
-                        <p>SurveyScope is a specialized platform for annotating aerial and satellite imagery with geospatial context. Perfect for large-scale wildlife surveys and habitat mapping projects.</p>
-                        <ul style="list-style: none; margin: 20px 0;">
-                            <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px;">
-                                <i class="fas fa-check-circle" style="color: var(--lime-chartreuse-1);"></i>
-                                Location-based wildlife annotation
-                            </li>
-                            <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px;">
-                                <i class="fas fa-check-circle" style="color: var(--lime-chartreuse-1);"></i>
-                                Aerial and drone imagery support
-                            </li>
-                            <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px;">
-                                <i class="fas fa-check-circle" style="color: var(--lime-chartreuse-1);"></i>
-                                GPS coordinate integration
-                            </li>
-                            <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px;">
-                                <i class="fas fa-check-circle" style="color: var(--lime-chartreuse-1);"></i>
-                                Large-scale survey management
-                            </li>
-                        </ul>
-                        <div style="display: flex; gap: 15px; margin-top: 20px;">
-                            <a href="https://surveyscope.org/" target="_blank" class="btn">Visit SurveyScope <i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                    </div>
+       <section class="mission">
+    <div class="container">
+        <div class="mission-container mission-reverse">
+            <div class="mission-image">
+                <img src="images/SurveyScope  DetWab.jpg" alt="SurveyScope Interface">
+            </div>
+            <div class="mission-text">
+                <span class="badge">Geospatial Annotation</span>
+                <h2><span>SurveyScope</span> / DetWab</h2>
+                <p>SurveyScope is a specialized platform for annotating aerial and satellite imagery with geospatial context. Perfect for large-scale wildlife surveys and habitat mapping projects.</p>
+                <ul class="check-list">
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        Location-based wildlife annotation
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        Aerial and drone imagery support
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        GPS coordinate integration
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        Large-scale survey management
+                    </li>
+                </ul>
+                <div class="btn-group">
+                    <a href="https://surveyscope.org/" target="_blank" rel="noopener noreferrer" class="btn">Visit SurveyScope <i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
-        </section>
-
+        </div>
+    </div>
+</section>
         <!-- ScoutBeast Tool -->
         <section class="content-section">
-            <div class="container">
-                <div class="content-container">
-                    <div class="content-image">
-                        <img src="images/ScoutBeast.jpg" alt="ScoutBeast Platform">
-                    </div>
-                    <div class="content-text">
-                        <span style="display: inline-block; background-color: var(--teal-1); color: var(--white); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 15px;">Camera Trap Management</span>
-                        <h2><span>Scout</span></h2>
-                        <p>ScoutBeast is our go-to platform for managing and annotating camera trap imagery. It streamlines the workflow from image collection to species identification and data export.</p>
-                        <ul style="list-style: none; margin: 20px 0;">
-                            <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px;">
-                                <i class="fas fa-check-circle" style="color: var(--lime-chartreuse-1);"></i>
-                                Automated image organization
-                            </li>
-                            <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px;">
-                                <i class="fas fa-check-circle" style="color: var(--lime-chartreuse-1);"></i>
-                                Species identification and tagging
-                            </li>
-                            <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px;">
-                                <i class="fas fa-check-circle" style="color: var(--lime-chartreuse-1);"></i>
-                                Behavior classification tools
-                            </li>
-                            <li style="padding: 8px 0; display: flex; align-items: center; gap: 12px;">
-                                <i class="fas fa-check-circle" style="color: var(--lime-chartreuse-1);"></i>
-                                Time-series analysis support
-                            </li>
-                        </ul>
-                        <div style="display: flex; gap: 15px; margin-top: 20px;">
-                            <a href="#" class="btn">Explore ScoutBeast <i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                    </div>
+    <div class="container">
+        <div class="content-container">
+            <div class="content-image">
+                <img src="images/ScoutBeast.jpg" alt="ScoutBeast Platform">
+            </div>
+            <div class="content-text">
+                <span class="badge">Camera Trap Management</span>
+                <h2><span>Scout</span></h2>
+                <p>ScoutBeast is our go-to platform for managing and annotating camera trap imagery. It streamlines the workflow from image collection to species identification and data export.</p>
+                <ul class="check-list">
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        Automated image organization
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        Species identification and tagging
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        Behavior classification tools
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        Time-series analysis support
+                    </li>
+                </ul>
+                <div class="btn-group">
+                    <a href="#" class="btn">Explore ScoutBeast <i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
-        </section>
-
+        </div>
+    </div>
+</section>
 <!-- Recommended Additional Tools -->
 <section class="tools-recommend">
     <div class="container">
@@ -1789,7 +2140,7 @@ footer a img:hover {
                 </div>
                 <h3>LabelImg</h3>
                 <p>Simple and efficient tool for creating bounding box annotations. Ideal for quick labeling tasks and small to medium datasets.</p>
-                <a href="https://github.com/tzutalin/labelImg" target="_blank" style="color: var(--lime-chartreuse-1); font-weight: 600; margin-top: 15px; display: inline-block;">Learn More <i class="fas fa-arrow-right"></i></a>
+                <a href="https://github.com/tzutalin/labelImg" target="_blank" rel="noopener noreferrer" class="tool-link">Learn More <i class="fas fa-arrow-right"></i></a>
             </div>
 
             <div class="tool-card">
@@ -1798,7 +2149,7 @@ footer a img:hover {
                 </div>
                 <h3>Labelbox</h3>
                 <p>Enterprise-grade platform with advanced features for managing large annotation teams and complex ML pipelines.</p>
-                <a href="https://labelbox.com/" target="_blank" style="color: var(--lime-chartreuse-1); font-weight: 600; margin-top: 15px; display: inline-block;">Learn More <i class="fas fa-arrow-right"></i></a>
+                <a href="https://labelbox.com/" target="_blank" rel="noopener noreferrer" class="tool-link">Learn More <i class="fas fa-arrow-right"></i></a>
             </div>
 
             <div class="tool-card">
@@ -1807,7 +2158,7 @@ footer a img:hover {
                 </div>
                 <h3>Roboflow</h3>
                 <p>Complete solution for dataset preparation, annotation, augmentation, and model training for computer vision projects.</p>
-                <a href="https://roboflow.com/" target="_blank" style="color: var(--lime-chartreuse-1); font-weight: 600; margin-top: 15px; display: inline-block;">Learn More <i class="fas fa-arrow-right"></i></a>
+                <a href="https://roboflow.com/" target="_blank" rel="noopener noreferrer" class="tool-link">Learn More <i class="fas fa-arrow-right"></i></a>
             </div>
 
             <div class="tool-card">
@@ -1816,7 +2167,7 @@ footer a img:hover {
                 </div>
                 <h3>Wildlife Insights</h3>
                 <p>Specialized platform for camera trap data management with AI-assisted species identification and analytics.</p>
-                <a href="https://www.wildlifeinsights.org/" target="_blank" style="color: var(--lime-chartreuse-1); font-weight: 600; margin-top: 15px; display: inline-block;">Learn More <i class="fas fa-arrow-right"></i></a>
+                <a href="https://www.wildlifeinsights.org/" target="_blank" rel="noopener noreferrer" class="tool-link">Learn More <i class="fas fa-arrow-right"></i></a>
             </div>
 
             <div class="tool-card">
@@ -1825,7 +2176,7 @@ footer a img:hover {
                 </div>
                 <h3>VGG Image Annotator</h3>
                 <p>Lightweight browser-based tool for manual annotation of images. No installation required, works offline.</p>
-                <a href="https://www.robots.ox.ac.uk/~vgg/software/via/" target="_blank" style="color: var(--lime-chartreuse-1); font-weight: 600; margin-top: 15px; display: inline-block;">Learn More <i class="fas fa-arrow-right"></i></a>
+                <a href="https://www.robots.ox.ac.uk/~vgg/software/via/" target="_blank" rel="noopener noreferrer" class="tool-link">Learn More <i class="fas fa-arrow-right"></i></a>
             </div>
 
             <div class="tool-card">
@@ -1834,22 +2185,22 @@ footer a img:hover {
                 </div>
                 <h3>Timelapse</h3>
                 <p>Desktop application specifically designed for reviewing and annotating camera trap images with temporal data.</p>
-                <a href="http://saul.cpsc.ucalgary.ca/timelapse/" target="_blank" style="color: var(--lime-chartreuse-1); font-weight: 600; margin-top: 15px; display: inline-block;">Learn More <i class="fas fa-arrow-right"></i></a>
+                <a href="http://saul.cpsc.ucalgary.ca/timelapse/" target="_blank" rel="noopener noreferrer" class="tool-link">Learn More <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </div>
 </section>
 
-
-        <!-- Call to Action -->
-        <section class="mission">
-            <div class="container" style="text-align: center;">
-                <h2>Need Help Choosing the Right Tool?</h2>
-                <p style="max-width: 700px; margin: 0 auto 30px;">Our team of experts can recommend the best annotation platform for your specific wildlife research project. We'll assess your needs and guide you through the entire annotation process.</p>
-                <a href="#" class="btn nav-link" data-page="contact">Contact Our Team <i class="fas fa-arrow-right"></i></a>
-            </div>
-        </section>
+<!-- Call to Action -->
+<section class="mission">
+    <div class="container cta-container">
+        <h2>Need Help Choosing the Right Tool?</h2>
+        <p class="cta-text">Our team of experts can recommend the best annotation platform for your specific wildlife research project. We'll assess your needs and guide you through the entire annotation process.</p>
+        <a href="#" class="btn nav-link" data-page="contact">Contact Our Team <i class="fas fa-arrow-right"></i></a>
     </div>
+</section>
+</div> <!-- close tools page -->
+
 
     <!-- Contact Page -->
     <div id="contact" class="page">
@@ -1932,18 +2283,18 @@ footer a img:hover {
     <span class="modal-close">&times;</span>
     <img class="modal-content" id="modalImage">
 </div>
-    <footer>
+
+<footer>
     <div class="container">
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>WildData</h3>
-                <p>Advancing wildlife research through accurate data annotation and analytics.</p>
-                
-                <!-- ADD CLICKABLE IMAGE HERE -->
-                <a href="admin.html" style="display: inline-block; margin-top: 15px;">
-                    <img src="images/admins.png" alt="Admin" style="width: 150px; height: auto; border-radius: 8px; transition: transform 0.3s ease;">
-                </a>
-            </div>
+    <div class="footer-content">
+        <div class="footer-column">
+            <h3>WildData</h3>
+            <p>Advancing wildlife research through accurate data annotation and analytics.</p>
+            
+            <a href="admin.html" class="admin-link">
+                <img src="images/admins.png" alt="Admin" class="admin-img">
+            </a>
+        </div>
             
             <div class="footer-column">
                 <h3>Quick Links</h3>
@@ -1981,7 +2332,9 @@ footer a img:hover {
 
 <!-- EmailJS SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
+<script>
+    emailjs.init("Vzixao8TO3nbwZ15L");
+</script>
 <!-- Firebase SDK + All Scripts -->
 <script type="module">
     // Import Firebase
@@ -1989,9 +2342,7 @@ footer a img:hover {
     import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
     // Initialize EmailJS
-    (function(){
-        emailjs.init("Vzixao8TO3nbwZ15L");
-    })();
+    
 
     // Initialize Firebase
     const firebaseConfig = {
@@ -2189,6 +2540,80 @@ footer a img:hover {
             modal.classList.remove('active');
         }
     });
+
+</script>
+<script>
+    function openProfile(id) {
+        const profiles = {
+            howard: {
+                name: 'Howard Frederick',
+                role: 'Chief Biotechnology Advisor',
+                image: 'images/Howard fredrick.jpeg',
+                bio: 'Howard bridges biology and technology by providing software training, biology consultations, and strategic advisory on biotechnology applications to strengthen our team\'s technical capabilities.'
+            },
+            julius: {
+                name: 'Julius S. Mmaga',
+                role: 'Founder & Wildlife Specialist',
+                image: 'images/JULIUS S.MMAGA.jpeg',
+                bio: 'Julius founded WildData with expertise in wildlife data annotation, species identification, and biodiversity assessment. He develops annotation guidelines, leads quality assurance, and serves as the primary contact for clients in the wildlife and conservation sector.'
+            },
+            wenceslaus: {
+                name: 'Wenceslaus Magesa',
+                role: 'Operations Manager & Wildlife Specialist',
+                image: 'images/Wenceslaus magesa.jpeg',
+                bio: 'Holding a BSc in Wildlife Management, Wenceslaus brings field experience from CRC\'s Modernization of Wildlife Survey Project and TAWIRI\'s national wildlife censuses. At WildData, he oversees daily lab operations, coordinates annotators, ensures annotation quality, and manages schedules and financial reporting.'
+            },
+            pendo: {
+                name: 'Pendo Peter Kipara',
+                role: 'Tech Lead & Wildlife Specialist',
+                image: 'images/PENDO PETER KIPARA.jpeg',
+                bio: 'A Computer Engineering professional with expertise in networking, server administration, and data annotation. Pendo manages our technical infrastructure, maintains annotation platforms, and leads the annotator team ensuring system reliability, data security, and high-quality AI project delivery.'
+            },
+            rebecca: {
+                name: 'Rebecca Ryakitimbo',
+                role: 'Technologist & Research Advisor',
+                image: 'images/Rebecca Ryakitimbo.jpeg',
+                bio: 'Rebecca is a National Geographic Explorer leading WildNET, a project deploying community wireless networks and monitoring systems across the Serengeti and Ngorongoro ecosystems. With fellowships from Google, Internet Society, and AFRISIG, she brings deep expertise in ICT policy, digital rights, and community connectivity to WildData.'
+            }
+        };
+
+        const profile = profiles[id];
+        document.getElementById('profileModalImage').src = profile.image;
+        document.getElementById('profileModalImage').alt = profile.name;
+        document.getElementById('profileModalName').textContent = profile.name;
+        document.getElementById('profileModalRole').textContent = profile.role;
+        document.getElementById('profileModalBio').textContent = profile.bio;
+        document.getElementById('profileModal').classList.add('active');
+    }
+
+    function closeProfile() {
+        document.getElementById('profileModal').classList.remove('active');
+    }
+
+    document.addEventListener('click', function(e) {
+        const modal = document.getElementById('profileModal');
+        if (e.target === modal) closeProfile();
+    });
+    function closeProfile() {
+        document.getElementById('profileModal').classList.remove('active');
+    }
+
+    window.navigateTo = function(page, sectionSelector) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const targetId = page === 'services' ? 'services-page' : page;
+    document.getElementById(targetId).classList.add('active');
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+    const navLink = document.querySelector(`.nav-link[data-page="${page}"]`);
+    if (navLink) navLink.classList.add('active');
+    window.scrollTo(0, 0);
+    if (sectionSelector) {
+        setTimeout(() => {
+            const el = document.querySelector('#' + targetId + ' ' + sectionSelector);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 200);
+    }
+}
+
 </script>
 </body>
 </html>

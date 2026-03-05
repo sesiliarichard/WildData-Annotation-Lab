@@ -397,6 +397,14 @@
                 overflow-x: scroll;
             }
         }
+        .hidden {
+    display: none;
+}
+
+.no-messages-icon {
+    font-size: 3rem;
+    color: #ddd;
+}
     </style>
 </head>
 <body>
@@ -478,28 +486,28 @@
                 </div>
 
                 <div class="message-table">
-                    <div id="loading" class="loading">
-                        <i class="fas fa-spinner"></i>
-                        <p>Loading messages...</p>
-                    </div>
-                    <table id="messagesTable" style="display: none;">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Subject</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="messagesBody">
-                        </tbody>
-                    </table>
-                    <div id="noMessages" class="no-messages" style="display: none;">
-                        <i class="fas fa-inbox" style="font-size: 3rem; color: #ddd;"></i>
-                        <p>No messages found</p>
-                    </div>
+                <div id="loading" class="loading">
+                <i class="fas fa-spinner"></i>
+                <p>Loading messages...</p>
+               </div>
+             <table id="messagesTable" class="hidden">
+                 <thead>
+                  <tr>
+                   <th>Date</th>
+                   <th>Name</th>
+                   <th>Email</th>
+                   <th>Subject</th>
+                   <th>Actions</th>
+                 </tr>
+            </thead>
+             <tbody id="messagesBody">
+              </tbody>
+               </table>
+             <div id="noMessages" class="no-messages hidden">
+               <i class="fas fa-inbox no-messages-icon"></i>
+             <p>No messages found</p>
                 </div>
+               </div>
             </div>
         </div>
     </div>
@@ -558,6 +566,7 @@
         let allMessages = [];
 
         // Check authentication state
+        
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 loginPage.style.display = 'none';
