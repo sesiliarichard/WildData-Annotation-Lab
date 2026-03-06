@@ -4,1036 +4,208 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WildData Annotation Lab</title>
-    
-    <!-- Favicon - Multiple sizes for better quality -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/logo2.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/logo2.png">
-    <link rel="icon" type="image/png" sizes="48x48" href="images/logo2.png">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
-  
-        /* Global Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { color: #2b2b2b; background-color: #ffffff; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        .btn { display: inline-block; padding: 12px 24px; background-color: #b4d333; color: #2b2b2b; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; }
+        .btn:hover { background-color: #a0c02e; color: #2b2b2b; }
+        section { padding: 80px 0; }
 
-        body {
-            color: #2b2b2b;
-            background-color: #ffffff;
-            line-height: 1.6;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: color 0.3s ease;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background-color: #b4d333;
-            color: #2b2b2b;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover {
-            background-color: #a0c02e;
-            color: #2b2b2b;
-        }
-
-        section {
-            padding: 80px 0;
-        }
-
-/* Updated Header Styles with Angled Logo Background */
-header {
-    background-color: #1a3d34;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    position: relative;
-}
-
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0;
-    position: relative;
-}
-
-/* Angled Logo Container */
-.logo {
-    display: flex;
-    align-items: center;
-    position: relative;
-    background-color: #ffffff;
-    padding: 15px 60px 15px 30px;
-    clip-path: polygon(0 0, calc(100% - 40px) 0, 100% 100%, 0 100%);
-    margin-right: 20px;
-    z-index: 2;
-}
-
-/* Logo Image Styles */
-.logo-image {
-    height: 100px;  
-    
-    width: auto;
-    max-width: 350px;  
-    object-fit: contain;
-    transition: all 0.3s ease;
-}
-
-.logo-image:hover {
-    transform: scale(1.05);
-}
-/* Image Modal */
-.image-modal {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.95);
-    align-items: center;
-    justify-content: center;
-}
-
-.image-modal.active {
-    display: flex;
-}
-
-.modal-content {
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: contain;
-    animation: zoomIn 0.3s ease;
-    border-radius: 8px;
-    box-shadow: 0 10px 50px rgba(180, 211, 51, 0.3);
-}
-
-@keyframes zoomIn {
-    from {
-        transform: scale(0.5);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-.modal-close {
-    position: absolute;
-    top: 20px;
-    right: 40px;
-    color: #fff;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-    z-index: 10000;
-}
-
-.modal-close:hover {
-    color: #b4d333;
-    transform: rotate(90deg);
-}
-
-/* Logo Click Effect */
-.logo-image {
-    cursor: pointer;
-}
-
-.logo-image:hover {
-    transform: scale(1.05);
-    filter: brightness(1.1);
-}
-
-/* Navigation Styles */
-nav {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 30px;
-}
-
-nav ul {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 40px;
-    position: static
-}
-
-nav ul li {
-    margin: 0;
-}
-
-nav ul li a {
-    font-weight: 600;
-    font-size: 1rem;
-    position: relative;
-    color: #ffffff;
-    padding: 10px 0;
-    transition: color 0.3s ease;
-}
-
-nav ul li a.active {
-    color: #b4d333;
-}
-
-/* Underline effect */
-nav ul li a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 5px;
-    left: 0;
-    background-color:#b4d333;
-    transition: width 0.3s ease;
-}
-
-nav ul li a:hover::after, 
-nav ul li a.active::after {
-    width: 100%;
-}
-
-nav ul li a:hover {
-    color: #b4d333;
-}
-
-/* Mobile Menu */
-.mobile-menu {
-    display: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #ffffff;
-    padding-right: 20px;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .logo {
-        padding: 10px 40px 10px 20px;
-        clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 100%, 0 100%);
-    }
-    
-    .logo-image {
-        height: 50px;
-        max-width: 180px;
-    }
-    
-    .mobile-menu {
-        display: block;
-    }
-    
-    nav {
-        padding-right: 0;
-    }
-    
-    nav ul {
-        position: fixed;
-        top: 80px;
-        left: -100%;
-        width: 100%;
-        height: calc(100vh - 80px);
-        background-color: #1a3d34;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        padding-top: 50px;
-        gap: 0;
-        transition: left 0.3s ease;
-    }
-    
-    nav ul.active {
-        left: 0;
-    }
-    
-    nav ul li {
-        margin: 15px 0;
-        width: 100%;
-        text-align: center;
-    }
-    
-    nav ul li a {
-        display: block;
-        padding: 15px 20px;
-    }
-}
-
-@media (max-width: 576px) {
-    .logo {
-        padding: 8px 30px 8px 15px;
-    }
-    
-    .logo-image {
-        height: 45px;
-        max-width: 150px;
-    }
-}
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #ffffff;
-        }
-
- /* Hero Slider Section */
-        .hero-slider {
-            position: relative;
-            height: 100vh;
-            width: 100%;
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
-        }
-
-        .slider {
-            display: flex;
-            transition: transform 0.5s ease;
-            height: 100%;
-        }
-
-        .slide {
-            min-width: 100%;
-            position: relative;
-            height: 100%;
-        }
-
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-.slide-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to bottom, rgba(26, 61, 52, 0.4), rgba(26, 61, 52, 0.7));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-        .slide-content {
-            max-width: 800px;
-            padding: 0 20px;
-            color: #ffffff;
-        }
-
-        .slide-content h2 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        .slide-content h2 span {
-            color: #b4d333;
-        }
-
-        .slide-content p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .slider-nav {
-            position: absolute;
-            bottom: 30px;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: center;
-            z-index: 10;
-        }
-
-        .slider-dot {
-            width: 12px;
-            height: 12px;
-            background-color: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            margin: 0 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .slider-dot.active {
-            background-color: #b4d333;
-        }
-
-        /* Navigation Buttons */
-        .slider-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ffffff;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-
-        .slider-btn:hover {
-            background-color:#b4d333;
-        }
-
-        .prev-btn {
-            left: 20px;
-        }
-
-        .next-btn {
-            right: 20px;
-        }
-
-        /* Content Section */
-        .content-section {
-            background-color: #f5f3ed;
-            color: #2b2b2b;
-            padding: 80px 0;
-        }
-
-        .content-container {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-        }
-
-        .content-text {
-            flex: 1;
-        }
-
-        .content-text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #2b2b2b;
-        }
-
-        .content-text h2 span {
-            color: #4a8b7f;
-        }
-
-        .content-text p {
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-            color: #2b2b2b;
-        }
-
-        .content-text strong {
-            color: #4a8b7f;
-            font-size: 1.2rem;
-        }
-
-        .content-image {
-            flex: 1;
-            height: 400px;
-            background-color: #4a8b7f;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ffffff;
-            font-size: 1.2rem;
-            overflow: hidden;
-        }
-
-        .content-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Services Section */
-        .services {
-            background-color:#234b3c;
-            padding: 80px 0;
-        }
-
-        .services h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color:#ffffff;
-        }
-
-        .services p {
-            text-align: center;
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.8);
-            max-width: 700px;
-            margin: 0 auto 40px;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .service-card {
+        /* ========== HEADER ========== */
+        header {
             background-color: #1a3d34;
-            border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
-
-        .service-card:hover {
-            transform: translateY(-10px);
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0;
+            position: relative;
         }
-
-        .service-icon {
-            width: 70px;
-            height: 70px;
-            background-color: #4a8b7f;
-            border-radius: 50%;
+        .logo {
             display: flex;
             align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            color: #ffffff;
-            font-size: 1.8rem;
+            position: relative;
+            background-color: #ffffff;
+            padding: 15px 60px 15px 30px;
+            clip-path: polygon(0 0, calc(100% - 40px) 0, 100% 100%, 0 100%);
+            margin-right: 20px;
+            z-index: 2;
         }
+        .logo-image { height: 100px; width: auto; max-width: 350px; object-fit: contain; transition: all 0.3s ease; cursor: pointer; }
+        .logo-image:hover { transform: scale(1.05); filter: brightness(1.1); }
 
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #ffffff;
-        }
+        /* ========== NAV ========== */
+        nav { flex: 1; display: flex; justify-content: flex-end; padding-right: 30px; }
+        nav ul { display: flex; list-style: none; margin: 0; padding: 0; gap: 36px; align-items: center; }
+        nav ul li { position: relative; }
 
-        .service-card p {
-            text-align: center;
-            color:rgba(255, 255, 255, 0.8);
-        }
-
-        /* Blog Section */
-        .blog-section {
-            background-color: #f5f3ed;
-            color: #2b2b2b;
-            padding: 80px 0;
-        }
-
-        .blog-section h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color:#2b2b2b;
-        }
-
-        .blog-section p {
-            text-align: center;
-            font-size: 1.1rem;
-            color: #2b2b2b;
-            max-width: 700px;
-            margin: 0 auto 40px;
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .blog-card {
-            background-color:#ffffff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .blog-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .blog-image {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .blog-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .blog-card:hover .blog-image img {
-            transform: scale(1.1);
-        }
-
-        .blog-content {
-            padding: 25px;
-        }
-
-        .blog-content h3 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: #2b2b2b;
-        }
-
-        .blog-content p {
-            text-align: left;
-            color: #666;
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-        }
-
-        .blog-link {
-            color: #4a8b7f;
+        nav ul li a.nav-link {
             font-weight: 600;
+            font-size: 1rem;
+            color: #ffffff;
+            padding: 10px 0;
             display: flex;
             align-items: center;
             gap: 5px;
-        }
-
-        .blog-link:hover {
-            color: #3d7a70;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #1a3d34;
-            color: rgba(255, 255, 255, 0.8);
-            padding: 70px 0 20px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 25px;
             position: relative;
-            color: #ffffff;
+            cursor: pointer;
+            transition: color 0.3s ease;
         }
 
-        .footer-column h3::after {
+        /* ── Habari-style lime underline ── */
+        nav ul li a.nav-link::after {
             content: '';
             position: absolute;
-            width: 40px;
-            height: 2px;
-            background-color: #b4d333;
-            bottom: -10px;
+            width: 0;
+            height: 2.5px;
+            bottom: 2px;
             left: 0;
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 12px;
-        }
-
-        .footer-column p {
-            margin-bottom: 15px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            border: 1px solid #4a8b7f;
-        }
-
-        .social-link:hover {
             background-color: #b4d333;
-            transform: translateY(-3px);
+            border-radius: 2px;
+            transition: width 0.28s ease;
         }
-
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
+        nav ul li:hover > a.nav-link::after,
+        nav ul li a.nav-link.active::after {
+            width: 100%;
         }
-
-        /* Page Styles */
-        .page {
-            display: none;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        /* About Page Styles */
-        .about-hero {
-            background: linear-gradient(rgba(26, 61, 52, 0.8), rgba(26, 61, 52, 0.9)), 
-                        url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 60vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            font-weight: 700;
-            color: #ffffff;
-        }
-
-        .hero-content h1 span {
+        nav ul li:hover > a.nav-link,
+        nav ul li a.nav-link.active {
             color: #b4d333;
         }
 
-        .hero-content p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto;
-            color: #ffffff;
+        /* chevron rotation */
+        nav ul li a.nav-link .fa-chevron-down {
+            transition: transform 0.25s ease;
+            font-size: 0.65rem;
+        }
+        nav ul li:hover > a.nav-link .fa-chevron-down {
+            transform: rotate(180deg);
         }
 
-        .mission {
-            background-color: #f5f3ed;
-            color: #2b2b2b;
-        }
+        /* ========== HABARI-STYLE FULL-WIDTH DROPDOWN ========== */
+        .dropdown { position: static; }
 
-        .mission-container {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-        }
+        /* header is the positioning parent */
+        header { position: sticky; top: 0; z-index: 1000; }
 
-        .mission-text {
-            flex: 1;
-        }
-
-        .mission-text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #2b2b2b;
-        }
-
-        .mission-text h2 span {
-            color: #4a8b7f;
-        }
-
-        .mission-text p {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-            color:#2b2b2b;
-        }
-
-        .mission-image {
-            flex: 1;
-            height: 400px;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .mission-image img {
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .values {
-            background-color:#234b3c;
-        }
-
-        .values h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: #ffffff;
-        }
-
-        .values-grid {
+            background-color: #1a3d34;
+            border-top: 3px solid #b4d333;
+            padding: 36px 60px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: 2fr 1fr;
+            gap: 12px 40px;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.45);
+            z-index: 999;
+            /* hidden by default using visibility */
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-8px);
+            transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
         }
 
-        .value-card {
-            background-color:#1a3d34;
+        .dropdown:hover .dropdown-menu,
+        .dropdown.open .dropdown-menu {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: all;
+            transform: translateY(0);
+            transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0s;
+        }
+
+        /* ── Dropdown item ── */
+        .mega-item {
+            padding: 14px 16px;
             border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            text-align: center;
+            border-left: 3px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
-
-        .value-card:hover {
-            transform: translateY(-10px);
+        .mega-item:hover {
+            background-color: rgba(255,255,255,0.08);
+            border-left: 3px solid #b4d333;
         }
-
-        .value-icon {
-            width: 70px;
-            height: 70px;
-            background-color: #4a8b7f;
-            border-radius: 50%;
+        .mega-item h4 {
+            color: #ffffff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 6px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            color: #ffffff;
-            font-size: 1.8rem;
+            gap: 8px;
         }
+        .mega-item h4 i { color: #b4d333; font-size: 0.85rem; }
+        .mega-item p { color: rgba(255,255,255,0.6); font-size: 0.82rem; line-height: 1.5; text-align: left; margin: 0; }
+        .mega-item:hover h4 { color: #b4d333; }
+        .mega-item:hover p { color: rgba(255,255,255,0.85); }
 
-        .value-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #ffffff;
-        }
-
-        .value-card p {
-            text-align: center;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .team {
-            background-color:#f5f3ed;
-            color: #2b2b2b;
-        }
-
-        .team h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #2b2b2b;
-        }
-
-        .team p {
-            text-align: center;
-            font-size: 1.1rem;
-            color: #2b2b2b;
-            max-width: 700px;
-            margin: 0 auto 50px;
-        }
-
-        .team-grid {
+        /* ── Mega items container (left column) ── */
+        .mega-grid-items {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 30px;
         }
 
-        .team-member {
-            background-color: #ffffff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .team-member:hover {
-            transform: translateY(-10px);
-        }
-
-        .member-image {
-            height: 250px;
+        /* ── Promo card (right column) ── */
+        .dropdown-promo {
+            background: linear-gradient(135deg, #0d2a22 0%, #1a4a38 100%);
+            border-radius: 10px;
+            padding: 28px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            min-height: 200px;
+            position: relative;
             overflow: hidden;
         }
-
-        .member-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+        .dropdown-promo::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=400&q=80') center/cover no-repeat;
+            opacity: 0.25;
+            border-radius: 10px;
         }
-
-        .team-member:hover .member-image img {
-            transform: scale(1.1);
+        .promo-content { position: relative; z-index: 1; }
+        .promo-content h3 { color: #fff; font-size: 15px; font-weight: 700; line-height: 1.4; margin-bottom: 12px; }
+        .promo-btn {
+            background: #b4d333;
+            color: #1a3d34;
+            border: none;
+            padding: 9px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background 0.2s, transform 0.15s;
+            display: inline-block;
         }
+        .promo-btn:hover { background: #a0c02e; transform: scale(1.04); }
 
-        .member-info {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .member-info h3 {
-            font-size: 1.3rem;
-            margin-bottom: 5px;
-            color: #2b2b2b;
-        }
-
-        .member-info p {
-            color: #4a8b7f;
-            font-weight: 500;
-            margin-bottom: 10px;
-        }
-
-        .member-info .bio {
-            color: #666;
-            font-size: 0.9rem;
-            text-align: left;
-        }
-
-        /* Contact Page Styles */
-        .contact-hero {
-            background: linear-gradient(rgba(26, 61, 52, 0.8), rgba(26, 61, 52, 0.9)), 
-                        url('https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 60vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-        }
-
-        .contact-section {
-            background-color: #f5f3ed;
-            color: #2b2b2b;
-        }
-
-        .contact-container {
-            display: flex;
-            gap: 50px;
-        }
-
-        .contact-info {
-            flex: 1;
-        }
-
-        .contact-info h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #2b2b2b;
-        }
-
-        .contact-info p {
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-            color: #2b2b2b;
-        }
-
-        .contact-details {
-            margin-bottom: 30px;
-        }
-
-        .contact-detail {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .contact-detail i {
-            width: 40px;
-            height: 40px;
-            background-color: #4a8b7f;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            color: #ffffff;
-        }
-
-        .contact-form {
-            flex: 1;
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color:#2b2b2b;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            border-color: #4a8b7f;
-            outline: none;
-        }
-
-        .form-group textarea {
-            height: 150px;
-            resize: vertical;
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .content-container, .mission-container, .contact-container {
-                flex-direction: column;
-            }
-            
-            .content-image, .mission-image {
-                width: 100%;
-            }
-        }
+        /* ========== MOBILE MENU ========== */
+        .mobile-menu { display: none; font-size: 1.5rem; cursor: pointer; color: #ffffff; padding-right: 20px; }
 
         @media (max-width: 768px) {
-            .mobile-menu {
-                display: block;
-            }
-            
+            .logo { padding: 10px 40px 10px 20px; clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 100%, 0 100%); }
+            .logo-image { height: 50px; max-width: 180px; }
+            .mobile-menu { display: block; }
+            nav { padding-right: 0; }
             nav ul {
                 position: fixed;
                 top: 80px;
@@ -1045,687 +217,314 @@ nav ul li a:hover {
                 align-items: center;
                 justify-content: flex-start;
                 padding-top: 50px;
+                gap: 0;
                 transition: left 0.3s ease;
+                overflow-y: auto;
             }
-            
-            nav ul.active {
-                left: 0;
+            nav ul.active { left: 0; }
+            nav ul li { margin: 10px 0; width: 100%; text-align: center; }
+            nav ul li a { display: block; padding: 15px 20px; }
+            .dropdown-menu {
+                position: static !important;
+                transform: none !important;
+                opacity: 1 !important;
+                pointer-events: all !important;
+                width: 100% !important;
+                grid-template-columns: 1fr !important;
+                display: none !important;
+                border-top: 2px solid #b4d333;
+                padding: 20px !important;
+                box-shadow: none !important;
             }
-            
-            nav ul li {
-                margin: 15px 0;
-            }
-            
-            .slide-content h2 {
-                font-size: 2.5rem;
-            }
-            
-            .slider-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
-            
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            
-            .logo-image {
-                height: 60px; /* Slightly smaller on mobile */
-                max-width: 200px;
-            }
+            .dropdown.mobile-open .dropdown-menu, .dropdown.open .dropdown-menu { display: grid !important; visibility: visible !important; opacity: 1 !important; pointer-events: all !important; transform: none !important; }
+            .dropdown-promo { display: none !important; }
         }
 
-        @media (max-width: 576px) {
-            .hero-slider {
-                height: 70vh;
-            }
-            
-            .slide-content h2 {
-                font-size: 2rem;
-            }
-            
-            .slider-btn {
-                width: 35px;
-                height: 35px;
-                font-size: 1rem;
-            }
-            
-            .prev-btn {
-                left: 10px;
-            }
-            
-            .next-btn {
-                right: 10px;
-            }
-            
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-            
-            .about-hero, .contact-hero {
-                height: 50vh;
-            }
-        }
-        /* Service Icon Styling with White Background */
-.service-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 20px;
-    background-color: #ffffff; /* White background */
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-}
+        /* ========== REST OF YOUR ORIGINAL STYLES (unchanged) ========== */
+        .image-modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); align-items: center; justify-content: center; }
+        .image-modal.active { display: flex; }
+        .modal-content { max-width: 90%; max-height: 90%; object-fit: contain; animation: zoomIn 0.3s ease; border-radius: 8px; box-shadow: 0 10px 50px rgba(180,211,51,0.3); }
+        @keyframes zoomIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .modal-close { position: absolute; top: 20px; right: 40px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; transition: 0.3s; z-index: 10000; }
+        .modal-close:hover { color: #b4d333; transform: rotate(90deg); }
 
-.service-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
+        .hero-slider { position: relative; height: 100vh; width: 100%; overflow: hidden; margin: 0; padding: 0; }
+        .slider { display: flex; transition: transform 0.5s ease; height: 100%; }
+        .slide { min-width: 100%; position: relative; height: 100%; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; }
+        .slide-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(26,61,52,0.4), rgba(26,61,52,0.7)); display: flex; align-items: center; justify-content: center; text-align: center; }
+        .slide-content { max-width: 800px; padding: 0 20px; color: #ffffff; }
+        .slide-content h2 { font-size: 3.5rem; margin-bottom: 20px; font-weight: 700; }
+        .slide-content h2 span { color: #b4d333; }
+        .slide-content p { font-size: 1.2rem; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .slider-nav { position: absolute; bottom: 30px; left: 0; right: 0; display: flex; justify-content: center; z-index: 10; }
+        .slider-dot { width: 12px; height: 12px; background-color: rgba(255,255,255,0.5); border-radius: 50%; margin: 0 5px; cursor: pointer; transition: background-color 0.3s ease; }
+        .slider-dot.active { background-color: #b4d333; }
+        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 50px; height: 50px; background-color: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 1.5rem; cursor: pointer; transition: all 0.3s ease; z-index: 10; }
+        .slider-btn:hover { background-color: #b4d333; }
+        .prev-btn { left: 20px; }
+        .next-btn { right: 20px; }
 
-/* Hover effect */
-.service-card:hover .service-icon {
-    background-color: #f8f9fa; /* Slightly off-white on hover */
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-}
+        .content-section { background-color: #f5f3ed; color: #2b2b2b; padding: 80px 0; }
+        .content-container { display: flex; align-items: center; gap: 50px; }
+        .content-text { flex: 1; }
+        .content-text h2 { font-size: 2.5rem; margin-bottom: 20px; color: #2b2b2b; }
+        .content-text h2 span { color: #4a8b7f; }
+        .content-text p { margin-bottom: 30px; font-size: 1.1rem; color: #2b2b2b; }
+        .content-text strong { color: #4a8b7f; font-size: 1.2rem; }
+        .content-image { flex: 1; height: 400px; background-color: #4a8b7f; border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .content-image img { width: 100%; height: 100%; object-fit: cover; }
 
-/* Service Card Styling (if needed) */
-.service-card {
-    background-color: rgba(255, 255, 255, 0.05);
-    padding: 30px;
-    border-radius: 12px;
-    text-align: center;
-    transition: all 0.3s ease;
-}
+        .services { background-color: #234b3c; padding: 80px 0; }
+        .services h2 { text-align: center; font-size: 2.5rem; margin-bottom: 20px; color: #ffffff; }
+        .services p { text-align: center; font-size: 1.1rem; color: rgba(255,255,255,0.8); max-width: 700px; margin: 0 auto 40px; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 50px; }
+        .service-card { background-color: rgba(255,255,255,0.05); border-radius: 12px; padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: all 0.3s ease; text-align: center; }
+        .service-card:hover { background-color: rgba(255,255,255,0.1); transform: translateY(-5px); }
+        .service-icon { width: 80px; height: 80px; margin: 0 auto 20px; background-color: #ffffff; border-radius: 16px; display: flex; align-items: center; justify-content: center; padding: 16px; transition: all 0.3s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .service-icon img { width: 100%; height: 100%; object-fit: contain; }
+        .service-card:hover .service-icon { background-color: #f8f9fa; transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.15); }
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 15px; color: #ffffff; }
+        .service-card p { text-align: center; color: rgba(255,255,255,0.8); }
 
-.service-card:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    transform: translateY(-5px);
-}
-/* Tools Recommend Section - Separate from Services */
-.tools-recommend {
-    background-color: #234b3c;
-    padding: 80px 0;
-}
+        .blog-section { background-color: #f5f3ed; color: #2b2b2b; padding: 80px 0; }
+        .blog-section h2 { text-align: center; font-size: 2.5rem; margin-bottom: 20px; color: #2b2b2b; }
+        .blog-section p { text-align: center; font-size: 1.1rem; color: #2b2b2b; max-width: 700px; margin: 0 auto 40px; }
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 24px; margin-top: 30px; }
+        .blog-grid-centered { justify-content: center; grid-template-columns: 1fr; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .blog-card { background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
+        .blog-card:hover { transform: translateY(-10px); }
+        .blog-image { height: 200px; overflow: hidden; }
+        .blog-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .blog-card:hover .blog-image img { transform: scale(1.1); }
+        .blog-content { padding: 25px; }
+        .blog-content h3 { font-size: 1.3rem; margin-bottom: 15px; color: #2b2b2b; }
+        .blog-content p { text-align: left; color: #666; margin-bottom: 20px; font-size: 0.95rem; }
+        .blog-link { color: #4a8b7f; font-weight: 600; display: flex; align-items: center; gap: 5px; }
+        .blog-link:hover { color: #3d7a70; }
 
-.tools-recommend h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    color: #ffffff;
-}
+        footer { background-color: #1a3d34; color: rgba(255,255,255,0.8); padding: 70px 0 20px; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 40px; margin-bottom: 50px; }
+        .footer-column h3 { font-size: 1.3rem; margin-bottom: 25px; position: relative; color: #ffffff; }
+        .footer-column h3::after { content: ''; position: absolute; width: 40px; height: 2px; background-color: #b4d333; bottom: -10px; left: 0; }
+        .footer-column ul { list-style: none; }
+        .footer-column ul li { margin-bottom: 12px; }
+        .footer-column p { margin-bottom: 15px; }
+        .social-links { display: flex; gap: 15px; margin-top: 20px; }
+        .social-link { width: 40px; height: 40px; background-color: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; border: 1px solid #4a8b7f; }
+        .social-link:hover { background-color: #b4d333; transform: translateY(-3px); }
+        .copyright { text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; color: rgba(255,255,255,0.8); }
 
-.tools-recommend p {
-    text-align: center;
-    font-size: 1.1rem;
-    color:rgba(255, 255, 255, 0.8);
-    max-width: 700px;
-    margin: 0 auto 40px;
-}
+        .page { display: none; }
+        .page.active { display: block; }
 
-.tools-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 50px;
-}
+        .about-hero { background: linear-gradient(rgba(26,61,52,0.8), rgba(26,61,52,0.9)), url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=1200&q=80'); background-size: cover; background-position: center; height: 60vh; display: flex; align-items: center; text-align: center; }
+        .hero-content h1 { font-size: 3.5rem; margin-bottom: 20px; font-weight: 700; color: #ffffff; }
+        .hero-content h1 span { color: #b4d333; }
+        .hero-content p { font-size: 1.2rem; max-width: 700px; margin: 0 auto; color: #ffffff; }
+        .mission { background-color: #f5f3ed; color: #2b2b2b; }
+        .mission-container { display: flex; align-items: center; gap: 50px; }
+        .mission-text { flex: 1; }
+        .mission-text h2 { font-size: 2.5rem; margin-bottom: 20px; color: #2b2b2b; }
+        .mission-text h2 span { color: #4a8b7f; }
+        .mission-text p { margin-bottom: 20px; font-size: 1.1rem; color: #2b2b2b; }
+        .mission-image { flex: 1; height: 400px; border-radius: 8px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .mission-image img { width: 100%; height: 100%; object-fit: cover; }
+        .values { background-color: #234b3c; }
+        .values h2 { text-align: center; font-size: 2.5rem; margin-bottom: 50px; color: #ffffff; }
+        .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 30px; }
+        .value-card { background-color: #1a3d34; border-radius: 8px; padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease; text-align: center; }
+        .value-card:hover { transform: translateY(-10px); }
+        .value-icon { width: 70px; height: 70px; background-color: #4a8b7f; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: #ffffff; font-size: 1.8rem; }
+        .value-card h3 { font-size: 1.5rem; margin-bottom: 15px; color: #ffffff; }
+        .value-card p { text-align: center; color: rgba(255,255,255,0.8); }
+        .team { background-color: #f5f3ed; color: #2b2b2b; }
+        .team h2 { text-align: center; font-size: 2.5rem; margin-bottom: 20px; color: #2b2b2b; }
+        .team p { text-align: center; font-size: 1.1rem; color: #2b2b2b; max-width: 700px; margin: 0 auto 50px; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 30px; }
+        .team-member { background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
+        .team-member:hover { transform: translateY(-10px); }
+        .member-image { height: 250px; overflow: hidden; }
+        .member-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .team-member:hover .member-image img { transform: scale(1.1); }
+        .member-info { padding: 20px; text-align: center; }
+        .member-info h3 { font-size: 1.3rem; margin-bottom: 5px; color: #2b2b2b; }
+        .member-role { color: #4a8b7f; font-weight: 600; font-size: 0.95rem; margin-bottom: 12px; }
+        .read-more-btn { background: none; border: none; color: #b4d333; font-weight: 600; font-size: 0.95rem; cursor: pointer; padding: 0; display: flex; align-items: center; gap: 6px; transition: gap 0.3s ease; }
+        .read-more-btn:hover { gap: 10px; color: #a0c02e; }
 
-.tool-card {
-    background-color: #1a3d34;
-    border-radius: 8px;
-    padding: 30px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    text-align: center;
-}
+        .contact-hero { background: linear-gradient(rgba(26,61,52,0.8), rgba(26,61,52,0.9)), url('https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1200&q=80'); background-size: cover; background-position: center; height: 60vh; display: flex; align-items: center; text-align: center; }
+        .contact-section { background-color: #f5f3ed; color: #2b2b2b; }
+        .contact-container { display: flex; gap: 50px; }
+        .contact-info { flex: 1; }
+        .contact-info h2 { font-size: 2.5rem; margin-bottom: 20px; color: #2b2b2b; }
+        .contact-info p { margin-bottom: 30px; font-size: 1.1rem; color: #2b2b2b; }
+        .contact-details { margin-bottom: 30px; }
+        .contact-detail { display: flex; align-items: center; margin-bottom: 15px; }
+        .contact-detail i { width: 40px; height: 40px; background-color: #4a8b7f; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; color: #ffffff; }
+        .contact-form { flex: 1; background-color: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 500; color: #2b2b2b; }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem; transition: border-color 0.3s ease; }
+        .form-group input:focus, .form-group textarea:focus { border-color: #4a8b7f; outline: none; }
+        .form-group textarea { height: 150px; resize: vertical; }
 
-.tool-card:hover {
-    transform: translateY(-10px);
-}
+        .tools-recommend { background-color: #234b3c; padding: 80px 0; }
+        .tools-recommend h2 { text-align: center; font-size: 2.5rem; margin-bottom: 20px; color: #ffffff; }
+        .tools-recommend p { text-align: center; font-size: 1.1rem; color: rgba(255,255,255,0.8); max-width: 700px; margin: 0 auto 40px; }
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 30px; margin-top: 50px; }
+        .tool-card { background-color: #1a3d34; border-radius: 8px; padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease; text-align: center; }
+        .tool-card:hover { transform: translateY(-10px); }
+        .tool-icon { width: 80px; height: 80px; margin: 0 auto 20px; background-color: #ffffff; border-radius: 16px; display: flex; align-items: center; justify-content: center; padding: 16px; transition: all 0.3s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.1); cursor: pointer; }
+        .tool-icon img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.3s ease; }
+        .tool-icon:hover { background-color: #f8f9fa; transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.15); }
+        .tool-icon:hover img { transform: scale(1.1); }
+        .tool-card h3 { font-size: 1.5rem; margin-bottom: 15px; color: #ffffff; }
+        .tool-card p { text-align: center; color: rgba(255,255,255,0.8); }
+        .tool-link { color: #b4d333; font-weight: 600; margin-top: 15px; display: inline-block; }
 
-.tool-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 20px;
-    background-color: #ffffff;
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-}
+        .profile-modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); align-items: center; justify-content: center; }
+        .profile-modal.active { display: flex; }
+        .profile-modal-content { background-color: #ffffff; border-radius: 12px; padding: 40px; max-width: 600px; width: 90%; position: relative; display: flex; gap: 30px; align-items: flex-start; animation: zoomIn 0.3s ease; }
+        .profile-modal-image { width: 150px; height: 150px; border-radius: 50%; overflow: hidden; flex-shrink: 0; }
+        .profile-modal-image img { width: 100%; height: 100%; object-fit: cover; }
+        .profile-modal-body h3 { font-size: 1.4rem; color: #2b2b2b; margin-bottom: 5px; }
+        .profile-modal-body .bio { color: #666; font-size: 0.95rem; line-height: 1.7; margin-top: 12px; }
+        .profile-modal-close { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #666; transition: color 0.3s ease; }
+        .profile-modal-close:hover { color: #b4d333; }
 
-.tool-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    transition: transform 0.3s ease;
-}
+        .section-title { text-align: center; margin-bottom: 20px; }
+        .section-subtitle { text-align: center; max-width: 800px; margin: 0 auto 60px; }
+        .badge { display: inline-block; background-color: #4a8b7f; color: #ffffff; padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 15px; }
+        .check-list { list-style: none; margin: 20px 0; }
+        .check-list li { padding: 8px 0; display: flex; align-items: center; gap: 12px; }
+        .check-list li i { color: #b4d333; }
+        .btn-group { display: flex; gap: 15px; margin-top: 20px; }
+        .mission-reverse { flex-direction: row-reverse; }
+        .cta-container { text-align: center; }
+        .cta-text { max-width: 700px; margin: 0 auto 30px; }
+        .process-list { margin-left: 20px; margin-bottom: 20px; }
+        .admin-link { display: inline-block; margin-top: 15px; }
+        .admin-img { width: 150px; height: auto; border-radius: 8px; transition: transform 0.3s ease; }
 
-.tool-icon:hover {
-    background-color: #f8f9fa;
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-}
-
-.tool-icon:hover img {
-    transform: scale(1.1);
-}
-
-.tool-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    color: #ffffff;
-}
-
-.tool-card p {
-    text-align: center;
-    color:rgba(255, 255, 255, 0.8);
-}
-
-/* Image Modal */
-.image-modal {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    align-items: center;
-    justify-content: center;
-}
-
-.image-modal.active {
-    display: flex;
-}
-
-.modal-content {
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: contain;
-    animation: zoomIn 0.3s ease;
-}
-
-@keyframes zoomIn {
-    from {
-        transform: scale(0.5);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-/* Footer image link hover effect */
-footer a img:hover {
-    transform: scale(1.05);
-    opacity: 0.8;
-}
-.modal-close {
-    position: absolute;
-    top: 20px;
-    right: 40px;
-    color: #fff;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.modal-close:hover {
-    color: #b4d333;
-}
-/* Blog Grid */
-.blog-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 24px;
-  margin-top: 30px;
-}
-
-/* Centered grid variant (for single featured card) */
-.blog-grid-centered {
-  justify-content: center;
-  grid-template-columns: 1fr;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Featured blog card */
-.blog-card-featured {
-  max-width: 600px;
-}
-
-/* If you have multiple cards, remove the centered variant */
-.blog-grid.blog-grid-multi {
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  max-width: none;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .blog-grid,
-  .blog-grid-centered {
-    grid-template-columns: 1fr;
-  }
-  
-  .blog-card-featured {
-    max-width: 100%;
-  }
-}
-.process-list {
-    margin-left: 20px;
-    margin-bottom: 20px;
-}
-.section-title {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.section-subtitle {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 60px;
-}
-
-.badge {
-    display: inline-block;
-    background-color: #4a8b7f;
-    color: #ffffff;
-    padding: 6px 16px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-bottom: 15px;
-}
-
-.check-list {
-    list-style: none;
-    margin: 20px 0;
-}
-
-.check-list li {
-    padding: 8px 0;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.check-list li i {
-    color: #b4d333;
-}
-
-.btn-group {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
-}
-.mission-reverse {
-    flex-direction: row-reverse;
-}
-.tool-link {
-    color: #b4d333;
-    font-weight: 600;
-    margin-top: 15px;
-    display: inline-block;
-}
-
-.cta-container {
-    text-align: center;
-}
-
-.cta-text {
-    max-width: 700px;
-    margin: 0 auto 30px;
-}
-.admin-link {
-    display: inline-block;
-    margin-top: 15px;
-}
-
-.admin-img {
-    width: 150px;
-    height: auto;
-    border-radius: 8px;
-    transition: transform 0.3s ease;
-}
-/* Team Read More Button */
-.member-role {
-    color: #4a8b7f;
-    font-weight: 600;
-    font-size: 0.95rem;
-    margin-bottom: 12px;
-}
-
-.read-more-btn {
-    background: none;
-    border: none;
-    color: #b4d333;
-    font-weight: 600;
-    font-size: 0.95rem;
-    cursor: pointer;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: gap 0.3s ease;
-}
-
-.read-more-btn:hover {
-    gap: 10px;
-    color: #a0c02e;
-}
-
-/* Profile Modal */
-.profile-modal {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    align-items: center;
-    justify-content: center;
-}
-
-.profile-modal.active {
-    display: flex;
-}
-
-.profile-modal-content {
-    background-color: #ffffff;
-    border-radius: 12px;
-    padding: 40px;
-    max-width: 600px;
-    width: 90%;
-    position: relative;
-    display: flex;
-    gap: 30px;
-    align-items: flex-start;
-    animation: zoomIn 0.3s ease;
-}
-
-.profile-modal-image {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    overflow: hidden;
-    flex-shrink: 0;
-}
-
-.profile-modal-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.profile-modal-body h3 {
-    font-size: 1.4rem;
-    color: #2b2b2b;
-    margin-bottom: 5px;
-}
-
-.profile-modal-body .bio {
-    color: #666;
-    font-size: 0.95rem;
-    line-height: 1.7;
-    margin-top: 12px;
-}
-
-.profile-modal-close {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 28px;
-    cursor: pointer;
-    color: #666;
-    transition: color 0.3s ease;
-}
-
-.profile-modal-close:hover {
-    color: #b4d333;
-}
-
-@media (max-width: 576px) {
-    .profile-modal-content {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-}
-.dropdown {
-    position: relative !important;
-}
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-70%);
-    width: 1200px;
-    background-color: #1a3d34;
-    border-top: 3px solid #b4d333;
-    padding: 40px 60px;
-    z-index: 998;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-    animation: fadeDown 0.25s ease;
-}
-
-/* Bridge to prevent gap between nav and dropdown */
-.dropdown::after {
-    content: '';
-    position: absolute;
-    height: 20px;
-    width: 100%;
-    bottom: -20px;
-    left: 0;
-}
-
-
-.dropdown:hover > .dropdown-menu {
-    display: block;
-}
-
-@keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
-.mega-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.mega-item {
-    padding: 18px 20px;
-    border-radius: 8px;
-    border-left: 3px solid transparent;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.mega-item:hover {
-    background-color: rgba(255,255,255,0.08);
-    border-left: 3px solid #b4d333;
-}
-
-.mega-item h4 {
-    color: #ffffff;
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.mega-item h4 i {
-    color: #b4d333;
-    font-size: 0.9rem;
-}
-
-.mega-item p {
-    color: rgba(255,255,255,0.6);
-    font-size: 0.85rem;
-    line-height: 1.5;
-    text-align: left;
-    margin: 0;
-}
-
-.mega-item:hover h4 {
-    color: #b4d333;
-}
-
-.mega-item:hover p {
-    color: rgba(255,255,255,0.85);
-}
-
+        @media (max-width: 992px) { .content-container, .mission-container, .contact-container { flex-direction: column; } .content-image, .mission-image { width: 100%; } }
+        @media (max-width: 576px) { .hero-slider { height: 70vh; } .slide-content h2 { font-size: 2rem; } .slider-btn { width: 35px; height: 35px; font-size: 1rem; } .prev-btn { left: 10px; } .next-btn { right: 10px; } .hero-content h1 { font-size: 2rem; } .about-hero, .contact-hero { height: 50vh; } .profile-modal-content { flex-direction: column; align-items: center; text-align: center; } }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="container header-container">
-       <div class="logo">
-                <!-- Your logo with increased size -->
+            <div class="logo">
                 <img src="images/logo.jpg" alt="WildData" class="logo-image">
             </div>
             <div class="mobile-menu">☰</div>
- <nav>
-    <ul>
-        <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
 
-        <li class="dropdown">
-            <a href="#" class="nav-link" data-page="about">About <i class="fas fa-chevron-down" style="font-size:0.7rem"></i></a>
-            <div class="dropdown-menu">
-                <div class="mega-grid">
-                    <div class="mega-item" onclick="navigateTo('about', '.mission-container')">
-                        <h4><i class="fas fa-bullseye"></i> Our Mission</h4>
-                        <p>Learn about our dedication to advancing wildlife research through accurate data annotation</p>
-                    </div>
-                    <div class="mega-item" onclick="navigateTo('about', '.values')">
-                        <h4><i class="fas fa-leaf"></i> Our Values</h4>
-                        <p>Accuracy, conservation focus, innovation and collaboration drive everything we do</p>
-                    </div>
-                    <div class="mega-item" onclick="navigateTo('about', '.team')">
-                        <h4><i class="fas fa-users"></i> Our Team</h4>
-                        <p>Meet the wildlife specialists, engineers and researchers behind WildData</p>
-                    </div>
-                </div>
-            </div>
-        </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link" data-page="about">About <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <div class="mega-grid-items">
+                                <div class="mega-item" onclick="navigateTo('about', '.mission-container')">
+                                    <h4><i class="fas fa-bullseye"></i> Our Mission</h4>
+                                    <p>Learn about our dedication to advancing wildlife research through accurate data annotation</p>
+                                </div>
+                                <div class="mega-item" onclick="navigateTo('about', '.values')">
+                                    <h4><i class="fas fa-leaf"></i> Our Values</h4>
+                                    <p>Accuracy, conservation focus, innovation and collaboration drive everything we do</p>
+                                </div>
+                                <div class="mega-item" onclick="navigateTo('about', '.team')">
+                                    <h4><i class="fas fa-users"></i> Our Team</h4>
+                                    <p>Meet the wildlife specialists, engineers and researchers behind WildData</p>
+                                </div>
+                            </div>
+                            <div class="dropdown-promo">
+                                <div class="promo-content">
+                                    <h3>Advancing wildlife research through accurate data annotation</h3>
+                                    <button class="promo-btn" onclick="navigateTo('contact', null)">Get In Touch</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
 
-        <li class="dropdown">
-            <a href="#" class="nav-link" data-page="services">Services <i class="fas fa-chevron-down" style="font-size:0.7rem"></i></a>
-            <div class="dropdown-menu">
-                <div class="mega-grid">
-                    <div class="mega-item" onclick="navigateTo('services', '#services-section')">
-                        <h4><i class="fas fa-camera"></i> Wildlife Image Annotation</h4>
-                        <p>Annotate visual data for species identification, behavior analysis and conservation research</p>
-                    </div>
-                    <div class="mega-item" onclick="navigateTo('services', '#services-section')">
-                        <h4><i class="fas fa-database"></i> ML Dataset Preparation</h4>
-                        <p>Properly formatted datasets for AI developers building wildlife recognition models</p>
-                    </div>
-                    <div class="mega-item" onclick="navigateTo('services', '.content-section')">
-                        <h4><i class="fas fa-tasks"></i> Our Process</h4>
-                        <p>Rigorous multi-stage methodology from consultation to final validation and delivery</p>
-                    </div>
-                </div>
-            </div>
-        </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link" data-page="services">Services <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <div class="mega-grid-items">
+                                <div class="mega-item" onclick="navigateTo('services', '#services-section')">
+                                    <h4><i class="fas fa-camera"></i> Wildlife Image Annotation</h4>
+                                    <p>Annotate visual data for species identification, behavior analysis and conservation research</p>
+                                </div>
+                                <div class="mega-item" onclick="navigateTo('services', '#services-section')">
+                                    <h4><i class="fas fa-database"></i> ML Dataset Preparation</h4>
+                                    <p>Properly formatted datasets for AI developers building wildlife recognition models</p>
+                                </div>
+                                <div class="mega-item" onclick="navigateTo('services', '.content-section')">
+                                    <h4><i class="fas fa-tasks"></i> Our Process</h4>
+                                    <p>Rigorous multi-stage methodology from consultation to final validation and delivery</p>
+                                </div>
+                            </div>
+                            <div class="dropdown-promo">
+                                <div class="promo-content">
+                                    <h3>Specialized annotation services for wildlife research & conservation</h3>
+                                    <button class="promo-btn" onclick="navigateTo('contact', null)">Start a Project</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
 
-        <li class="dropdown">
-            <a href="#" class="nav-link" data-page="tools">Tools <i class="fas fa-chevron-down" style="font-size:0.7rem"></i></a>
-            <div class="dropdown-menu">
-                <div class="mega-grid">
-                    <div class="mega-item" onclick="navigateTo('tools', '.content-section')">
-                        <h4><i class="fas fa-video"></i> CVAT</h4>
-                        <p>Powerful open-source platform for video and image annotation with precision and scalability</p>
-                    </div>
-                    <div class="mega-item" onclick="navigateTo('tools', '.mission-reverse')">
-                        <h4><i class="fas fa-map-marked-alt"></i> SurveyScope / DetWab</h4>
-                        <p>Specialized platform for annotating aerial and satellite imagery with geospatial context</p>
-                    </div>
-                    <div class="mega-item" onclick="navigateTo('tools', '.tools-recommend')">
-                        <h4><i class="fas fa-tools"></i> Additional Tools</h4>
-                        <p>LabelImg, Roboflow, Wildlife Insights and more platforms we recommend</p>
-                    </div>
-                </div>
-            </div>
-        </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link" data-page="tools">Tools <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <div class="mega-grid-items">
+                                <div class="mega-item" onclick="navigateTo('tools', '.content-section')">
+                                    <h4><i class="fas fa-video"></i> CVAT</h4>
+                                    <p>Powerful open-source platform for video and image annotation with precision and scalability</p>
+                                </div>
+                                <div class="mega-item" onclick="navigateTo('tools', '.mission-reverse')">
+                                    <h4><i class="fas fa-map-marked-alt"></i> SurveyScope / DetWab</h4>
+                                    <p>Specialized platform for annotating aerial and satellite imagery with geospatial context</p>
+                                </div>
+                                <div class="mega-item" onclick="navigateTo('tools', '.tools-recommend')">
+                                    <h4><i class="fas fa-tools"></i> Additional Tools</h4>
+                                    <p>LabelImg, Roboflow, Wildlife Insights and more platforms we recommend</p>
+                                </div>
+                            </div>
+                            <div class="dropdown-promo">
+                                <div class="promo-content">
+                                    <h3>Industry-leading annotation tools for every wildlife project</h3>
+                                    <button class="promo-btn" onclick="navigateTo('contact', null)">Get Advice</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
 
-        <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
-    </ul>
-</nav>
+                    <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <!-- Home Page -->
+    <!-- ===== HOME PAGE ===== -->
     <div id="home" class="page active">
-        <!-- Hero Slider Section -->
         <section class="hero-slider">
             <div class="slider">
                 <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Wildlife Research">
-                    <div class="slide-overlay">
-                        <div class="slide-content">
-                            <h2>We Strive To Offer Intelligent Business <span>Solutions</span></h2>
-                            <p>WildData Annotation Lab is dedicated to advancing wildlife research through accurate data annotation and analytics.</p>
-                            <a href="#services" class="btn">Our Services <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1200&q=80" alt="Wildlife Research">
+                    <div class="slide-overlay"><div class="slide-content"><h2>We Strive To Offer Intelligent Business <span>Solutions</span></h2><p>WildData Annotation Lab is dedicated to advancing wildlife research through accurate data annotation and analytics.</p><a href="#services" class="btn">Our Services <i class="fas fa-arrow-right"></i></a></div></div>
                 </div>
-                
                 <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Data Visualization">
-                    <div class="slide-overlay">
-                        <div class="slide-content">
-                            <h2>Advancing Wildlife Research Through Data <span>Annotation</span></h2>
-                            <p>Helping scientists, conservationists, and AI developers unlock the potential of wildlife datasets.</p>
-                            <a href="#services" class="btn">Our Services <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=1200&q=80" alt="Data Visualization">
+                    <div class="slide-overlay"><div class="slide-content"><h2>Advancing Wildlife Research Through Data <span>Annotation</span></h2><p>Helping scientists, conservationists, and AI developers unlock the potential of wildlife datasets.</p><a href="#services" class="btn">Our Services <i class="fas fa-arrow-right"></i></a></div></div>
                 </div>
-                
                 <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Machine Learning">
-                    <div class="slide-overlay">
-                        <div class="slide-content">
-                            <h2>Unlocking Potential Through Accurate <span>Data Analytics</span></h2>
-                            <p>Providing precise and reliable data services for effective wildlife conservation efforts.</p>
-                            <a href="#services" class="btn">Our Services <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1200&q=80" alt="Machine Learning">
+                    <div class="slide-overlay"><div class="slide-content"><h2>Unlocking Potential Through Accurate <span>Data Analytics</span></h2><p>Providing precise and reliable data services for effective wildlife conservation efforts.</p><a href="#services" class="btn">Our Services <i class="fas fa-arrow-right"></i></a></div></div>
                 </div>
             </div>
-            
-            <!-- Navigation Buttons -->
-            <div class="slider-btn prev-btn">
-                <i class="fas fa-chevron-left"></i>
-            </div>
-            <div class="slider-btn next-btn">
-                <i class="fas fa-chevron-right"></i>
-            </div>
-            
+            <div class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></div>
+            <div class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></div>
             <div class="slider-nav">
                 <div class="slider-dot active" data-index="0"></div>
                 <div class="slider-dot" data-index="1"></div>
@@ -1733,887 +532,305 @@ footer a img:hover {
             </div>
         </section>
 
-  <!-- Content Section -->
-<section class="content-section">
-    <div class="container">
-        <div class="content-container">
-            <div class="content-text">
-                <h2> <span>WHAT WE OFFER</span></h2>
-                <p><strong>Excellent IT Services</strong></p>
-                <p>WildData Annotation Lab is dedicated to advancing wildlife research through accurate data annotation and analytics. Our mission is to help scientists, conservationists, and AI developers unlock the potential of wildlife datasets for research, protection, and innovation.</p>
-                <a href="#services" class="btn">Our Services <i class="fas fa-arrow-right"></i></a>
-            </div>
-            <div class="content-image">
-                <img src="images/Excellent IT Services.jpg" alt="WildData Mission">
-            </div>
-        </div>
-    </div>
-</section>
-
- <!-- Services Section -->
-<section id="services" class="services">
-    <div class="container">
-        <h2>Our Services</h2>
-        <p>We offer specialized data annotation and analytics services tailored for wildlife research and conservation.</p>
-        
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">
-                    <img src="images/freepik__wildlife_image_&_video_annotation.png" alt="Wildlife Image Annotation">
-                </div>
-                <h3>Wildlife Image Annotation</h3>
-                <p>We annotate visual data of wildlife for various research and conservation purposes, enabling accurate species identification and behavior analysis.</p>
-            </div>
-            
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <img src="images/freepik__machine_learning_dataset_preparation_.png" alt="Machine Learning Dataset Preparation">
-                </div>
-                <h3>Machine Learning Dataset Preparation</h3>
-                <p>We create properly formatted datasets for ML applications, helping AI developers build more accurate wildlife recognition models.</p>
-            </div>
-    
-        </div>
-    </div>
-</section>
-
-      <!-- Blog Section -->
-<section class="blog-section">
-  <div class="container">
-    <h2>Research & Insights</h2>
-    <p>How our data annotation work contributed to global conservation technology</p>
-    
-    <div class="blog-grid blog-grid-centered">
-      <div class="blog-card blog-card-featured">
-        <div class="blog-image">
-          <img src="https://images.unsplash.com/photo-1564760055775-d63b17a55c44?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-               alt="KAZA Wildlife Conservation">
-        </div>
-                <div class="blog-content">
-                    <h3>How KAZA Data Supported the New Scoutbot Model</h3>
-                    <p>The Kavango–Zambezi Transfrontier Conservation Area (KAZA) is home to some of Africa's most important wildlife populations. In 2024, our team meticulously prepared a high-quality dataset of animal images and observations from the region through careful labeling, metadata validation, and accuracy checks.</p>
-                    <p>Wild Me integrated this well-structured dataset into their new Scoutbot AI model, making it more accurate and faster at identifying wildlife across different habitats. What began as a regional project evolved into a global contribution—strengthening conservation technology used worldwide to protect wildlife.</p>
-                    <a href="https://www.wildme.org/" target="_blank" rel="noopener noreferrer" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-     </div>
-    </div>
-</section>
-    </div>  <!-- Close home page HERE -->
-
-    <!-- About Page -->
-    <div id="about" class="page">
-        <!-- Hero Section -->
-        <section class="about-hero">
-            <div class="container hero-content">
-                <h1>About <span>WildData</span></h1>
-                <p>Learn more about our mission, values, and the team dedicated to advancing wildlife research through data annotation</p>
-            </div>
-        </section>
-
-<!-- Mission Section -->
-<section class="mission">
-    <div class="container">
-        <div class="mission-container">
-            <div class="mission-text">
-                <h2>Our <span>Mission</span></h2>
-                <p>WildData Annotation Lab is dedicated to advancing wildlife research through accurate data annotation and analytics. Our mission is to help scientists, conservationists, and AI developers unlock the potential of wildlife datasets for research, protection, and innovation.</p>
-                <p>We believe that high-quality data is the foundation of meaningful research and effective conservation efforts. By providing precise annotation services, we enable researchers to focus on analysis and insights rather than data preparation.</p>
-                <p>Our team combines expertise in data science, ecology, and machine learning to deliver services that meet the unique challenges of wildlife research.</p>
-               <a href="#" class="btn nav-link" data-page="services">Our Services <i class="fas fa-arrow-right"></i></a>
-            </div>
-            <div class="mission-image">
-                <img src="images/Our-Mission.jpg" alt="WildData Mission">
-            </div>
-        </div>
-    </div>
-</section>
-
-        <!-- Values Section -->
-        <section class="values">
-            <div class="container">
-                <h2>Our Values</h2>
-                <div class="values-grid">
-                    <div class="value-card">
-                        <div class="value-icon"><i class="fas fa-bullseye"></i></div>
-                        <h3>Accuracy</h3>
-                        <p>We prioritize precision in all our annotation work, understanding that reliable data is critical for meaningful research outcomes and conservation decisions.</p>
-                    </div>
-                    
-                    <div class="value-card">
-                        <div class="value-icon"><i class="fas fa-leaf"></i></div>
-                        <h3>Conservation Focus</h3>
-                        <p>Our work is driven by a commitment to wildlife preservation and habitat protection, ensuring our services contribute to meaningful conservation efforts.</p>
-                    </div>
-                    
-                    <div class="value-card">
-                        <div class="value-icon"><i class="fas fa-lightbulb"></i></div>
-                        <h3>Innovation</h3>
-                        <p>We continuously develop new annotation methodologies and tools to address the evolving challenges in wildlife research and data science.</p>
-                    </div>
-                    
-                    <div class="value-card">
-                        <div class="value-icon"><i class="fas fa-handshake"></i></div>
-                        <h3>Collaboration</h3>
-                        <p>We work closely with researchers, conservation organizations, and technology partners to create solutions that address real-world challenges.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-  <!-- Team Section -->
-      <section class="team">
-    <div class="container">
-        <h2>Our Team</h2>
-        <p>Meet the experts behind WildData Annotation Lab</p>
-        
-        <div class="team-grid">
-
-            <div class="team-member">
-                <div class="member-image">
-                    <img src="images/Howard fredrick.jpeg" alt="Howard Frederick">
-                </div>
-                <div class="member-info">
-                    <h3>Howard Frederick</h3>
-                    <p class="member-role">Chief Biotechnology Advisor</p>
-                    <button class="read-more-btn" onclick="openProfile('howard')">Read More <i class="fas fa-arrow-right"></i></button>
-                </div>
-            </div>
-
-            <div class="team-member">
-                <div class="member-image">
-                    <img src="images/JULIUS S.MMAGA.jpeg" alt="Julius S. Mmaga">
-                </div>
-                <div class="member-info">
-                    <h3>Julius S. Mmaga</h3>
-                    <p class="member-role">Founder & Wildlife Specialist</p>
-                    <button class="read-more-btn" onclick="openProfile('julius')">Read More <i class="fas fa-arrow-right"></i></button>
-                </div>
-            </div>
-
-            <div class="team-member">
-                <div class="member-image">
-                    <img src="images/Wenceslaus magesa.jpeg" alt="Wenceslaus Magesa">
-                </div>
-                <div class="member-info">
-                    <h3>Wenceslaus Magesa</h3>
-                    <p class="member-role">Operations Manager & Wildlife Specialist</p>
-                    <button class="read-more-btn" onclick="openProfile('wenceslaus')">Read More <i class="fas fa-arrow-right"></i></button>
-                </div>
-            </div>
-
-            <div class="team-member">
-                <div class="member-image">
-                    <img src="images/PENDO PETER KIPARA.jpeg" alt="Pendo Peter Kipara">
-                </div>
-                <div class="member-info">
-                    <h3>Pendo Peter Kipara</h3>
-                    <p class="member-role">Tech Lead & Wildlife Specialist</p>
-                    <button class="read-more-btn" onclick="openProfile('pendo')">Read More <i class="fas fa-arrow-right"></i></button>
-                </div>
-            </div>
-        </div>
-    </div>
-  </section>
-    </div>
-
-<!-- Profile Modal -->
-<div id="profileModal" class="profile-modal">
-    <div class="profile-modal-content">
-        <span class="profile-modal-close" onclick="closeProfile()">&times;</span>
-        <div class="profile-modal-image">
-            <img id="profileModalImage" src="" alt="">
-        </div>
-        <div class="profile-modal-body">
-            <h3 id="profileModalName"></h3>
-            <p id="profileModalRole" class="member-role"></p>
-            <p id="profileModalBio" class="bio"></p>
-        </div>
-    </div>
-</div>
-    <!-- Services Page -->
-    <div id="services-page" class="page">
-        <!-- Hero Section -->
-        <section class="about-hero">
-            <div class="container hero-content">
-                <h1>Our <span>Services</span></h1>
-                <p>Discover our specialized data annotation and analytics services tailored for wildlife research and conservation</p>
-            </div>
-        </section>
-
-<!-- Services Section -->
-<section id="services-section" class="services">
-    <div class="container">
-        <h2>Our Services</h2>
-        <p>We offer specialized data annotation and analytics services tailored for wildlife research and conservation.</p>
-        
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">
-                    <img src="images/freepik__wildlife_image_&_video_annotation.png" alt="Wildlife Image Annotation">
-                </div>
-                <h3>Wildlife Image Annotation</h3>
-                <p>We annotate visual data of wildlife for various research and conservation purposes, enabling accurate species identification and behavior analysis. Our team uses state-of-the-art tools to label, classify, and track wildlife in images and videos.</p>
-            </div>
-            
-           
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <img src="images/freepik__machine_learning_dataset_preparation_.png" alt="Machine Learning Dataset Preparation">
-                </div>
-                <h3>Machine Learning Dataset Preparation</h3>
-                <p>We create properly formatted datasets for ML applications, helping AI developers build more accurate wildlife recognition models. We specialize in creating training, validation, and test sets for machine learning algorithms.</p>
-            </div>
-            
-        </div>
-    </div>
-</section>
-
-        <!-- Process Section -->
-       <section class="content-section">
-    <div class="container">
-        <div class="content-container">
-            <div class="content-text">
-                <h2>Our <span>Process</span></h2>
-                <p><strong>How We Deliver Excellence</strong></p>
-                <p>Our annotation process follows a rigorous methodology to ensure the highest quality results:</p>
-                    <ul class="process-list">
-                            <li>Initial consultation to understand project requirements</li>
-                            <li>Data assessment and quality evaluation</li>
-                            <li>Annotation guideline development</li>
-                            <li>Multi-stage annotation with quality checks</li>
-                            <li>Final validation and delivery</li>
-                        </ul>
-                        <p>We work closely with our clients throughout the process to ensure the final output meets their specific research needs.</p>
-                        <a href="#" class="btn nav-link" data-page="contact">Get Started <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                    <div class="content-image">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Data Process">
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div> <!-- close services page -->
-
-
-
- <!-- Tools Page -->
-    <div id="tools" class="page">
-        <!-- Hero Section -->
-        <section class="about-hero">
-            <div class="container hero-content">
-                <h1>Annotation <span>Tools</span></h1>
-                <p>Professional platforms and software we use to deliver accurate wildlife data annotation services</p>
-            </div>
-        </section>
-
-        <!-- Tools Introduction -->
-       <section class="mission">
-    <div class="container">
-        <h2 class="section-title">Our Technology Stack</h2>
-        <p class="section-subtitle">We use industry-leading annotation tools to ensure precision, efficiency, and quality in every wildlife research project. Our team is expertly trained on multiple platforms to meet your specific needs.</p>
-    </div>
-</section>
-
-        <!-- CVAT Tool -->
-       <section class="content-section">
-    <div class="container">
-        <div class="content-container">
-            <div class="content-image">
-                <img src="images/CVAT.jpeg" alt="CVAT Interface">
-            </div>
-            <div class="content-text">
-                <span class="badge">Video & Image Annotation</span>
-                <h2><span>CVAT</span> (Computer Vision Annotation Tool)</h2>
-                <p>CVAT is a powerful open-source annotation platform designed for computer vision tasks. We use CVAT for complex video and image annotation projects that require precision and scalability.</p>
-                <ul class="check-list">
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        Advanced video frame annotation
-                    </li>
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        Multiple annotation formats (bounding boxes, polygons)
-                    </li>
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        Track wildlife across video sequences
-                    </li>
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        Collaborative team annotation workspace
-                    </li>
-                </ul>
-                <div class="btn-group">
-                    <a href="https://www.cvat.ai/" target="_blank" rel="noopener noreferrer" class="btn">Visit CVAT Website <i class="fas fa-external-link-alt"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-        <!-- SurveyScope/DetWab Tool -->
-       <section class="mission">
-    <div class="container">
-        <div class="mission-container mission-reverse">
-            <div class="mission-image">
-                <img src="images/SurveyScope  DetWab.jpg" alt="SurveyScope Interface">
-            </div>
-            <div class="mission-text">
-                <span class="badge">Geospatial Annotation</span>
-                <h2><span>SurveyScope</span> / DetWab</h2>
-                <p>SurveyScope is a specialized platform for annotating aerial and satellite imagery with geospatial context. Perfect for large-scale wildlife surveys and habitat mapping projects.</p>
-                <ul class="check-list">
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        Location-based wildlife annotation
-                    </li>
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        Aerial and drone imagery support
-                    </li>
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        GPS coordinate integration
-                    </li>
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        Large-scale survey management
-                    </li>
-                </ul>
-                <div class="btn-group">
-                    <a href="https://surveyscope.org/" target="_blank" rel="noopener noreferrer" class="btn">Visit SurveyScope <i class="fas fa-external-link-alt"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-        <!-- ScoutBeast Tool -->
         <section class="content-section">
-    <div class="container">
-        <div class="content-container">
-            <div class="content-image">
-                <img src="images/ScoutBeast.jpg" alt="ScoutBeast Platform">
-            </div>
-            <div class="content-text">
-                <span class="badge">Camera Trap Management</span>
-                <h2><span>Scout</span></h2>
-                <p>ScoutBeast is our go-to platform for managing and annotating camera trap imagery. It streamlines the workflow from image collection to species identification and data export.</p>
-                <ul class="check-list">
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        Automated image organization
-                    </li>
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        Species identification and tagging
-                    </li>
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        Behavior classification tools
-                    </li>
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        Time-series analysis support
-                    </li>
-                </ul>
-                <div class="btn-group">
-                    <a href="#" class="btn">Explore ScoutBeast <i class="fas fa-external-link-alt"></i></a>
+            <div class="container"><div class="content-container">
+                <div class="content-text">
+                    <h2><span>WHAT WE OFFER</span></h2>
+                    <p><strong>Excellent IT Services</strong></p>
+                    <p>WildData Annotation Lab is dedicated to advancing wildlife research through accurate data annotation and analytics. Our mission is to help scientists, conservationists, and AI developers unlock the potential of wildlife datasets.</p>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Recommended Additional Tools -->
-<section class="tools-recommend">
-    <div class="container">
-        <h2>Additional Tools We Recommend</h2>
-        <p>Depending on your project requirements, we also work with these professional annotation platforms</p>
-        
-        <div class="tools-grid">
-            <div class="tool-card">
-                <div class="tool-icon">
-                    <img src="images/labelimg.jpg" alt="LabelImg">
-                </div>
-                <h3>LabelImg</h3>
-                <p>Simple and efficient tool for creating bounding box annotations. Ideal for quick labeling tasks and small to medium datasets.</p>
-                <a href="https://github.com/tzutalin/labelImg" target="_blank" rel="noopener noreferrer" class="tool-link">Learn More <i class="fas fa-arrow-right"></i></a>
-            </div>
-
-            <div class="tool-card">
-                <div class="tool-icon">
-                    <img src="images/Labelbox.png" alt="Labelbox">
-                </div>
-                <h3>Labelbox</h3>
-                <p>Enterprise-grade platform with advanced features for managing large annotation teams and complex ML pipelines.</p>
-                <a href="https://labelbox.com/" target="_blank" rel="noopener noreferrer" class="tool-link">Learn More <i class="fas fa-arrow-right"></i></a>
-            </div>
-
-            <div class="tool-card">
-                <div class="tool-icon">
-                    <img src="images/Roboflow.jpg" alt="Roboflow">
-                </div>
-                <h3>Roboflow</h3>
-                <p>Complete solution for dataset preparation, annotation, augmentation, and model training for computer vision projects.</p>
-                <a href="https://roboflow.com/" target="_blank" rel="noopener noreferrer" class="tool-link">Learn More <i class="fas fa-arrow-right"></i></a>
-            </div>
-
-            <div class="tool-card">
-                <div class="tool-icon">
-                    <img src="images/Wildlife Insights.jpg" alt="Wildlife Insights">
-                </div>
-                <h3>Wildlife Insights</h3>
-                <p>Specialized platform for camera trap data management with AI-assisted species identification and analytics.</p>
-                <a href="https://www.wildlifeinsights.org/" target="_blank" rel="noopener noreferrer" class="tool-link">Learn More <i class="fas fa-arrow-right"></i></a>
-            </div>
-
-            <div class="tool-card">
-                <div class="tool-icon">
-                    <img src="images/VGG Image Annotator.jpg" alt="VGG Image Annotator">
-                </div>
-                <h3>VGG Image Annotator</h3>
-                <p>Lightweight browser-based tool for manual annotation of images. No installation required, works offline.</p>
-                <a href="https://www.robots.ox.ac.uk/~vgg/software/via/" target="_blank" rel="noopener noreferrer" class="tool-link">Learn More <i class="fas fa-arrow-right"></i></a>
-            </div>
-
-            <div class="tool-card">
-                <div class="tool-icon">
-                    <img src="images/Timelapse.jpg" alt="Timelapse">
-                </div>
-                <h3>Timelapse</h3>
-                <p>Desktop application specifically designed for reviewing and annotating camera trap images with temporal data.</p>
-                <a href="http://saul.cpsc.ucalgary.ca/timelapse/" target="_blank" rel="noopener noreferrer" class="tool-link">Learn More <i class="fas fa-arrow-right"></i></a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Call to Action -->
-<section class="mission">
-    <div class="container cta-container">
-        <h2>Need Help Choosing the Right Tool?</h2>
-        <p class="cta-text">Our team of experts can recommend the best annotation platform for your specific wildlife research project. We'll assess your needs and guide you through the entire annotation process.</p>
-        <a href="#" class="btn nav-link" data-page="contact">Contact Our Team <i class="fas fa-arrow-right"></i></a>
-    </div>
-</section>
-</div> <!-- close tools page -->
-
-
-    <!-- Contact Page -->
-    <div id="contact" class="page">
-        <!-- Hero Section -->
-        <section class="contact-hero">
-            <div class="container hero-content">
-                <h1>Contact <span>Us</span></h1>
-                <p>Get in touch with our team to discuss how we can support your wildlife research projects</p>
-            </div>
+                <div class="content-image"><img src="images/Excellent IT Services.jpeg" alt="WildData Mission"></div>
+            </div></div>
         </section>
 
-        <!-- Contact Section -->
-        <section class="contact-section">
+        <section id="services" class="services">
             <div class="container">
-                <div class="contact-container">
-                    <div class="contact-info">
-                        <h2>Get In Touch</h2>
-                        <p>Have questions about our services or want to discuss a potential project? Reach out to our team - we're here to help advance your wildlife research through precise data annotation.</p>
-                        
-                        <div class="contact-details">
-                            <div class="contact-detail">
-                                <i class="fas fa-phone"></i>
-                                <div>
-                                    <h3>Phone</h3>
-                                    <p>+255717240523</p>
-                                </div>
-                            </div>
-                            
-                            <div class="contact-detail">
-                                <i class="fas fa-envelope"></i>
-                                <div>
-                                    <h3>Email</h3>
-                                    <p>mmbagaj97@gmail.com</p>
-                                </div>
-                            </div>
-                            
-                            <div class="contact-detail">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <div>
-                                    <h3>Address</h3>
-                                    <p> Safari Hotel - Room 411, Opposite TTCL, Regional Commissioner's Area, Arusha, Tanzania</p>
-                                </div>
-                            </div>
+                <h2>Our Services</h2>
+                <p>We offer specialized data annotation and analytics services tailored for wildlife research and conservation.</p>
+                <div class="services-grid">
+                    <div class="service-card"><div class="service-icon"><img src="images/freepik__wildlife_image_&_video_annotation.png" alt="Wildlife Image Annotation"></div><h3>Wildlife Image Annotation</h3><p>We annotate visual data of wildlife for various research and conservation purposes, enabling accurate species identification and behavior analysis.</p></div>
+                    <div class="service-card"><div class="service-icon"><img src="images/freepik__machine_learning_dataset_preparation_.png" alt="ML Dataset Preparation"></div><h3>Machine Learning Dataset Preparation</h3><p>We create properly formatted datasets for ML applications, helping AI developers build more accurate wildlife recognition models.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="blog-section">
+            <div class="container">
+                <h2>Research & Insights</h2>
+                <p>How our data annotation work contributed to global conservation technology</p>
+                <div class="blog-grid blog-grid-centered">
+                    <div class="blog-card">
+                        <div class="blog-image"><img src="https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=1200&q=80" alt="KAZA Wildlife Conservation"></div>
+                        <div class="blog-content">
+                            <h3>How KAZA Data Supported the New Scoutbot Model</h3>
+                            <p>The Kavango–Zambezi Transfrontier Conservation Area (KAZA) is home to some of Africa's most important wildlife populations. In 2024, our team meticulously prepared a high-quality dataset of animal images and observations from the region.</p>
+                            <p>Wild Me integrated this well-structured dataset into their new Scoutbot AI model, making it more accurate and faster at identifying wildlife across different habitats.</p>
+                            <a href="https://www.wildme.org/" target="_blank" rel="noopener noreferrer" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
                         </div>
-                        
-                    </div>
-                    
-                    <div class="contact-form">
-                        <h2>Send Us a Message</h2>
-                        <form id="contactForm">
-                            <div class="form-group">
-                                <label for="name">Your Name</label>
-                                <input type="text" id="name" name="from_name" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="email">Your Email</label>
-                                <input type="email" id="email" name="from_email" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="subject">Subject</label>
-                                <input type="text" id="subject" name="subject" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="message">Your Message</label>
-                                <textarea id="message" name="message" required></textarea>
-                            </div>
-                            
-                            <button type="submit" class="btn">Send Message <i class="fas fa-paper-plane"></i></button>
-                        </form>
                     </div>
                 </div>
             </div>
         </section>
     </div>
-<!-- Image Modal -->
-<div id="imageModal" class="image-modal">
-    <span class="modal-close">&times;</span>
-    <img class="modal-content" id="modalImage">
-</div>
 
-<footer>
-    <div class="container">
-    <div class="footer-content">
-        <div class="footer-column">
-            <h3>WildData</h3>
-            <p>Advancing wildlife research through accurate data annotation and analytics.</p>
-            
-            <a href="admin.html" class="admin-link">
-                <img src="images/admins.png" alt="Admin" class="admin-img">
-            </a>
-        </div>
-            
-            <div class="footer-column">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#" class="nav-link" data-page="home">Home</a></li>
-                    <li><a href="#" class="nav-link" data-page="about">About</a></li>
-                    <li><a href="#" class="nav-link" data-page="services">Services</a></li>
-                    <li><a href="#" class="nav-link" data-page="tools">Tools</a></li> 
-                    <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
-                </ul>
+    <!-- ===== ABOUT PAGE ===== -->
+    <div id="about" class="page">
+        <section class="about-hero"><div class="container hero-content"><h1>About <span>WildData</span></h1><p>Learn more about our mission, values, and the team dedicated to advancing wildlife research through data annotation</p></div></section>
+        <section class="mission"><div class="container"><div class="mission-container">
+            <div class="mission-text"><h2>Our <span>Mission</span></h2><p>WildData Annotation Lab is dedicated to advancing wildlife research through accurate data annotation and analytics.</p><p>We believe that high-quality data is the foundation of meaningful research and effective conservation efforts.</p><p>Our team combines expertise in data science, ecology, and machine learning to deliver services that meet the unique challenges of wildlife research.</p><a href="#" class="btn nav-link" data-page="services">Our Services <i class="fas fa-arrow-right"></i></a></div>
+            <div class="mission-image"><img src="images/Our-Mission.jpg" alt="WildData Mission"></div>
+        </div></div></section>
+        <section class="values"><div class="container"><h2>Our Values</h2><div class="values-grid">
+            <div class="value-card"><div class="value-icon"><i class="fas fa-bullseye"></i></div><h3>Accuracy</h3><p>We prioritize precision in all our annotation work, understanding that reliable data is critical for meaningful research outcomes.</p></div>
+            <div class="value-card"><div class="value-icon"><i class="fas fa-leaf"></i></div><h3>Conservation Focus</h3><p>Our work is driven by a commitment to wildlife preservation and habitat protection.</p></div>
+            <div class="value-card"><div class="value-icon"><i class="fas fa-lightbulb"></i></div><h3>Innovation</h3><p>We continuously develop new annotation methodologies and tools to address the evolving challenges in wildlife research.</p></div>
+            <div class="value-card"><div class="value-icon"><i class="fas fa-handshake"></i></div><h3>Collaboration</h3><p>We work closely with researchers, conservation organizations, and technology partners.</p></div>
+        </div></div></section>
+        <section class="team"><div class="container">
+            <h2>Our Team</h2><p>Meet the experts behind WildData Annotation Lab</p>
+            <div class="team-grid">
+                <div class="team-member"><div class="member-image"><img src="images/Howard fredrick.jpeg" alt="Howard Frederick"></div><div class="member-info"><h3>Howard Frederick</h3><p class="member-role">Chief Biotechnology Advisor</p><button class="read-more-btn" onclick="openProfile('howard')">Read More <i class="fas fa-arrow-right"></i></button></div></div>
+                <div class="team-member"><div class="member-image"><img src="images/JULIUS S.MMAGA.jpeg" alt="Julius S. Mmaga"></div><div class="member-info"><h3>Julius S. Mmaga</h3><p class="member-role">Founder & Wildlife Specialist</p><button class="read-more-btn" onclick="openProfile('julius')">Read More <i class="fas fa-arrow-right"></i></button></div></div>
+                <div class="team-member"><div class="member-image"><img src="images/Wenceslaus magesa.jpeg" alt="Wenceslaus Magesa"></div><div class="member-info"><h3>Wenceslaus Magesa</h3><p class="member-role">Operations Manager & Wildlife Specialist</p><button class="read-more-btn" onclick="openProfile('wenceslaus')">Read More <i class="fas fa-arrow-right"></i></button></div></div>
+                <div class="team-member"><div class="member-image"><img src="images/PENDO PETER KIPARA.jpeg" alt="Pendo Peter Kipara"></div><div class="member-info"><h3>Pendo Peter Kipara</h3><p class="member-role">Tech Lead & Wildlife Specialist</p><button class="read-more-btn" onclick="openProfile('pendo')">Read More <i class="fas fa-arrow-right"></i></button></div></div>
             </div>
-                
-                <div class="footer-column">
-                    <h3>Our Services</h3>
-                    <ul>
-                        <li><a href="#" class="nav-link" data-page="services">Wildlife Image Annotation</a></li>
-                        <li><a href="#" class="nav-link" data-page="services">ML Dataset Preparation</a></li>
+        </div></section>
+    </div>
 
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-phone"></i> +255717240523</p>
-                    <p><i class="fas fa-envelope"></i> mmbagaj97@gmail.com</p>
-                 <p><i class="fas fa-map-marker-alt"></i> Safari Hotel - Room 411, Opposite TTCL, Regional Commissioner's Area, Arusha, Tanzania</p>
+    <!-- Profile Modal -->
+    <div id="profileModal" class="profile-modal"><div class="profile-modal-content"><span class="profile-modal-close" onclick="closeProfile()">&times;</span><div class="profile-modal-image"><img id="profileModalImage" src="" alt=""></div><div class="profile-modal-body"><h3 id="profileModalName"></h3><p id="profileModalRole" class="member-role"></p><p id="profileModalBio" class="bio"></p></div></div></div>
+
+    <!-- ===== SERVICES PAGE ===== -->
+    <div id="services-page" class="page">
+        <section class="about-hero"><div class="container hero-content"><h1>Our <span>Services</span></h1><p>Discover our specialized data annotation and analytics services tailored for wildlife research and conservation</p></div></section>
+        <section id="services-section" class="services"><div class="container"><h2>Our Services</h2><p>We offer specialized data annotation and analytics services tailored for wildlife research and conservation.</p><div class="services-grid">
+            <div class="service-card"><div class="service-icon"><img src="images/freepik__wildlife_image_&_video_annotation.png" alt="Wildlife Image Annotation"></div><h3>Wildlife Image Annotation</h3><p>We annotate visual data of wildlife for various research and conservation purposes, enabling accurate species identification and behavior analysis.</p></div>
+            <div class="service-card"><div class="service-icon"><img src="images/freepik__machine_learning_dataset_preparation_.png" alt="ML Dataset Preparation"></div><h3>Machine Learning Dataset Preparation</h3><p>We create properly formatted datasets for ML applications, helping AI developers build more accurate wildlife recognition models.</p></div>
+        </div></div></section>
+        <section class="content-section"><div class="container"><div class="content-container">
+            <div class="content-text"><h2>Our <span>Process</span></h2><p><strong>How We Deliver Excellence</strong></p><p>Our annotation process follows a rigorous methodology to ensure the highest quality results:</p><ul class="process-list"><li>Initial consultation to understand project requirements</li><li>Data assessment and quality evaluation</li><li>Annotation guideline development</li><li>Multi-stage annotation with quality checks</li><li>Final validation and delivery</li></ul><p>We work closely with our clients throughout the process to ensure the final output meets their specific research needs.</p><a href="#" class="btn nav-link" data-page="contact">Get Started <i class="fas fa-arrow-right"></i></a></div>
+            <div class="content-image"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80" alt="Data Process"></div>
+        </div></div></section>
+    </div>
+
+    <!-- ===== TOOLS PAGE ===== -->
+    <div id="tools" class="page">
+        <section class="about-hero"><div class="container hero-content"><h1>Annotation <span>Tools</span></h1><p>Professional platforms and software we use to deliver accurate wildlife data annotation services</p></div></section>
+        <section class="mission"><div class="container"><h2 class="section-title">Our Technology Stack</h2><p class="section-subtitle">We use industry-leading annotation tools to ensure precision, efficiency, and quality in every wildlife research project.</p></div></section>
+        <section class="content-section"><div class="container"><div class="content-container">
+            <div class="content-image"><img src="images/CVAT.jpeg" alt="CVAT Interface"></div>
+            <div class="content-text"><span class="badge">Video & Image Annotation</span><h2><span>CVAT</span> (Computer Vision Annotation Tool)</h2><p>CVAT is a powerful open-source annotation platform designed for computer vision tasks.</p><ul class="check-list"><li><i class="fas fa-check-circle"></i> Advanced video frame annotation</li><li><i class="fas fa-check-circle"></i> Multiple annotation formats</li><li><i class="fas fa-check-circle"></i> Track wildlife across video sequences</li><li><i class="fas fa-check-circle"></i> Collaborative team workspace</li></ul><div class="btn-group"><a href="https://www.cvat.ai/" target="_blank" rel="noopener noreferrer" class="btn">Visit CVAT Website <i class="fas fa-external-link-alt"></i></a></div></div>
+        </div></div></section>
+        <section class="mission"><div class="container"><div class="mission-container mission-reverse">
+            <div class="mission-image"><img src="images/SurveyScope  DetWab.jpg" alt="SurveyScope Interface"></div>
+            <div class="mission-text"><span class="badge">Geospatial Annotation</span><h2><span>SurveyScope</span> / DetWab</h2><p>Specialized platform for annotating aerial and satellite imagery with geospatial context.</p><ul class="check-list"><li><i class="fas fa-check-circle"></i> Location-based wildlife annotation</li><li><i class="fas fa-check-circle"></i> Aerial and drone imagery support</li><li><i class="fas fa-check-circle"></i> GPS coordinate integration</li><li><i class="fas fa-check-circle"></i> Large-scale survey management</li></ul><div class="btn-group"><a href="https://surveyscope.org/" target="_blank" rel="noopener noreferrer" class="btn">Visit SurveyScope <i class="fas fa-external-link-alt"></i></a></div></div>
+        </div></div></section>
+        <section class="content-section"><div class="container"><div class="content-container">
+            <div class="content-image"><img src="images/ScoutBeast.jpg" alt="ScoutBeast Platform"></div>
+            <div class="content-text"><span class="badge">Camera Trap Management</span><h2><span>Scout</span></h2><p>ScoutBeast is our go-to platform for managing and annotating camera trap imagery.</p><ul class="check-list"><li><i class="fas fa-check-circle"></i> Automated image organization</li><li><i class="fas fa-check-circle"></i> Species identification and tagging</li><li><i class="fas fa-check-circle"></i> Behavior classification tools</li><li><i class="fas fa-check-circle"></i> Time-series analysis support</li></ul><div class="btn-group"><a href="#" class="btn">Explore ScoutBeast <i class="fas fa-external-link-alt"></i></a></div></div>
+        </div></div></section>
+        <section class="tools-recommend"><div class="container"><h2>Additional Tools We Recommend</h2><p>Depending on your project requirements, we also work with these professional annotation platforms</p><div class="tools-grid">
+            <div class="tool-card"><div class="tool-icon"><img src="images/labelimg.jpg" alt="LabelImg"></div><h3>LabelImg</h3><p>Simple and efficient tool for creating bounding box annotations.</p><a href="https://github.com/tzutalin/labelImg" target="_blank" rel="noopener noreferrer" class="tool-link">Learn More <i class="fas fa-arrow-right"></i></a></div>
+            <div class="tool-card"><div class="tool-icon"><img src="images/Labelbox.png" alt="Labelbox"></div><h3>Labelbox</h3><p>Enterprise-grade platform for managing large annotation teams.</p><a href="https://labelbox.com/" target="_blank" rel="noopener noreferrer" class="tool-link">Learn More <i class="fas fa-arrow-right"></i></a></div>
+            <div class="tool-card"><div class="tool-icon"><img src="images/Roboflow.jpg" alt="Roboflow"></div><h3>Roboflow</h3><p>Complete solution for dataset preparation, annotation, and augmentation.</p><a href="https://roboflow.com/" target="_blank" rel="noopener noreferrer" class="tool-link">Learn More <i class="fas fa-arrow-right"></i></a></div>
+            <div class="tool-card"><div class="tool-icon"><img src="images/Wildlife Insights.jpg" alt="Wildlife Insights"></div><h3>Wildlife Insights</h3><p>Specialized platform for camera trap data with AI-assisted species identification.</p><a href="https://www.wildlifeinsights.org/" target="_blank" rel="noopener noreferrer" class="tool-link">Learn More <i class="fas fa-arrow-right"></i></a></div>
+            <div class="tool-card"><div class="tool-icon"><img src="images/VGG Image Annotator.jpg" alt="VGG Image Annotator"></div><h3>VGG Image Annotator</h3><p>Lightweight browser-based tool for manual annotation. No installation required.</p><a href="https://www.robots.ox.ac.uk/~vgg/software/via/" target="_blank" rel="noopener noreferrer" class="tool-link">Learn More <i class="fas fa-arrow-right"></i></a></div>
+            <div class="tool-card"><div class="tool-icon"><img src="images/Timelapse.jpg" alt="Timelapse"></div><h3>Timelapse</h3><p>Desktop application for reviewing and annotating camera trap images.</p><a href="http://saul.cpsc.ucalgary.ca/timelapse/" target="_blank" rel="noopener noreferrer" class="tool-link">Learn More <i class="fas fa-arrow-right"></i></a></div>
+        </div></div></section>
+        <section class="mission"><div class="container cta-container"><h2>Need Help Choosing the Right Tool?</h2><p class="cta-text">Our team of experts can recommend the best annotation platform for your specific wildlife research project.</p><a href="#" class="btn nav-link" data-page="contact">Contact Our Team <i class="fas fa-arrow-right"></i></a></div></section>
+    </div>
+
+    <!-- ===== CONTACT PAGE ===== -->
+    <div id="contact" class="page">
+        <section class="contact-hero"><div class="container hero-content"><h1>Contact <span>Us</span></h1><p>Get in touch with our team to discuss how we can support your wildlife research projects</p></div></section>
+        <section class="contact-section"><div class="container"><div class="contact-container">
+            <div class="contact-info"><h2>Get In Touch</h2><p>Have questions about our services or want to discuss a potential project? Reach out to our team.</p>
+                <div class="contact-details">
+                    <div class="contact-detail"><i class="fas fa-phone"></i><div><h3>Phone</h3><p>+255717240523</p></div></div>
+                    <div class="contact-detail"><i class="fas fa-envelope"></i><div><h3>Email</h3><p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5b3636393a3c3a31626c1b3c363a323775383436">[email&#160;protected]</a></p></div></div>
+                    <div class="contact-detail"><i class="fas fa-map-marker-alt"></i><div><h3>Address</h3><p>Safari Hotel - Room 411, Opposite TTCL, Regional Commissioner's Area, Arusha, Tanzania</p></div></div>
                 </div>
             </div>
-            
-            <div class="copyright">
-                <p>&copy; 2025 WildData Annotation Lab. All rights reserved.</p>
+            <div class="contact-form"><h2>Send Us a Message</h2><form id="contactForm">
+                <div class="form-group"><label for="name">Your Name</label><input type="text" id="name" name="from_name" required></div>
+                <div class="form-group"><label for="email">Your Email</label><input type="email" id="email" name="from_email" required></div>
+                <div class="form-group"><label for="subject">Subject</label><input type="text" id="subject" name="subject" required></div>
+                <div class="form-group"><label for="message">Your Message</label><textarea id="message" name="message" required></textarea></div>
+                <button type="submit" class="btn">Send Message <i class="fas fa-paper-plane"></i></button>
+            </form></div>
+        </div></div></section>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal"><span class="modal-close">&times;</span><img class="modal-content" id="modalImage"></div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column"><h3>WildData</h3><p>Advancing wildlife research through accurate data annotation and analytics.</p><a href="admin.html" class="admin-link"><img src="images/admins.png" alt="Admin" class="admin-img"></a></div>
+                <div class="footer-column"><h3>Quick Links</h3><ul><li><a href="#" class="nav-link" data-page="home">Home</a></li><li><a href="#" class="nav-link" data-page="about">About</a></li><li><a href="#" class="nav-link" data-page="services">Services</a></li><li><a href="#" class="nav-link" data-page="tools">Tools</a></li><li><a href="#" class="nav-link" data-page="contact">Contact</a></li></ul></div>
+                <div class="footer-column"><h3>Our Services</h3><ul><li><a href="#" class="nav-link" data-page="services">Wildlife Image Annotation</a></li><li><a href="#" class="nav-link" data-page="services">ML Dataset Preparation</a></li></ul></div>
+                <div class="footer-column"><h3>Contact Us</h3><p><i class="fas fa-phone"></i> +255717240523</p><p><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="402d2d222127212a797700272d21292c6e232f2d">[email&#160;protected]</a></p><p><i class="fas fa-map-marker-alt"></i> Safari Hotel - Room 411, Arusha, Tanzania</p></div>
             </div>
+            <div class="copyright"><p>&copy; 2025 WildData Annotation Lab. All rights reserved.</p></div>
         </div>
     </footer>
 
-<!-- EmailJS SDK -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script>
-    emailjs.init("Vzixao8TO3nbwZ15L");
-</script>
-<!-- Firebase SDK + All Scripts -->
-<script type="module">
-    // Import Firebase
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-    import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>emailjs.init("Vzixao8TO3nbwZ15L");</script>
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
-    // Initialize EmailJS
-    
+        const firebaseConfig = { apiKey: "AIzaSyAvlKl4lT6E78kBQ784xcB_ZtxhHVh2RAk", authDomain: "wilddata-annotation.firebaseapp.com", projectId: "wilddata-annotation", storageBucket: "wilddata-annotation.firebasestorage.app", messagingSenderId: "304081749559", appId: "1:304081749559:web:fa05d874c04bb43031a1b2", measurementId: "G-82FPQPVFRD" };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
-    // Initialize Firebase
-    const firebaseConfig = {
-        apiKey: "AIzaSyAvlKl4lT6E78kBQ784xcB_ZtxhHVh2RAk",
-        authDomain: "wilddata-annotation.firebaseapp.com",
-        projectId: "wilddata-annotation",
-        storageBucket: "wilddata-annotation.firebasestorage.app",
-        messagingSenderId: "304081749559",
-        appId: "1:304081749559:web:fa05d874c04bb43031a1b2",
-        measurementId: "G-82FPQPVFRD"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    // Mobile Menu Toggle
-    document.querySelector('.mobile-menu').addEventListener('click', function() {
-        document.querySelector('nav ul').classList.toggle('active');
-    });
-
-    // Slider Functionality
-    const slider = document.querySelector('.slider');
-    const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.slider-dot');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
-    let currentSlide = 0;
-
-    function showSlide(index) {
-        if (index < 0) {
-            currentSlide = slides.length - 1;
-        } else if (index >= slides.length) {
-            currentSlide = 0;
-        } else {
-            currentSlide = index;
-        }
-        
-        slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-        
-        // Update active dot
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === currentSlide);
-        });
-    }
-
-    // Add click events to dots
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            showSlide(index);
-        });
-    });
-
-    // Add click events to navigation buttons
-    if (prevBtn && nextBtn) {
-        prevBtn.addEventListener('click', () => {
-            showSlide(currentSlide - 1);
+        // Mobile Menu
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
         });
 
-        nextBtn.addEventListener('click', () => {
-            showSlide(currentSlide + 1);
-        });
-    }
+        // Dropdown — keep open while moving mouse from link to menu
+        document.querySelectorAll('.dropdown').forEach(function(dropdown) {
+            let closeTimer = null;
 
-    // Auto slide
-    if (slider) {
-        setInterval(() => {
-            showSlide(currentSlide + 1);
-        }, 5000);
-    }
-
-    // Page Navigation
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Get the target page
-            const targetPage = this.getAttribute('data-page');
-            
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Show target page
-            if (targetPage === 'services') {
-                document.getElementById('services-page').classList.add('active');
-            } else {
-                document.getElementById(targetPage).classList.add('active');
-            }
-            
-            // Update active nav link
-            document.querySelectorAll('.nav-link').forEach(navLink => {
-                navLink.classList.remove('active');
-            });
-            this.classList.add('active');
-            
-            // Close mobile menu if open
-            document.querySelector('nav ul').classList.remove('active');
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
-        });
-    });
-
-    // Contact Form - BOTH EmailJS AND Firebase
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            // Get the submit button
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.innerHTML;
-            
-            // Disable button and show loading state
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
-            
-            // Prepare form data
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                subject: document.getElementById('subject').value,
-                message: document.getElementById('message').value
-            };
-            
-            // Prepare template parameters for EmailJS
-            const templateParams = {
-                from_name: formData.name,
-                from_email: formData.email,
-                subject: formData.subject,
-                message: formData.message
-            };
-            
-            try {
-                // 1. Send email using EmailJS
-                await emailjs.send('service_bt3nksf', 'template_mnl6sz5', templateParams);
-                console.log('Email sent successfully!');
-                
-                // 2. Save to Firebase Database
-                await addDoc(collection(db, 'contactMessages'), {
-                    name: formData.name,
-                    email: formData.email,
-                    subject: formData.subject,
-                    message: formData.message,
-                    timestamp: serverTimestamp()
+            function openDropdown() {
+                clearTimeout(closeTimer);
+                // close all others first
+                document.querySelectorAll('.dropdown').forEach(function(d) {
+                    if (d !== dropdown) d.classList.remove('open');
                 });
-                console.log('Message saved to Firebase!');
-                
-                // Success!
-                alert('✅ Thank you for your message! We will get back to you soon.');
-                contactForm.reset();
-                
-            } catch (error) {
-                console.error('Error:', error);
-                alert('❌ Failed to send message. Please try again or email us directly at mmbagaj97@gmail.com');
-            } finally {
-                // Re-enable button
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalBtnText;
+                dropdown.classList.add('open');
+            }
+
+            function scheduleClose() {
+                closeTimer = setTimeout(function() {
+                    dropdown.classList.remove('open');
+                }, 150);
+            }
+
+            dropdown.addEventListener('mouseenter', openDropdown);
+            dropdown.addEventListener('mouseleave', scheduleClose);
+
+            // Mobile toggle
+            dropdown.querySelector('.nav-link').addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('mobile-open');
+                }
+            });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown').forEach(function(d) {
+                    d.classList.remove('open');
+                });
             }
         });
-    }
 
-    // Image Modal - Only for Tool Icons
-    const modal = document.getElementById('imageModal');
-    const modalImg = document.getElementById('modalImage');
-    const closeModal = document.querySelector('.modal-close');
-
-    // Add click event ONLY to tool-icon images
-    document.querySelectorAll('.tool-icon img').forEach(img => {
-        img.addEventListener('click', function() {
-            modal.classList.add('active');
-            modalImg.src = this.src;
-        });
-    });
-
-    // Close modal
-    if (closeModal) {
-        closeModal.addEventListener('click', function() {
-            modal.classList.remove('active');
-        });
-    }
-
-    if (modal) {
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                modal.classList.remove('active');
-            }
-        });
-    }
-
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
-            modal.classList.remove('active');
+        // Slider
+        const slider = document.querySelector('.slider');
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+        function showSlide(index) {
+            if (index < 0) currentSlide = slides.length - 1;
+            else if (index >= slides.length) currentSlide = 0;
+            else currentSlide = index;
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === currentSlide));
         }
-    });
+        dots.forEach((dot, i) => dot.addEventListener('click', () => showSlide(i)));
+        document.querySelector('.prev-btn').addEventListener('click', () => showSlide(currentSlide - 1));
+        document.querySelector('.next-btn').addEventListener('click', () => showSlide(currentSlide + 1));
+        if (slider) setInterval(() => showSlide(currentSlide + 1), 5000);
 
-</script>
-<script>
-    function openProfile(id) {
-        const profiles = {
-            howard: {
-                name: 'Howard Frederick',
-                role: 'Chief Biotechnology Advisor',
-                image: 'images/Howard fredrick.jpeg',
-                bio: 'Howard bridges biology and technology by providing software training, biology consultations, and strategic advisory on biotechnology applications to strengthen our team\'s technical capabilities.'
-            },
-            julius: {
-                name: 'Julius S. Mmaga',
-                role: 'Founder & Wildlife Specialist',
-                image: 'images/JULIUS S.MMAGA.jpeg',
-                bio: 'Julius founded WildData with expertise in wildlife data annotation, species identification, and biodiversity assessment. He develops annotation guidelines, leads quality assurance, and serves as the primary contact for clients in the wildlife and conservation sector.'
-            },
-            wenceslaus: {
-                name: 'Wenceslaus Magesa',
-                role: 'Operations Manager & Wildlife Specialist',
-                image: 'images/Wenceslaus magesa.jpeg',
-                bio: 'Holding a BSc in Wildlife Management, Wenceslaus brings field experience from CRC\'s Modernization of Wildlife Survey Project and TAWIRI\'s national wildlife censuses. At WildData, he oversees daily lab operations, coordinates annotators, ensures annotation quality, and manages schedules and financial reporting.'
-            },
-            pendo: {
-                name: 'Pendo Peter Kipara',
-                role: 'Tech Lead & Wildlife Specialist',
-                image: 'images/PENDO PETER KIPARA.jpeg',
-                bio: 'A Computer Engineering professional with expertise in networking, server administration, and data annotation. Pendo manages our technical infrastructure, maintains annotation platforms, and leads the annotator team ensuring system reliability, data security, and high-quality AI project delivery.'
-            },
-            rebecca: {
-                name: 'Rebecca Ryakitimbo',
-                role: 'Technologist & Research Advisor',
-                image: 'images/Rebecca Ryakitimbo.jpeg',
-                bio: 'Rebecca is a National Geographic Explorer leading WildNET, a project deploying community wireless networks and monitoring systems across the Serengeti and Ngorongoro ecosystems. With fellowships from Google, Internet Society, and AFRISIG, she brings deep expertise in ICT policy, digital rights, and community connectivity to WildData.'
+        // Page Navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetPage = this.getAttribute('data-page');
+                document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+                const targetId = targetPage === 'services' ? 'services-page' : targetPage;
+                document.getElementById(targetId).classList.add('active');
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                document.querySelector('nav ul').classList.remove('active');
+                window.scrollTo(0, 0);
+            });
+        });
+
+        // Contact Form
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalBtnText = submitBtn.innerHTML;
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
+                const templateParams = { from_name: document.getElementById('name').value, from_email: document.getElementById('email').value, subject: document.getElementById('subject').value, message: document.getElementById('message').value };
+                try {
+                    await emailjs.send('service_bt3nksf', 'template_mnl6sz5', templateParams);
+                    await addDoc(collection(db, 'contactMessages'), { ...templateParams, timestamp: serverTimestamp() });
+                    alert('✅ Thank you! We will get back to you soon.');
+                    contactForm.reset();
+                } catch (error) {
+                    alert('❌ Failed to send. Please email us at mmbagaj97@gmail.com');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                }
+            });
+        }
+
+        // Image Modal (tool icons only)
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        document.querySelectorAll('.tool-icon img').forEach(img => {
+            img.addEventListener('click', function() { modal.classList.add('active'); modalImg.src = this.src; });
+        });
+        document.querySelector('.modal-close').addEventListener('click', () => modal.classList.remove('active'));
+        modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('active'); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') modal.classList.remove('active'); });
+    </script>
+    <script>
+        function openProfile(id) {
+            const profiles = {
+                howard: { name: 'Howard Frederick', role: 'Chief Biotechnology Advisor', image: 'images/Howard fredrick.jpeg', bio: "Howard bridges biology and technology by providing software training, biology consultations, and strategic advisory on biotechnology applications to strengthen our team's technical capabilities." },
+                julius: { name: 'Julius S. Mmaga', role: 'Founder & Wildlife Specialist', image: 'images/JULIUS S.MMAGA.jpeg', bio: "Julius founded WildData with expertise in wildlife data annotation, species identification, and biodiversity assessment. He develops annotation guidelines, leads quality assurance, and serves as the primary contact for clients in the wildlife and conservation sector." },
+                wenceslaus: { name: 'Wenceslaus Magesa', role: 'Operations Manager & Wildlife Specialist', image: 'images/Wenceslaus magesa.jpeg', bio: "Holding a BSc in Wildlife Management, Wenceslaus brings field experience from CRC's Modernization of Wildlife Survey Project and TAWIRI's national wildlife censuses. At WildData, he oversees daily lab operations, coordinates annotators, ensures annotation quality, and manages schedules and financial reporting." },
+                pendo: { name: 'Pendo Peter Kipara', role: 'Tech Lead & Wildlife Specialist', image: 'images/PENDO PETER KIPARA.jpeg', bio: "A Computer Engineering professional with expertise in networking, server administration, and data annotation. Pendo manages our technical infrastructure, maintains annotation platforms, and leads the annotator team ensuring system reliability, data security, and high-quality AI project delivery." }
+            };
+            const p = profiles[id];
+            document.getElementById('profileModalImage').src = p.image;
+            document.getElementById('profileModalImage').alt = p.name;
+            document.getElementById('profileModalName').textContent = p.name;
+            document.getElementById('profileModalRole').textContent = p.role;
+            document.getElementById('profileModalBio').textContent = p.bio;
+            document.getElementById('profileModal').classList.add('active');
+        }
+        function closeProfile() { document.getElementById('profileModal').classList.remove('active'); }
+        document.addEventListener('click', function(e) { const modal = document.getElementById('profileModal'); if (e.target === modal) closeProfile(); });
+
+        window.navigateTo = function(page, sectionSelector) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            const targetId = page === 'services' ? 'services-page' : page;
+            document.getElementById(targetId).classList.add('active');
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            const navLink = document.querySelector(`.nav-link[data-page="${page}"]`);
+            if (navLink) navLink.classList.add('active');
+            window.scrollTo(0, 0);
+            if (sectionSelector) {
+                setTimeout(() => {
+                    const el = document.querySelector('#' + targetId + ' ' + sectionSelector);
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 200);
             }
         };
-
-        const profile = profiles[id];
-        document.getElementById('profileModalImage').src = profile.image;
-        document.getElementById('profileModalImage').alt = profile.name;
-        document.getElementById('profileModalName').textContent = profile.name;
-        document.getElementById('profileModalRole').textContent = profile.role;
-        document.getElementById('profileModalBio').textContent = profile.bio;
-        document.getElementById('profileModal').classList.add('active');
-    }
-
-    function closeProfile() {
-        document.getElementById('profileModal').classList.remove('active');
-    }
-
-    document.addEventListener('click', function(e) {
-        const modal = document.getElementById('profileModal');
-        if (e.target === modal) closeProfile();
-    });
-    function closeProfile() {
-        document.getElementById('profileModal').classList.remove('active');
-    }
-
-    window.navigateTo = function(page, sectionSelector) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    const targetId = page === 'services' ? 'services-page' : page;
-    document.getElementById(targetId).classList.add('active');
-    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-    const navLink = document.querySelector(`.nav-link[data-page="${page}"]`);
-    if (navLink) navLink.classList.add('active');
-    window.scrollTo(0, 0);
-    if (sectionSelector) {
-        setTimeout(() => {
-            const el = document.querySelector('#' + targetId + ' ' + sectionSelector);
-            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 200);
-    }
-}
-
-</script>
+    </script>
 </body>
 </html>
