@@ -8,768 +8,2014 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --deep-forest-green-1: #1a3d34;
-            --deep-forest-green-2: #234b3c;
-            --lime-chartreuse-1: #b4d333;
+            --green-dark: #1a3d34;
+            --green-mid: #234b3c;
+            --green-light: #4a8b7f;
+            --lime: #b4d333;
+            --lime-dark: #a0c02e;
             --white: #ffffff;
-            --cream-1: #f5f3ed;
-            --teal-1: #4a8b7f;
-            --charcoal-1: #2b2b2b;
+            --cream: #f5f3ed;
+            --charcoal: #2b2b2b;
+            --danger: #d32f2f;
+            --danger-dark: #b71c1c;
+            --sidebar-w: 260px;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+         }
+        body { 
+            background: var(--cream); 
+            color: var(--charcoal);
+         }
+
+        /* AUTH LOADING */
+        #authLoading { 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            gap: 20px; 
+            background: linear-gradient(135deg, var(--green-dark), var(--green-light)); 
+        }
+        #authLoading i { 
+            font-size: 3rem; 
+            color: var(--lime); 
+            animation: spin 1s linear infinite; 
+        }
+        #authLoading p { 
+            color: var(--white); 
+            opacity: .8; 
         }
 
-        body {
-            background-color: var(--cream-1);
-            color: var(--charcoal-1);
+        /* FORMS */
+        .form-group { 
+             margin-bottom: 18px; 
+            }
+        .form-group label { 
+            display: block; 
+            margin-bottom: 6px; 
+            font-weight: 600; 
+            font-size: .88rem;
+         }
+        .form-group input, .form-group textarea, .form-group select { 
+            width: 100%; 
+            padding: 10px 12px; 
+            border: 2px solid #ddd; 
+            border-radius: 6px; 
+            font-size: .92rem; 
+            transition: border-color .3s; 
+            font-family: inherit; 
+        }
+        .form-group input:focus, 
+        .form-group textarea:focus, 
+        .form-group select:focus {
+             outline: none; border-color: var(--green-light); 
+            }
+        .form-group textarea { 
+            resize: vertical; 
+            min-height: 90px; 
         }
 
-        /* Login Page Styles */
-        .login-container {
-            display: flex;
+        /* BUTTONS */
+        .btn { 
+            padding: 10px 20px; 
+            background: var(--lime); 
+            color: var(--charcoal); 
+            border: none; 
+            border-radius: 6px; 
+            font-size: .92rem; 
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: background .3s; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 7px;
+         }
+        .btn:hover { 
+            background: var(--lime-dark);
+         }
+        .btn-full { 
+            width: 100%; 
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, var(--deep-forest-green-1), var(--teal-1));
+         }
+        .btn-danger { 
+            background: var(--danger); 
+            color: var(--white);
+         }
+        .btn-danger:hover { 
+            background: var(--danger-dark);
+         }
+        .btn-sm { 
+            padding: 6px 12px; 
+            font-size: .8rem;
+         }
+        .btn-outline { 
+            background: transparent; 
+            border: 2px solid var(--lime); 
+            color: var(--charcoal); 
         }
+        .btn-outline:hover { 
+            background: var(--lime);
+         }
+        .btn-ghost { 
+            background: rgba(255,255,255,.08); 
+            color: rgba(255,255,255,.8); 
+            border: 1px solid rgba(255,255,255,.15);
+         }
+        .btn-ghost:hover { 
+            background: rgba(255,255,255,.15); 
+            color: var(--white);
+         }
 
-        .login-box {
-            background: var(--white);
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            width: 100%;
-            max-width: 400px;
-        }
-
-        .login-box h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: var(--deep-forest-green-1);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--charcoal-1);
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--teal-1);
-        }
-
-        .btn {
-            width: 100%;
-            padding: 12px;
-            background-color: var(--lime-chartreuse-1);
-            color: var(--charcoal-1);
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .btn:hover {
-            background-color: #a0c02e;
-        }
-
-        .error-message {
-            color: #d32f2f;
-            text-align: center;
-            margin-top: 15px;
+        /* LAYOUT */
+        #dashboard { 
             display: none;
+         }
+        #dashboard.active { 
+            display: flex; 
+            min-height: 100vh; 
         }
 
-        /* Dashboard Styles */
-        .dashboard {
-            display: none;
-        }
-
-        .dashboard.active {
-            display: block;
-        }
-
-        header {
-            background-color: var(--deep-forest-green-1);
-            color: var(--white);
-            padding: 20px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .header-content h1 {
-            font-size: 1.8rem;
-        }
-
-        .logout-btn {
-            padding: 10px 20px;
-            background-color: var(--lime-chartreuse-1);
-            color: var(--charcoal-1);
-            border: none;
-            border-radius: 5px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .logout-btn:hover {
-            background-color: #a0c02e;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .stat-card {
-            background: var(--white);
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .stat-icon {
-            width: 60px;
-            height: 60px;
-            background-color: var(--teal-1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 1.5rem;
-        }
-
-        .stat-info h3 {
-            font-size: 2rem;
-            margin-bottom: 5px;
-            color: var(--deep-forest-green-1);
-        }
-
-        .stat-info p {
-            color: #666;
-        }
-
-        .messages-section {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .messages-section h2 {
-            margin-bottom: 20px;
-            color: var(--deep-forest-green-1);
-        }
-
-        .search-filter {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .search-filter input,
-        .search-filter select {
-            flex: 1;
-            min-width: 200px;
-            padding: 10px;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-size: 0.95rem;
-        }
-
-        .message-table {
-            width: 100%;
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 800px;
-        }
-
-        thead {
-            background-color: var(--deep-forest-green-1);
-            color: var(--white);
-        }
-
-        th, td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            font-weight: 600;
-        }
-
-        tbody tr:hover {
-            background-color: var(--cream-1);
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn-view {
-            padding: 6px 12px;
-            background-color: var(--teal-1);
-            color: var(--white);
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: background-color 0.3s;
-        }
-
-        .btn-view:hover {
-            background-color: #3d7a70;
-        }
-
-        .btn-delete {
-            padding: 6px 12px;
-            background-color: #d32f2f;
-            color: var(--white);
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: background-color 0.3s;
-        }
-
-        .btn-delete:hover {
-            background-color: #b71c1c;
-        }
-
-        .no-messages {
-            text-align: center;
-            padding: 40px;
-            color: #666;
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background-color: var(--white);
-            padding: 30px;
-            border-radius: 10px;
-            max-width: 600px;
-            width: 90%;
-            max-height: 80vh;
+        /* SIDEBAR */
+        .sidebar { 
+            width: var(--sidebar-w); 
+            background: var(--green-dark); 
+            color: var(--white); 
+            display: flex; 
+            flex-direction: column; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            height: 100vh; 
+            z-index: 100; 
             overflow-y: auto;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+         }
+        .sidebar-logo { 
+            padding: 22px 20px; 
+            border-bottom: 1px solid rgba(255,255,255,.1); 
+        }
+        .sidebar-logo h2 { 
+            font-size: 1.05rem; 
+            color: var(--lime);
+         }
+        .sidebar-logo p { 
+            font-size: .72rem; 
+            opacity: .5; 
+            margin-top: 3px;
+         }
+        .sidebar-nav { 
+            flex: 1; 
+            padding: 12px 0; 
+        }
+        .nav-section { 
+            padding: 10px 20px 4px; 
+            font-size: .68rem; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            opacity: .35; 
+        }
+        .nav-item { 
+            display: flex; 
+            align-items: center; 
+            gap: 11px; 
+            padding: 11px 20px; 
+            cursor: pointer; 
+            transition: all .2s; 
+            color: rgba(255,255,255,.7); 
+            font-size: .88rem; 
+            border-left: 3px solid transparent; 
+        }
+        .nav-item:hover { 
+            background: rgba(255,255,255,.07); 
+            color: var(--white); 
+        }
+        .nav-item.active { 
+            background: rgba(180,211,51,.12); 
+            color: var(--lime); 
+            border-left-color: var(--lime); 
+        }
+        .nav-item i { 
+            width: 17px; 
+            text-align: center; 
+            font-size: .88rem;
+         }
+        .nav-badge { 
+            margin-left: auto; 
+            background: var(--lime); 
+            color: var(--charcoal); 
+            border-radius: 20px; 
+            padding: 1px 8px; 
+            font-size: .7rem; 
+            font-weight: 700; 
+            display: none; 
+        }
+        .sidebar-footer { 
+            padding: 16px 20px; 
+            border-top: 1px solid rgba(255,255,255,.1); 
+        }
+        .sidebar-user { 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            margin-bottom: 12px;
+         }
+        .avatar { 
+            width: 34px; 
+            height: 34px; 
+            background: var(--green-light); 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: 700; 
+            font-size: .88rem; 
+            flex-shrink: 0; 
+        }
+        .user-info p { 
+            font-size: .82rem; 
+            font-weight: 600; 
+            white-space: nowrap; 
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+            max-width: 160px; 
+        }
+        .user-info span { 
+            font-size: .72rem; 
+            opacity: .55; 
         }
 
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--cream-1);
+        /* MAIN */
+        .main { 
+            margin-left: var(--sidebar-w); 
+            flex: 1; display: flex; 
+            flex-direction: column; 
+            min-width: 0; 
         }
-
-        .modal-header h2 {
-            color: var(--deep-forest-green-1);
+        .topbar { 
+            background: var(--white); 
+            padding: 15px 26px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 1px 4px rgba(0,0,0,.08);
+            position: sticky; 
+            top: 0; 
+            z-index: 50; 
         }
+        .topbar h1 { 
+            font-size: 1.2rem; 
+            color: var(--green-dark);
+         }
+        .content { 
+            padding: 26px; 
+            flex: 1;
+         }
 
-        .close-modal {
-            font-size: 2rem;
-            cursor: pointer;
-            color: #666;
-            transition: color 0.3s;
-        }
-
-        .close-modal:hover {
-            color: var(--deep-forest-green-1);
-        }
-
-        .message-detail {
-            margin-bottom: 20px;
-        }
-
-        .message-detail label {
+        /* PANELS */
+        .panel { 
+            display: none;
+         }
+        .panel.active { 
             display: block;
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: var(--deep-forest-green-1);
+         }
+
+        /* STATS */
+        .stats-row { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); 
+            gap: 16px; 
+            margin-bottom: 24px; 
+        }
+        .stat-card { 
+            background: var(--white); 
+            border-radius: 10px; 
+            padding: 20px; 
+            box-shadow: 0 2px 8px rgba(0,0,0,.07); 
+            display: flex; 
+            align-items: center; 
+            gap: 14px; 
+        }
+        .stat-icon { 
+            width: 48px; 
+            height: 48px; 
+            border-radius: 10px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 1.2rem; 
+            color: var(--white); 
+            flex-shrink: 0; 
+        }
+        .si-green { 
+            background: var(--green-light); 
+        }
+        .si-lime { 
+            background: var(--lime-dark); 
+        }
+        .si-teal { 
+            background: #0d9488;
+         }
+        .si-orange { 
+            background: #f59e0b;
+        }
+        .si-purple { 
+            background: #7c3aed;
+         }
+        .si-blue { 
+            background: #2563eb; 
+        }
+        .stat-info h3 { 
+            font-size: 1.75rem; 
+            color: var(--green-dark); 
+            line-height: 1; 
+        }
+        .stat-info p { 
+            font-size: .78rem; 
+            color: #888; 
+            margin-top: 3px;
+         }
+
+        /* CARD */
+        .card { 
+            background: var(--white); 
+            border-radius: 10px; 
+            box-shadow: 0 2px 8px rgba(0,0,0,.07); 
+            overflow: hidden; 
+            margin-bottom: 22px;
+         }
+        .card-header { 
+            padding: 16px 22px; 
+            border-bottom: 1px solid #f0f0f0; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        .card-header h2 { 
+            font-size: .98rem; 
+            color: var(--green-dark);
+         }
+        .card-body { 
+            padding: 22px;
+         }
+
+        /* TABLE */
+        .table-wrap { 
+            overflow-x: auto; 
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            min-width: 560px; 
+        }
+        thead { 
+            background: var(--green-dark); 
+            color: var(--white); 
+        }
+        th, td { 
+            padding: 12px 15px; 
+            text-align: left; 
+            border-bottom: 1px solid #eee; 
+            font-size: .86rem;
+         }
+        th { 
+            font-weight: 600; 
+            font-size: .78rem; 
+            letter-spacing: .3px;
+         }
+        tbody tr:hover { 
+            background: #fafafa;
+         }
+        .action-cell { 
+            display: flex; 
+            gap: 7px; 
+            flex-wrap: wrap;
+         }
+
+        /* BADGES */
+        .badge { 
+            display: inline-block; 
+            padding: 3px 9px; 
+            border-radius: 20px; 
+            font-size: .72rem; 
+            font-weight: 600; 
+        }
+        .badge-new { 
+            background: #dcfce7; 
+            color: #166534; 
+        }
+        .badge-read { 
+            background: #f3f4f6; 
+            color: #6b7280;
+         }
+        .badge-replied { 
+            background: #dbeafe; 
+            color: #1d4ed8; 
+        }
+        .badge-primary { 
+            background: #4a8b7f; 
+            color: #fff; 
+        }
+        .badge-secondary { 
+            background: #f0f0f0; 
+            color: #555; 
         }
 
-        .message-detail p {
-            padding: 10px;
-            background-color: var(--cream-1);
-            border-radius: 5px;
-            color: var(--charcoal-1);
+        /* MODAL */
+        .modal-overlay { 
+            display: none; 
+            position: fixed; 
+            inset: 0; 
+            background: rgba(0,0,0,.5); 
+            z-index: 200; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 20px; 
+        }
+        .modal-overlay.active { 
+            display: flex; 
+        }
+        .modal-box { 
+            background: var(--white); 
+            border-radius: 12px; 
+            width: 100%; 
+            max-width: 560px; 
+            max-height: 88vh; 
+            overflow-y: auto; 
+            box-shadow: 0 20px 60px rgba(0,0,0,.3); 
+        }
+        .modal-head { 
+            padding: 18px 22px; 
+            border-bottom: 1px solid #eee; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            position: sticky; 
+            top: 0; 
+            background: var(--white); 
+            z-index: 1; 
+        }
+        .modal-head h3 { 
+            color: var(--green-dark); 
+            font-size: 1rem; 
+        }
+        .modal-close { 
+            font-size: 1.4rem; 
+            cursor: pointer; 
+            color: #aaa; 
+            line-height: 1; 
+            transition: color .2s;
+         }
+        .modal-close:hover { 
+            color: var(--charcoal);
+         }
+        .modal-body { 
+            padding: 22px;
+         }
+        .modal-footer { 
+            padding: 14px 22px; 
+            border-top: 1px solid #eee; 
+            display: flex; 
+            justify-content: flex-end; 
+            gap: 10px; 
         }
 
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: #666;
-        }
-
-        .loading i {
-            font-size: 2rem;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
+        /* DETAIL VIEW */
+        .detail-row {
+             margin-bottom: 14px; 
             }
-
-            .search-filter {
-                flex-direction: column;
-            }
-
-            .search-filter input,
-            .search-filter select {
-                width: 100%;
-            }
-
-            .message-table {
-                overflow-x: scroll;
-            }
+        .detail-row label { 
+            display: block; 
+            font-weight: 700; 
+            font-size: .75rem; 
+            color: var(--green-dark);
+             margin-bottom: 4px; 
+             text-transform: uppercase;
+            letter-spacing: .5px;
+         }
+        .detail-row p { 
+            background: var(--cream); 
+            padding: 10px 12px; 
+            border-radius: 6px; 
+            font-size: .88rem; 
+            line-height: 1.6; 
         }
-        .hidden {
-    display: none;
-}
 
-.no-messages-icon {
-    font-size: 3rem;
-    color: #ddd;
-}
+        /* GRID CARDS */
+        .items-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(250px,1fr)); 
+            gap: 16px; 
+        }
+        .item-card { 
+            background: var(--white); 
+            border-radius: 10px; 
+            box-shadow: 0 2px 8px rgba(0,0,0,.07); 
+            overflow: hidden; 
+            transition: transform .2s, box-shadow .2s;
+         }
+        .item-card:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 6px 18px rgba(0,0,0,.1);
+         }
+        .item-card-img { 
+            height: 150px; 
+            background: var(--cream); 
+            overflow: hidden; 
+            display: flex;
+            align-items: center; 
+            justify-content: center; 
+        }
+        .item-card-img img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+        }
+        .item-card-img .placeholder-icon { 
+            font-size: 2.5rem; 
+            color: #ccc; 
+        }
+        .item-card-body { 
+            padding: 15px;
+         }
+        .item-card-body h4 { 
+            font-size: .93rem; 
+            color: var(--green-dark); 
+            margin-bottom: 4px; 
+        }
+        .item-card-body .sub { 
+            font-size: .78rem; 
+            color: var(--green-light); 
+            font-weight: 600; 
+            margin-bottom: 6px;
+         }
+        .item-card-body p { 
+            font-size: .8rem; 
+            color: #777;
+            margin-bottom: 12px; 
+            line-height: 1.5; 
+            display: -webkit-box; 
+            -webkit-line-clamp: 2; 
+            -webkit-box-orient: vertical; 
+            overflow: hidden; 
+        }
+        .item-card-actions { display: flex; gap: 7px; }
+
+        /* SLIDE PREVIEW CARD */
+        .slide-preview { position: relative; height: 120px; border-radius: 8px; overflow: hidden; background: var(--green-dark); margin-bottom: 10px; }
+        .slide-preview img { width: 100%; height: 100%; object-fit: cover; opacity: .6; }
+        .slide-preview-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 12px; }
+        .slide-preview-overlay h5 { color: #fff; font-size: .82rem; line-height: 1.3; margin-bottom: 3px; }
+        .slide-preview-overlay span { color: rgba(255,255,255,.7); font-size: .72rem; }
+        .slide-order-badge { position: absolute; top: 8px; left: 8px; background: var(--lime); color: var(--charcoal); border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: .72rem; font-weight: 700; }
+
+        /* TOOL TYPE BADGE */
+        .tool-type { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: .7rem; font-weight: 600; margin-bottom: 6px; }
+        .tool-type-primary { background: rgba(74,139,127,.15); color: var(--green-light); }
+        .tool-type-recommended { background: rgba(180,211,51,.15); color: var(--lime-dark); }
+
+        /* CONTACT INFO GRID */
+        .ci-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
+        .ci-full { grid-column: 1 / -1; }
+        @media (max-width: 580px) { .ci-grid { grid-template-columns: 1fr; } }
+
+        /* TOAST */
+        .toast { position: fixed; bottom: 22px; right: 22px; background: var(--green-dark); color: var(--white); padding: 13px 18px; border-radius: 8px; font-size: .88rem; box-shadow: 0 4px 16px rgba(0,0,0,.25); transform: translateY(70px); opacity: 0; transition: all .3s; z-index: 9999; display: flex; align-items: center; gap: 9px; min-width: 220px; }
+        .toast.show { transform: translateY(0); opacity: 1; }
+        .toast.success i { color: var(--lime); }
+        .toast.error i { color: #f87171; }
+
+        /* EMPTY STATE */
+        .empty-state { text-align: center; padding: 48px 20px; color: #bbb; }
+        .empty-state i { font-size: 2.8rem; margin-bottom: 12px; display: block; }
+        .empty-state p { font-size: .9rem; }
+
+        /* LOADING */
+        .loading-inline { text-align: center; padding: 40px; color: #bbb; }
+        .loading-inline i { font-size: 2rem; animation: spin 1s linear infinite; }
+
+        /* SEARCH BAR */
+        .search-row { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+        .search-row input, .search-row select { padding: 9px 12px; border: 2px solid #ddd; border-radius: 6px; font-size: .88rem; font-family: inherit; }
+        .search-row input { flex: 1; min-width: 180px; }
+        .search-row input:focus, .search-row select:focus { outline: none; border-color: var(--green-light); }
+
+        /* INFO NOTE */
+        .info-note { background: rgba(74,139,127,.1); border-left: 4px solid var(--green-light); padding: 12px 16px; border-radius: 0 6px 6px 0; font-size: .84rem; color: var(--charcoal); margin-bottom: 18px; line-height: 1.5; }
+        .info-note i { color: var(--green-light); margin-right: 6px; }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* IMAGE UPLOAD WIDGET */
+.img-widget { border: 2px solid #eee; border-radius: 8px; overflow: hidden; }
+.img-widget-tabs { display: flex; border-bottom: 2px solid #eee; }
+.img-widget-tab { flex: 1; padding: 9px; text-align: center; font-size: .8rem; font-weight: 600; cursor: pointer; color: #999; background: #fafafa; border: none; font-family: inherit; border-bottom: 3px solid transparent; transition: all .2s; }
+.img-widget-tab.active { color: var(--green-dark); background: #fff; border-bottom-color: var(--lime); }
+.img-widget-body { padding: 14px; }
+.img-tab-pane { display: none; }
+.img-tab-pane.active { display: block; }
+.img-url-field { border: 2px solid #ddd; border-radius: 6px; padding: 10px 12px; width: 100%; font-size: .88rem; font-family: inherit; outline: none; transition: border-color .3s; }
+.img-url-field:focus { border-color: var(--green-light); }
+.img-drop-zone { border: 2px dashed #e0e0e0; border-radius: 6px; padding: 22px; text-align: center; cursor: pointer; transition: all .2s; background: #fafafa; }
+.img-drop-zone:hover, .img-drop-zone.over { border-color: var(--green-light); background: rgba(74,139,127,.05); }
+.img-drop-zone i { font-size: 1.8rem; color: #ccc; display: block; margin-bottom: 8px; }
+.img-drop-zone p { font-size: .82rem; color: #aaa; margin-bottom: 10px; }
+.img-drop-zone input[type="file"] { display: none; }
+.img-choose-btn { display: inline-block; padding: 7px 16px; background: var(--lime); color: var(--charcoal); border-radius: 4px; font-size: .8rem; font-weight: 600; cursor: pointer; }
+.img-preview-wrap { margin-top: 10px; display: none; position: relative; }
+.img-preview-wrap img { width: 100%; max-height: 160px; object-fit: cover; border-radius: 6px; display: block; }
+.img-preview-remove { position: absolute; top: 6px; right: 6px; background: rgba(0,0,0,.55); color: #fff; border: none; border-radius: 50%; width: 26px; height: 26px; cursor: pointer; font-size: .8rem; display: flex; align-items: center; justify-content: center; }
+.img-upload-bar { margin-top: 8px; display: none; }
+.img-upload-bar-track { height: 5px; background: #eee; border-radius: 3px; overflow: hidden; }
+.img-upload-bar-fill { height: 100%; background: var(--lime); width: 0%; transition: width .3s; border-radius: 3px; }
+.img-upload-status { font-size: .75rem; color: #888; margin-top: 4px; }
+
     </style>
 </head>
 <body>
-    <!-- Login Page -->
-    <div id="loginPage" class="login-container">
-        <div class="login-box">
-            <h1><i class="fas fa-lock"></i> Admin Login</h1>
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" required>
+
+<!-- AUTH LOADING -->
+<div id="authLoading">
+    <i class="fas fa-spinner"></i>
+    <p>Checking authentication...</p>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <h2><i class="fas fa-leaf"></i> WildData CMS</h2>
+            <p>Content Management System</p>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-section">Overview</div>
+            <div class="nav-item active" data-panel="overview"><i class="fas fa-chart-pie"></i> Dashboard</div>
+
+            <div class="nav-section">Messages</div>
+            <div class="nav-item" data-panel="messages">
+                <i class="fas fa-envelope"></i> Contact Messages
+                <span class="nav-badge" id="unreadBadge"></span>
+            </div>
+
+            <div class="nav-section">Site Content</div>
+            <div class="nav-item" data-panel="slides"><i class="fas fa-images"></i> Hero Slides</div>
+            <div class="nav-item" data-panel="about"><i class="fas fa-info-circle"></i> About Page</div>
+            <div class="nav-item" data-panel="team"><i class="fas fa-users"></i> Team Members</div>
+            <div class="nav-item" data-panel="services"><i class="fas fa-cogs"></i> Services</div>
+            <div class="nav-item" data-panel="tools"><i class="fas fa-tools"></i> Tools</div>
+            <div class="nav-item" data-panel="blog"><i class="fas fa-newspaper"></i> Blog / Research</div>
+            <div class="nav-item" data-panel="contactinfo"><i class="fas fa-address-card"></i> Contact Info</div>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="sidebar-user">
+                <div class="avatar" id="userAvatar">A</div>
+                <div class="user-info">
+                    <p id="userEmailText">Admin</p>
+                    <span>Administrator</span>
                 </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" required>
+            </div>
+            <button class="btn btn-ghost btn-full" id="logoutBtn" style="justify-content:center">
+                <i class="fas fa-sign-out-alt"></i> Sign Out
+            </button>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div class="main">
+        <div class="topbar">
+            <h1 id="topbarTitle">Dashboard</h1>
+            <div id="topbarActions"></div>
+        </div>
+
+        <div class="content">
+
+            <!-- OVERVIEW -->
+            <div class="panel active" id="panel-overview">
+                <div class="stats-row">
+                    <div class="stat-card"><div class="stat-icon si-green"><i class="fas fa-envelope"></i></div><div class="stat-info"><h3 id="statMessages">–</h3><p>Total Messages</p></div></div>
+                    <div class="stat-card"><div class="stat-icon si-purple"><i class="fas fa-images"></i></div><div class="stat-info"><h3 id="statSlides">–</h3><p>Hero Slides</p></div></div>
+                    <div class="stat-card"><div class="stat-icon si-lime"><i class="fas fa-users"></i></div><div class="stat-info"><h3 id="statTeam">–</h3><p>Team Members</p></div></div>
+                    <div class="stat-card"><div class="stat-icon si-teal"><i class="fas fa-cogs"></i></div><div class="stat-info"><h3 id="statServices">–</h3><p>Services</p></div></div>
+                    <div class="stat-card"><div class="stat-icon si-blue"><i class="fas fa-tools"></i></div><div class="stat-info"><h3 id="statTools">–</h3><p>Tools</p></div></div>
+                    <div class="stat-card"><div class="stat-icon si-orange"><i class="fas fa-newspaper"></i></div><div class="stat-info"><h3 id="statBlog">–</h3><p>Blog Posts</p></div></div>
                 </div>
-                <button type="submit" class="btn">
-                    <i class="fas fa-sign-in-alt"></i> Login
-                </button>
-                <div id="loginError" class="error-message">Invalid credentials</div>
-            </form>
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Recent Messages</h2>
+                        <button class="btn btn-sm" onclick="switchPanel('messages')">View All</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-wrap">
+                            <table>
+                                <thead><tr><th>Name</th><th>Email</th><th>Subject</th><th>Date</th><th>Status</th></tr></thead>
+                                <tbody id="recentMsgBody"><tr><td colspan="5" style="text-align:center;color:#aaa;padding:20px">Loading...</td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MESSAGES -->
+            <div class="panel" id="panel-messages">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Contact Messages</h2>
+                        <button class="btn btn-sm btn-outline" id="exportCsvBtn"><i class="fas fa-download"></i> Export CSV</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="search-row">
+                            <input type="text" id="msgSearch" placeholder="Search by name, email or subject...">
+                            <select id="msgFilter">
+                                <option value="all">All Messages</option>
+                                <option value="new">New</option>
+                                <option value="read">Read</option>
+                                <option value="replied">Replied</option>
+                            </select>
+                        </div>
+                        <div id="msgLoading" class="loading-inline"><i class="fas fa-spinner"></i></div>
+                        <div class="table-wrap" id="msgTableWrap" style="display:none">
+                            <table>
+                                <thead><tr><th>Date</th><th>Name</th><th>Email</th><th>Subject</th><th>Status</th><th>Actions</th></tr></thead>
+                                <tbody id="msgBody"></tbody>
+                            </table>
+                        </div>
+                        <div id="msgEmpty" class="empty-state" style="display:none"><i class="fas fa-inbox"></i><p>No messages found</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HERO SLIDES -->
+            <div class="panel" id="panel-slides">
+                <div class="info-note">
+                    <i class="fas fa-info-circle"></i>
+                    These slides appear in the homepage hero slider. Each slide has an image URL, heading, subheading, and button link. Use <strong>Display Order</strong> (0, 1, 2…) to control sequence.
+                </div>
+                <div id="slidesLoading" class="loading-inline"><i class="fas fa-spinner"></i></div>
+                <div class="items-grid" id="slidesGrid" style="display:none"></div>
+                <div id="slidesEmpty" class="empty-state" style="display:none"><i class="fas fa-images"></i><p>No hero slides yet. Add one!</p></div>
+            </div>
+
+            <!-- ABOUT PAGE -->
+<div class="panel" id="panel-about">
+    <div class="info-note"><i class="fas fa-info-circle"></i> Manage all content on the <strong>About Us</strong> page — hero text, mission section, and values cards.</div>
+    <div id="aboutLoading" class="loading-inline"><i class="fas fa-spinner"></i></div>
+    <div id="aboutForms" style="display:none">
+
+        <!-- Hero -->
+        <div style="background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.07);margin-bottom:20px;overflow:hidden;">
+            <div style="padding:14px 20px;background:#1a3d34;color:#fff;display:flex;align-items:center;gap:10px;">
+                <i class="fas fa-star" style="color:#b4d333"></i><h3 style="font-size:.95rem">Page Hero (Title &amp; Subtitle)</h3>
+            </div>
+            <div style="padding:22px">
+                <div class="form-group"><label>Hero Title</label><input type="text" id="aboutHeroTitle" placeholder="e.g. About WildData"></div>
+                <div class="form-group"><label>Title Highlight (lime coloured word)</label><input type="text" id="aboutHeroHighlight" placeholder="e.g. WildData"></div>
+                <div class="form-group"><label>Subtitle / Description</label><textarea id="aboutHeroSubtitle" rows="2"></textarea></div>
+                <button class="btn btn-sm" id="saveAboutHeroBtn"><i class="fas fa-save"></i> Save Hero Text</button>
+            </div>
+        </div>
+
+        <!-- Mission -->
+        <div style="background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.07);margin-bottom:20px;overflow:hidden;">
+            <div style="padding:14px 20px;background:#1a3d34;color:#fff;display:flex;align-items:center;gap:10px;">
+                <i class="fas fa-bullseye" style="color:#b4d333"></i><h3 style="font-size:.95rem">Our Mission</h3>
+            </div>
+            <div style="padding:22px">
+                <div class="form-group"><label>Section Title</label><input type="text" id="missionTitle" placeholder="Our"></div>
+                <div class="form-group"><label>Title Highlight (lime word)</label><input type="text" id="missionHighlight" placeholder="Mission"></div>
+                <div class="form-group"><label>Paragraph 1</label><textarea id="missionP1" rows="3"></textarea></div>
+                <div class="form-group"><label>Paragraph 2</label><textarea id="missionP2" rows="3"></textarea></div>
+                <div class="form-group"><label>Paragraph 3</label><textarea id="missionP3" rows="3"></textarea></div>
+                <div class="form-group"><label>Mission Image</label><div id="missionImgWidget"></div></div>
+                <button class="btn btn-sm" id="saveAboutMissionBtn"><i class="fas fa-save"></i> Save Mission</button>
+            </div>
+        </div>
+
+        <!-- Values -->
+        <div style="background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.07);margin-bottom:20px;overflow:hidden;">
+            <div style="padding:14px 20px;background:#1a3d34;color:#fff;display:flex;align-items:center;gap:10px;">
+                <i class="fas fa-leaf" style="color:#b4d333"></i><h3 style="font-size:.95rem">Our Values (4 Cards)</h3>
+            </div>
+            <div style="padding:22px">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;" id="valuesEditGrid"></div>
+                <button class="btn btn-sm" style="margin-top:16px" id="saveAboutValuesBtn"><i class="fas fa-save"></i> Save Values</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+            <!-- TEAM -->
+            <div class="panel" id="panel-team">
+                <div id="teamLoading" class="loading-inline"><i class="fas fa-spinner"></i></div>
+                <div class="items-grid" id="teamGrid" style="display:none"></div>
+                <div id="teamEmpty" class="empty-state" style="display:none"><i class="fas fa-users"></i><p>No team members yet. Add one!</p></div>
+            </div>
+
+            <!-- SERVICES -->
+            <div class="panel" id="panel-services">
+                <div id="servicesLoading" class="loading-inline"><i class="fas fa-spinner"></i></div>
+                <div class="items-grid" id="servicesGrid" style="display:none"></div>
+                <div id="servicesEmpty" class="empty-state" style="display:none"><i class="fas fa-cogs"></i><p>No services yet. Add one!</p></div>
+            </div>
+
+            <!-- TOOLS -->
+            <div class="panel" id="panel-tools">
+                <div class="info-note">
+                    <i class="fas fa-info-circle"></i>
+                    Manage the annotation tools shown on the Tools page. Set <strong>Type</strong> to <em>Primary</em> for featured tools (shown with full detail sections: CVAT, SurveyScope, Scout) or <em>Recommended</em> for the additional tools grid at the bottom of the page.
+                </div>
+                <div id="toolsLoading" class="loading-inline"><i class="fas fa-spinner"></i></div>
+                <div class="items-grid" id="toolsGrid" style="display:none"></div>
+                <div id="toolsEmpty" class="empty-state" style="display:none"><i class="fas fa-tools"></i><p>No tools yet. Add one!</p></div>
+            </div>
+
+            <!-- BLOG -->
+            <div class="panel" id="panel-blog">
+                <div id="blogLoading" class="loading-inline"><i class="fas fa-spinner"></i></div>
+                <div class="items-grid" id="blogGrid" style="display:none"></div>
+                <div id="blogEmpty" class="empty-state" style="display:none"><i class="fas fa-newspaper"></i><p>No blog posts yet. Add one!</p></div>
+            </div>
+
+            <!-- CONTACT INFO -->
+            <div class="panel" id="panel-contactinfo">
+                <div class="card">
+                    <div class="card-header"><h2>Site Contact Information</h2></div>
+                    <div class="card-body">
+                        <div id="ciLoading" class="loading-inline"><i class="fas fa-spinner"></i></div>
+                        <form id="contactInfoForm" style="display:none">
+                            <div class="ci-grid">
+                                <div class="form-group"><label>Phone Number</label><input type="text" id="ciPhone" placeholder="+255..."></div>
+                                <div class="form-group"><label>Email Address</label><input type="email" id="ciEmail" placeholder="info@wilddata.com"></div>
+                                <div class="form-group ci-full"><label>Physical Address</label><textarea id="ciAddress" rows="2" placeholder="Street, City, Country"></textarea></div>
+                                <div class="form-group"><label>Facebook URL</label><input type="url" id="ciFacebook" placeholder="https://facebook.com/..."></div>
+                                <div class="form-group"><label>Twitter / X URL</label><input type="url" id="ciTwitter" placeholder="https://twitter.com/..."></div>
+                                <div class="form-group"><label>LinkedIn URL</label><input type="url" id="ciLinkedin" placeholder="https://linkedin.com/..."></div>
+                                <div class="form-group"><label>Instagram URL</label><input type="url" id="ciInstagram" placeholder="https://instagram.com/..."></div>
+                            </div>
+                            <button type="submit" class="btn"><i class="fas fa-save"></i> Save Contact Info</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /content -->
+    </div><!-- /main -->
+</div><!-- /dashboard -->
+
+<!-- ── MODALS ── -->
+
+<!-- Message Detail -->
+<div class="modal-overlay" id="msgModal">
+    <div class="modal-box">
+        <div class="modal-head"><h3>Message Details</h3><span class="modal-close" onclick="closeModal('msgModal')">&times;</span></div>
+        <div class="modal-body" id="msgModalBody"></div>
+        <div class="modal-footer">
+            <button class="btn btn-sm btn-outline" id="msgReplyBtn">Reply via Email</button>
+            <button class="btn btn-sm btn-outline" id="msgMarkReplied">Mark Replied</button>
+            <button class="btn btn-sm btn-danger" id="msgDeleteBtn">Delete</button>
         </div>
     </div>
+</div>
 
-    <!-- Dashboard -->
-    <div id="dashboard" class="dashboard">
-        <header>
-            <div class="header-content">
-                <h1><i class="fas fa-chart-line"></i> WildData Admin Dashboard</h1>
-                <button class="logout-btn" id="logoutBtn">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </button>
+<!-- Hero Slide Form -->
+<div class="modal-overlay" id="slideModal">
+    <div class="modal-box">
+        <div class="modal-head"><h3 id="slideModalTitle">Add Hero Slide</h3><span class="modal-close" onclick="closeModal('slideModal')">&times;</span></div>
+        <div class="modal-body">
+            <input type="hidden" id="slideDocId">
+            <div class="form-group"><label>Background Image *</label><div id="slideImgWidget"></div></div>
+            <div class="form-group"><label>Heading *</label><input type="text" id="slideHeading" placeholder="e.g. We Strive To Offer Intelligent Business Solutions"></div>
+            <div class="form-group">
+
+                <label>Heading Highlight (coloured part)</label>
+                <input type="text" id="slideHighlight" placeholder="e.g. Solutions">
+                <small style="color:#888;font-size:.78rem;margin-top:4px;display:block">This word/phrase will be shown in lime green inside the heading</small>
             </div>
-        </header>
-
-        <div class="container">
-            <!-- Statistics -->
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="stat-info">
-                        <h3 id="totalMessages">0</h3>
-                        <p>Total Messages</p>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <div class="stat-info">
-                        <h3 id="todayMessages">0</h3>
-                        <p>Today's Messages</p>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="stat-info">
-                        <h3 id="uniqueSenders">0</h3>
-                        <p>Unique Senders</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Messages Section -->
-            <div class="messages-section">
-                <h2><i class="fas fa-inbox"></i> Contact Messages</h2>
-                
-                <div class="search-filter">
-                    <input type="text" id="searchInput" placeholder="Search by name, email, or subject...">
-                    <select id="sortSelect">
-                        <option value="newest">Newest First</option>
-                        <option value="oldest">Oldest First</option>
-                        <option value="name">Sort by Name</option>
-                    </select>
-                </div>
-
-                <div class="message-table">
-                <div id="loading" class="loading">
-                <i class="fas fa-spinner"></i>
-                <p>Loading messages...</p>
-               </div>
-             <table id="messagesTable" class="hidden">
-                 <thead>
-                  <tr>
-                   <th>Date</th>
-                   <th>Name</th>
-                   <th>Email</th>
-                   <th>Subject</th>
-                   <th>Actions</th>
-                 </tr>
-            </thead>
-             <tbody id="messagesBody">
-              </tbody>
-               </table>
-             <div id="noMessages" class="no-messages hidden">
-               <i class="fas fa-inbox no-messages-icon"></i>
-             <p>No messages found</p>
-                </div>
-               </div>
-            </div>
+            <div class="form-group"><label>Subheading / Description</label><textarea id="slideSubheading" rows="3" placeholder="Short description shown below the heading..."></textarea></div>
+            <div class="form-group"><label>Button Text</label><input type="text" id="slideButtonText" placeholder="e.g. Our Services"></div>
+            <div class="form-group"><label>Button Link</label><input type="text" id="slideButtonLink" placeholder="e.g. #services or a page name"></div>
+            <div class="form-group"><label>Display Order</label><input type="number" id="slideOrder" value="0" min="0"></div>
+        </div>
+        <div class="modal-footer">
+           <button class="btn btn-sm btn-outline" onclick="closeModal('slideModal')">Cancel</button>
+            <button class="btn btn-sm btn-danger" id="slideUnpublishBtn" style="display:none"><i class="fas fa-eye-slash"></i> Unpublish</button>
+             <button class="btn btn-sm" id="slideSaveBtn">Save Slide</button>
         </div>
     </div>
+</div>
 
-    <!-- Message Detail Modal -->
-    <div id="messageModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Message Details</h2>
-                <span class="close-modal">&times;</span>
-            </div>
-            <div id="messageDetails">
-                <!-- Message details will be inserted here -->
-            </div>
+<!-- Team Form -->
+<div class="modal-overlay" id="teamModal">
+    <div class="modal-box">
+        <div class="modal-head"><h3 id="teamModalTitle">Add Team Member</h3><span class="modal-close" onclick="closeModal('teamModal')">&times;</span></div>
+        <div class="modal-body">
+            <input type="hidden" id="teamDocId">
+            <div class="form-group"><label>Full Name *</label><input type="text" id="teamName" required></div>
+            <div class="form-group"><label>Role / Position *</label><input type="text" id="teamRole" required></div>
+            <div class="form-group"><label>Bio</label><textarea id="teamBio" rows="4"></textarea></div>
+            <div class="form-group"><label>Profile Image</label><div id="teamImgWidget"></div></div>
+            <div class="form-group"><label>Display Order</label><input type="number" id="teamOrder" value="0"></div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-sm btn-outline" onclick="closeModal('teamModal')">Cancel</button>
+            <button class="btn btn-sm btn-danger" id="teamUnpublishBtn" style="display:none"><i class="fas fa-eye-slash"></i> Unpublish</button>
+            <button class="btn btn-sm" id="teamSaveBtn">Save Member</button>
         </div>
     </div>
+</div>
 
-    <!-- Firebase SDK -->
-    <script type="module">
-        // Import Firebase modules
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
-        import { getFirestore, collection, getDocs, doc, deleteDoc, orderBy, query } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+<!-- Service Form -->
+<div class="modal-overlay" id="serviceModal">
+    <div class="modal-box">
+        <div class="modal-head"><h3 id="serviceModalTitle">Add Service</h3><span class="modal-close" onclick="closeModal('serviceModal')">&times;</span></div>
+        <div class="modal-body">
+            <input type="hidden" id="serviceDocId">
+            <div class="form-group"><label>Service Name *</label><input type="text" id="serviceName" required></div>
+            <div class="form-group"><label>Description *</label><textarea id="serviceDesc" rows="4" required></textarea></div>
+            <div class="form-group"><label>Icon (FontAwesome class, e.g. fas fa-camera)</label><input type="text" id="serviceIcon" placeholder="fas fa-camera"></div>
+            <div class="form-group"><label>Service Image</label><div id="serviceImgWidget"></div></div>
+            <div class="form-group"><label>Display Order</label><input type="number" id="serviceOrder" value="0"></div>
+        </div>
+        <div class="modal-footer">
+           <button class="btn btn-sm btn-outline" onclick="closeModal('serviceModal')">Cancel</button>
+           <button class="btn btn-sm btn-danger" id="serviceUnpublishBtn" style="display:none"><i class="fas fa-eye-slash"></i> Unpublish</button>
+        <button class="btn btn-sm" id="serviceSaveBtn">Save Service</button>
+        </div>
+    </div>
+</div>
 
-        // Firebase configuration - REPLACE WITH YOUR CONFIG
-     const firebaseConfig = {
+<!-- Tool Form -->
+<div class="modal-overlay" id="toolModal">
+    <div class="modal-box">
+        <div class="modal-head"><h3 id="toolModalTitle">Add Tool</h3><span class="modal-close" onclick="closeModal('toolModal')">&times;</span></div>
+        <div class="modal-body">
+            <input type="hidden" id="toolDocId">
+            <div class="form-group">
+                <label>Tool Type *</label>
+                <select id="toolType">
+                    <option value="primary">Primary (featured section with full detail)</option>
+                    <option value="recommended">Recommended (shown in the additional tools grid)</option>
+                </select>
+            </div>
+            <div class="form-group"><label>Tool Name *</label><input type="text" id="toolName" required placeholder="e.g. CVAT"></div>
+            <div class="form-group"><label>Badge Label</label><input type="text" id="toolBadge" placeholder="e.g. Video &amp; Image Annotation"></div>
+            <div class="form-group"><label>Description *</label><textarea id="toolDesc" rows="4" required></textarea></div>
+           <div class="form-group"><label>Tool Image</label><div id="toolImgWidget"></div></div>
+            <div class="form-group"><label>External Link URL</label><input type="url" id="toolLink" placeholder="https://..."></div>
+            <div class="form-group"><label>Link Button Text</label><input type="text" id="toolLinkText" placeholder="e.g. Visit CVAT Website"></div>
+            <div id="toolFeaturesGroup" class="form-group">
+                <label>Key Features (one per line)</label>
+                <textarea id="toolFeatures" rows="5" placeholder="Advanced video frame annotation&#10;Multiple annotation formats&#10;Track wildlife across video sequences"></textarea>
+                <small style="color:#888;font-size:.78rem;margin-top:4px;display:block">Each line becomes a bullet point on the Tools page (Primary tools only)</small>
+            </div>
+            <div class="form-group"><label>Display Order</label><input type="number" id="toolOrder" value="0" min="0"></div>
+        </div>
+        <div class="modal-footer">
+      <button class="btn btn-sm btn-outline" onclick="closeModal('toolModal')">Cancel</button>
+      <button class="btn btn-sm btn-danger" id="toolUnpublishBtn" style="display:none"><i class="fas fa-eye-slash"></i> Unpublish</button>
+      <button class="btn btn-sm" id="toolSaveBtn">Save Tool</button>
+        </div>
+    </div>
+</div>
+
+<!-- Blog Form -->
+<div class="modal-overlay" id="blogModal">
+    <div class="modal-box">
+        <div class="modal-head"><h3 id="blogModalTitle">Add Blog Post</h3><span class="modal-close" onclick="closeModal('blogModal')">&times;</span></div>
+        <div class="modal-body">
+            <input type="hidden" id="blogDocId">
+            <div class="form-group"><label>Title *</label><input type="text" id="blogTitle" required></div>
+            <div class="form-group"><label>Summary *</label><textarea id="blogSummary" rows="3" required></textarea></div>
+            <div class="form-group"><label>Full Content</label><textarea id="blogContent" rows="6"></textarea></div>
+            <div class="form-group"><label>Cover Image</label><div id="blogImgWidget"></div></div>
+            <div class="form-group"><label>External Link (optional)</label><input type="url" id="blogLink" placeholder="https://..."></div>
+            <div class="form-group"><label>Author</label><input type="text" id="blogAuthor" placeholder="WildData Team"></div>
+        </div>
+        <div class="modal-footer">
+      <button class="btn btn-sm btn-outline" onclick="closeModal('blogModal')">Cancel</button>
+      <button class="btn btn-sm btn-danger" id="blogUnpublishBtn" style="display:none"><i class="fas fa-eye-slash"></i> Unpublish</button>
+      <button class="btn btn-sm" id="blogSaveBtn">Save Post</button>
+        </div>
+    </div>
+</div>
+
+<!-- Confirm Delete -->
+<div class="modal-overlay" id="confirmModal">
+    <div class="modal-box" style="max-width:420px">
+        <div class="modal-head"><h3>Confirm Delete</h3><span class="modal-close" onclick="closeModal('confirmModal')">&times;</span></div>
+        <div class="modal-body"><p id="confirmText" style="line-height:1.6">Are you sure you want to delete this item? This cannot be undone.</p></div>
+        <div class="modal-footer">
+            <button class="btn btn-sm btn-outline" onclick="closeModal('confirmModal')">Cancel</button>
+            <button class="btn btn-sm btn-danger" id="confirmDeleteBtn"><i class="fas fa-trash"></i> Delete</button>
+        </div>
+    </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg"></span></div>
+
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+import { getAuth, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+import { getFirestore, collection, getDocs, doc, addDoc, updateDoc, deleteDoc, setDoc, getDoc, orderBy, query, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+const firebaseConfig = {
     apiKey: "AIzaSyAvlKl4lT6E78kBQ784xcB_ZtxhHVh2RAk",
     authDomain: "wilddata-annotation.firebaseapp.com",
     projectId: "wilddata-annotation",
     storageBucket: "wilddata-annotation.firebasestorage.app",
     messagingSenderId: "304081749559",
-    appId: "1:304081749559:web:fa05d874c04bb43031a1b2",
-    measurementId: "G-82FPQPVFRD"
+    appId: "1:304081749559:web:fa05d874c04bb43031a1b2"
 };
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db  = getFirestore(app);
 
-        // DOM Elements
-        const loginPage = document.getElementById('loginPage');
-        const dashboard = document.getElementById('dashboard');
-        const loginForm = document.getElementById('loginForm');
-        const loginError = document.getElementById('loginError');
-        const logoutBtn = document.getElementById('logoutBtn');
-        const messagesBody = document.getElementById('messagesBody');
-        const messagesTable = document.getElementById('messagesTable');
-        const noMessages = document.getElementById('noMessages');
-        const loading = document.getElementById('loading');
-        const messageModal = document.getElementById('messageModal');
-        const messageDetails = document.getElementById('messageDetails');
-        const searchInput = document.getElementById('searchInput');
-        const sortSelect = document.getElementById('sortSelect');
 
-        let allMessages = [];
+// ── IMAGE WIDGET FACTORY ──────────────────────────
+function makeImgWidget(containerId, folder) {
+    const c = document.getElementById(containerId);
+    if (!c) return { get: () => '', set: () => {}, reset: () => {} };
+    let url = '';
 
-        // Check authentication state
-        
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                loginPage.style.display = 'none';
-                dashboard.classList.add('active');
-                loadMessages();
-            } else {
-                loginPage.style.display = 'flex';
-                dashboard.classList.remove('active');
-            }
+    c.innerHTML = `
+      <div class="img-widget">
+        <div class="img-widget-tabs">
+          <button type="button" class="img-widget-tab active" data-t="upload"><i class="fas fa-upload"></i> Upload from Device</button>
+          <button type="button" class="img-widget-tab" data-t="url"><i class="fas fa-link"></i> Paste URL</button>
+        </div>
+        <div class="img-widget-body">
+          <div class="img-tab-pane active" data-p="upload">
+            <div class="img-drop-zone" id="${containerId}_dz">
+              <i class="fas fa-cloud-upload-alt"></i>
+              <p>Drag &amp; drop an image here, or</p>
+              <label class="img-choose-btn" for="${containerId}_fi">Choose File</label>
+              <input type="file" id="${containerId}_fi" accept="image/*">
+            </div>
+            <div class="img-upload-bar" id="${containerId}_bar">
+              <div class="img-upload-bar-track"><div class="img-upload-bar-fill" id="${containerId}_fill"></div></div>
+              <div class="img-upload-status" id="${containerId}_stat">Uploading...</div>
+            </div>
+          </div>
+          <div class="img-tab-pane" data-p="url">
+            <input type="url" class="img-url-field" id="${containerId}_url" placeholder="https://example.com/image.jpg">
+          </div>
+        </div>
+        <div class="img-preview-wrap" id="${containerId}_prev">
+          <img id="${containerId}_prevImg" src="" alt="Preview">
+          <button type="button" class="img-preview-remove" id="${containerId}_rem"><i class="fas fa-times"></i></button>
+        </div>
+      </div>`;
+
+    c.querySelectorAll('.img-widget-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            c.querySelectorAll('.img-widget-tab').forEach(t => t.classList.remove('active'));
+            c.querySelectorAll('.img-tab-pane').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            c.querySelector(`.img-tab-pane[data-p="${tab.dataset.t}"]`).classList.add('active');
         });
+    });
 
-        // Login
-        loginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+    const urlInput = c.querySelector(`#${containerId}_url`);
+    urlInput.addEventListener('input', () => { url = urlInput.value.trim(); url ? showPrev(url) : hidePrev(); });
 
-            try {
-                await signInWithEmailAndPassword(auth, email, password);
-                loginError.style.display = 'none';
-            } catch (error) {
-                loginError.style.display = 'block';
-                console.error('Login error:', error);
-            }
+    const fi = c.querySelector(`#${containerId}_fi`);
+    fi.addEventListener('change', () => { if (fi.files[0]) upload(fi.files[0]); });
+
+    const dz = c.querySelector(`#${containerId}_dz`);
+    dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('over'); });
+    dz.addEventListener('dragleave', () => dz.classList.remove('over'));
+    dz.addEventListener('drop', e => { e.preventDefault(); dz.classList.remove('over'); if (e.dataTransfer.files[0]) upload(e.dataTransfer.files[0]); });
+
+    c.querySelector(`#${containerId}_rem`).addEventListener('click', () => { url = ''; urlInput.value = ''; fi.value = ''; hidePrev(); });
+
+    function showPrev(u) { c.querySelector(`#${containerId}_prevImg`).src = u; c.querySelector(`#${containerId}_prev`).style.display = 'block'; }
+    function hidePrev() { c.querySelector(`#${containerId}_prev`).style.display = 'none'; }
+
+async function upload(file) {
+    if (!file.type.startsWith('image/')) { showToast('Please select an image file', 'error'); return; }
+    const bar = c.querySelector(`#${containerId}_bar`);
+    const fill = c.querySelector(`#${containerId}_fill`);
+    const stat = c.querySelector(`#${containerId}_stat`);
+    bar.style.display = 'block'; fill.style.width = '30%'; stat.textContent = 'Uploading...';
+    try {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', 'wilddata_uploads');
+        fill.style.width = '60%'; stat.textContent = 'Uploading... 60%';
+        const res = await fetch('https://api.cloudinary.com/v1_1/ddal3gz6d/image/upload', {
+            method: 'POST',
+            body: formData
         });
-
-        // Logout
-        logoutBtn.addEventListener('click', async () => {
-            try {
-                await signOut(auth);
-            } catch (error) {
-                console.error('Logout error:', error);
-            }
-        });
-
-        // Load messages from Firebase
-        async function loadMessages() {
-            try {
-                loading.style.display = 'block';
-                messagesTable.style.display = 'none';
-                noMessages.style.display = 'none';
-
-                const q = query(collection(db, 'contactMessages'), orderBy('timestamp', 'desc'));
-                const querySnapshot = await getDocs(q);
-                
-                allMessages = [];
-                querySnapshot.forEach((doc) => {
-                    allMessages.push({
-                        id: doc.id,
-                        ...doc.data()
-                    });
-                });
-
-                displayMessages(allMessages);
-                updateStats(allMessages);
-                
-                loading.style.display = 'none';
-            } catch (error) {
-                console.error('Error loading messages:', error);
-                loading.innerHTML = '<p style="color: #d32f2f;">Error loading messages. Please refresh the page.</p>';
-            }
+        const data = await res.json();
+        if (data.secure_url) {
+            url = data.secure_url;
+            showPrev(url);
+            fill.style.width = '100%';
+            stat.textContent = 'Upload complete!';
+            setTimeout(() => { bar.style.display = 'none'; }, 1000);
+            showToast('Image uploaded!', 'success');
+        } else {
+            throw new Error('No URL returned');
         }
+    } catch (err) {
+        stat.textContent = 'Upload failed. Use URL tab instead.';
+        showToast('Upload failed: ' + err.message, 'error');
+    }
+}
+    return {
+        get: () => url,
+        set: (u) => {
+            if (!u) { hidePrev(); url = ''; return; }
+            url = u; urlInput.value = u; showPrev(u);
+            c.querySelectorAll('.img-widget-tab').forEach(t => t.classList.remove('active'));
+            c.querySelectorAll('.img-tab-pane').forEach(p => p.classList.remove('active'));
+            c.querySelector('.img-widget-tab[data-t="url"]').classList.add('active');
+            c.querySelector('.img-tab-pane[data-p="url"]').classList.add('active');
+        },
+        reset: () => {
+            url = ''; urlInput.value = ''; fi.value = ''; hidePrev();
+            c.querySelectorAll('.img-widget-tab').forEach(t => t.classList.remove('active'));
+            c.querySelectorAll('.img-tab-pane').forEach(p => p.classList.remove('active'));
+            c.querySelector('.img-widget-tab[data-t="upload"]').classList.add('active');
+            c.querySelector('.img-tab-pane[data-p="upload"]').classList.add('active');
+        }
+    };
+}
 
-        // Display messages
-        function displayMessages(messages) {
-            messagesBody.innerHTML = '';
+let allMessages = [];
+let currentMsgId = null;
+let pendingDeleteFn = null;
 
-            if (messages.length === 0) {
-                messagesTable.style.display = 'none';
-                noMessages.style.display = 'block';
-                return;
+// ── WIDGETS ───────────────────────────────────────
+let W = {};
+function initWidgets() {
+    W.slide   = makeImgWidget('slideImgWidget',   'slides');
+    W.team    = makeImgWidget('teamImgWidget',    'team');
+    W.service = makeImgWidget('serviceImgWidget', 'services');
+    W.tool    = makeImgWidget('toolImgWidget',    'tools');
+    W.blog    = makeImgWidget('blogImgWidget',    'blog');
+    W.mission = makeImgWidget('missionImgWidget', 'about');
+}
+
+// ── AUTH ──────────────────────────────────────────
+onAuthStateChanged(auth, user => {
+    document.getElementById('authLoading').style.display = 'none';
+    if (user) {
+        document.getElementById('dashboard').classList.add('active');
+        document.getElementById('userEmailText').textContent = user.email;
+        document.getElementById('userAvatar').textContent = user.email[0].toUpperCase();
+        initWidgets();
+        initDashboard();
+    } else {
+        window.location.href = 'admin-login.html';
+    }
+});
+
+document.getElementById('logoutBtn').addEventListener('click', () => signOut(auth));
+
+// ── INIT ──────────────────────────────────────────
+function initDashboard() {
+    loadMessages();
+    loadSlides();
+    loadAbout();
+    loadTeam();
+    loadServices();
+    loadTools();
+    loadBlog();
+    loadContactInfo();
+}
+
+// ── NAVIGATION ────────────────────────────────────
+document.querySelectorAll('.nav-item[data-panel]').forEach(item => {
+    item.addEventListener('click', () => switchPanel(item.dataset.panel));
+});
+
+window.switchPanel = function(name) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    const panelEl = document.getElementById('panel-' + name);
+    if (panelEl) panelEl.classList.add('active');
+    const navEl = document.querySelector(`.nav-item[data-panel="${name}"]`);
+    if (navEl) navEl.classList.add('active');
+
+    const titles = {
+        overview: 'Dashboard',
+        messages: 'Contact Messages',
+        slides: 'Hero Slides',
+        about: 'About Page',
+        team: 'Team Members',
+        services: 'Services',
+        tools: 'Tools',
+        blog: 'Blog / Research Posts',
+        contactinfo: 'Contact Information'
+    };
+    document.getElementById('topbarTitle').textContent = titles[name] || name;
+
+    const actionsEl = document.getElementById('topbarActions');
+    actionsEl.innerHTML = '';
+    if (name === 'slides') {
+        actionsEl.appendChild(mkBtn('<i class="fas fa-plus"></i> Add Slide', () => openSlideModal()));
+    } else if (name === 'team') {
+        actionsEl.appendChild(mkBtn('<i class="fas fa-plus"></i> Add Member', () => openTeamModal()));
+    } else if (name === 'services') {
+        actionsEl.appendChild(mkBtn('<i class="fas fa-plus"></i> Add Service', () => openServiceModal()));
+    } else if (name === 'tools') {
+        actionsEl.appendChild(mkBtn('<i class="fas fa-plus"></i> Add Tool', () => openToolModal()));
+    } else if (name === 'blog') {
+        actionsEl.appendChild(mkBtn('<i class="fas fa-plus"></i> Add Post', () => openBlogModal()));
+    }
+};
+
+function mkBtn(html, onClick) {
+    const b = document.createElement('button');
+    b.className = 'btn btn-sm';
+    b.innerHTML = html;
+    b.onclick = onClick;
+    return b;
+}
+
+// ── MESSAGES ──────────────────────────────────────
+async function loadMessages() {
+    try {
+        const q = query(collection(db, 'contactMessages'), orderBy('timestamp', 'desc'));
+        const snap = await getDocs(q);
+        allMessages = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        updateUnreadBadge();
+        document.getElementById('statMessages').textContent = allMessages.length;
+        renderMessages(allMessages);
+        renderRecentMessages(allMessages.slice(0, 5));
+        document.getElementById('msgLoading').style.display = 'none';
+        document.getElementById('msgTableWrap').style.display = allMessages.length ? 'block' : 'none';
+        document.getElementById('msgEmpty').style.display = allMessages.length ? 'none' : 'block';
+    } catch (err) {
+        console.error(err);
+        document.getElementById('msgLoading').innerHTML = '<p style="color:var(--danger)">Error loading messages</p>';
+    }
+}
+
+function updateUnreadBadge() {
+    const count = allMessages.filter(m => !m.status || m.status === 'new').length;
+    const badge = document.getElementById('unreadBadge');
+    if (count > 0) { badge.textContent = count; badge.style.display = 'inline'; }
+    else badge.style.display = 'none';
+}
+
+function renderMessages(msgs) {
+    const tbody = document.getElementById('msgBody');
+    tbody.innerHTML = '';
+    msgs.forEach(msg => {
+        const date = msg.timestamp ? new Date(msg.timestamp.seconds * 1000).toLocaleDateString() : 'N/A';
+        const status = msg.status || 'new';
+        const bMap = { new: 'badge-new', read: 'badge-read', replied: 'badge-replied' };
+        const email = msg.from_email || msg.email || '';
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${date}</td>
+            <td style="font-weight:600">${msg.name || 'N/A'}</td>
+            <td>${email}</td>
+            <td>${msg.subject || 'N/A'}</td>
+            <td><span class="badge ${bMap[status]}">${status}</span></td>
+            <td class="action-cell">
+                <button class="btn btn-sm" onclick="viewMessage('${msg.id}')"><i class="fas fa-eye"></i></button>
+                <a class="btn btn-sm btn-outline" href="mailto:${email}?subject=Re: ${encodeURIComponent(msg.subject||'')}"><i class="fas fa-reply"></i></a>
+                <button class="btn btn-sm btn-danger" onclick="confirmDelete('message','${msg.id}')"><i class="fas fa-trash"></i></button>
+            </td>`;
+        tbody.appendChild(tr);
+    });
+}
+
+function renderRecentMessages(msgs) {
+    const tbody = document.getElementById('recentMsgBody');
+    tbody.innerHTML = '';
+    if (!msgs.length) { tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#aaa;padding:20px">No messages yet</td></tr>'; return; }
+    msgs.forEach(msg => {
+        const date = msg.timestamp ? new Date(msg.timestamp.seconds * 1000).toLocaleDateString() : 'N/A';
+        const status = msg.status || 'new';
+        const bMap = { new: 'badge-new', read: 'badge-read', replied: 'badge-replied' };
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${msg.name||'N/A'}</td><td>${msg.from_email||msg.email||''}</td><td>${msg.subject||'N/A'}</td><td>${date}</td><td><span class="badge ${bMap[status]}">${status}</span></td>`;
+        tbody.appendChild(tr);
+    });
+}
+
+document.getElementById('msgSearch').addEventListener('input', filterMessages);
+document.getElementById('msgFilter').addEventListener('change', filterMessages);
+
+function filterMessages() {
+    const term = document.getElementById('msgSearch').value.toLowerCase();
+    const filter = document.getElementById('msgFilter').value;
+    const result = allMessages.filter(m => {
+        const s = m.status || 'new';
+        const matchFilter = filter === 'all' || s === filter;
+        const matchTerm = (m.name||'').toLowerCase().includes(term) || (m.from_email||m.email||'').toLowerCase().includes(term) || (m.subject||'').toLowerCase().includes(term);
+        return matchFilter && matchTerm;
+    });
+    renderMessages(result);
+    document.getElementById('msgTableWrap').style.display = result.length ? 'block' : 'none';
+    document.getElementById('msgEmpty').style.display = result.length ? 'none' : 'block';
+}
+
+window.viewMessage = async function(id) {
+    const msg = allMessages.find(m => m.id === id);
+    if (!msg) return;
+    currentMsgId = id;
+    const date = msg.timestamp ? new Date(msg.timestamp.seconds * 1000).toLocaleString() : 'N/A';
+    const email = msg.from_email || msg.email || '';
+    document.getElementById('msgModalBody').innerHTML = `
+        <div class="detail-row"><label>Date</label><p>${date}</p></div>
+        <div class="detail-row"><label>Name</label><p>${msg.name||'N/A'}</p></div>
+        <div class="detail-row"><label>Email</label><p><a href="mailto:${email}" style="color:var(--green-light)">${email||'N/A'}</a></p></div>
+        <div class="detail-row"><label>Subject</label><p>${msg.subject||'N/A'}</p></div>
+        <div class="detail-row"><label>Message</label><p style="white-space:pre-wrap">${msg.message||'N/A'}</p></div>`;
+    document.getElementById('msgReplyBtn').onclick = () => window.location.href = `mailto:${email}?subject=Re: ${encodeURIComponent(msg.subject||'')}`;
+    openModal('msgModal');
+    if (!msg.status || msg.status === 'new') {
+        await updateDoc(doc(db, 'contactMessages', id), { status: 'read' });
+        msg.status = 'read';
+        renderMessages(allMessages);
+        updateUnreadBadge();
+    }
+};
+
+document.getElementById('msgMarkReplied').addEventListener('click', async () => {
+    if (!currentMsgId) return;
+    await updateDoc(doc(db, 'contactMessages', currentMsgId), { status: 'replied' });
+    const msg = allMessages.find(m => m.id === currentMsgId);
+    if (msg) msg.status = 'replied';
+    renderMessages(allMessages);
+    updateUnreadBadge();
+    closeModal('msgModal');
+    showToast('Marked as replied', 'success');
+});
+
+document.getElementById('msgDeleteBtn').addEventListener('click', () => {
+    if (!currentMsgId) return;
+    closeModal('msgModal');
+    confirmDelete('message', currentMsgId);
+});
+
+document.getElementById('exportCsvBtn').addEventListener('click', () => {
+    const rows = [['Date','Name','Email','Subject','Status','Message']];
+    allMessages.forEach(m => {
+        const date = m.timestamp ? new Date(m.timestamp.seconds*1000).toLocaleDateString() : '';
+        rows.push([date, m.name||'', m.from_email||m.email||'', m.subject||'', m.status||'new', (m.message||'').replace(/\n/g,' ')]);
+    });
+    const csv = rows.map(r => r.map(c => `"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
+    const a = document.createElement('a');
+    a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+    a.download = 'wilddata_messages.csv';
+    a.click();
+    showToast('CSV exported!', 'success');
+});
+
+// ── HERO SLIDES ───────────────────────────────────
+async function loadSlides() {
+    try {
+        const snap = await getDocs(query(collection(db, 'heroSlides'), orderBy('order', 'asc')));
+        const items = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        document.getElementById('statSlides').textContent = items.length;
+        document.getElementById('slidesLoading').style.display = 'none';
+        const grid = document.getElementById('slidesGrid');
+        const empty = document.getElementById('slidesEmpty');
+        if (!items.length) { grid.style.display = 'none'; empty.style.display = 'block'; return; }
+        grid.style.display = 'grid'; empty.style.display = 'none';
+        grid.innerHTML = items.map(s => `
+            <div class="item-card">
+                <div class="slide-preview">
+                    ${s.image ? `<img src="${s.image}" alt="${s.heading||''}" onerror="this.style.display='none'">` : ''}
+                    <div class="slide-preview-overlay">
+                        <h5>${s.heading||'(No heading)'}</h5>
+                        <span>${(s.subheading||'').substring(0,60)}${(s.subheading||'').length>60?'…':''}</span>
+                    </div>
+                    <div class="slide-order-badge">${s.order ?? '–'}</div>
+                </div>
+                <div class="item-card-body">
+                    <h4>${s.heading||'Untitled Slide'}</h4>
+                    <p class="sub">Highlight: <em>${s.highlight||'—'}</em></p>
+                    <p>${s.subheading||''}</p>
+                    <div style="margin-bottom:8px">
+    <span style="display:inline-block;padding:3px 9px;border-radius:20px;font-size:.72rem;font-weight:600;background:${s.published !== false ? '#dcfce7' : '#fee2e2'};color:${s.published !== false ? '#166534' : '#991b1b'}">
+        ${s.published !== false ? '● Published' : '○ Unpublished'}
+        </span>
+      </div>
+      <div class="item-card-actions">
+    <button class="btn btn-sm btn-outline" onclick="openSlideModal('${s.id}')"><i class="fas fa-edit"></i> Edit</button>
+    <button class="btn btn-sm btn-danger" onclick="confirmDelete('slide','${s.id}')"><i class="fas fa-trash"></i></button>
+     </div>
+                </div>
+            </div>`).join('');
+    } catch (err) {
+        console.error(err);
+        document.getElementById('slidesLoading').innerHTML = '<p style="color:var(--danger)">Error loading slides</p>';
+    }
+}
+
+window.openSlideModal = async function(id = null) {
+    W.slide.reset();
+['slideDocId','slideHeading','slideHighlight','slideSubheading','slideButtonText','slideButtonLink'].forEach(f => document.getElementById(f).value = '');
+    document.getElementById('slideOrder').value = 0;
+    document.getElementById('slideModalTitle').textContent = id ? 'Edit Hero Slide' : 'Add Hero Slide';
+    if (id) {
+        try {
+            const snap = await getDoc(doc(db, 'heroSlides', id));
+            if (snap.exists()) {
+                const d = snap.data();
+                document.getElementById('slideDocId').value = id;
+                if (d.image) W.slide.set(d.image);
+                document.getElementById('slideHeading').value = d.heading||'';
+                document.getElementById('slideHighlight').value = d.highlight||'';
+                document.getElementById('slideSubheading').value = d.subheading||'';
+                document.getElementById('slideButtonText').value = d.buttonText||'';
+                document.getElementById('slideButtonLink').value = d.buttonLink||'';
+                document.getElementById('slideOrder').value = d.order||0;
             }
+        } catch {}
+    }
+    setupUnpublishState('slideUnpublishBtn', id, false);
+    openModal('slideModal');
+};
 
-            messagesTable.style.display = 'table';
-            noMessages.style.display = 'none';
+document.getElementById('slideSaveBtn').addEventListener('click', async () => {
+    const heading = document.getElementById('slideHeading').value.trim();
+     const image = W.slide.get();
+    if (!heading || !image) { showToast('Heading and image URL are required', 'error'); return; }
+const data = {
+    image,
+    heading,
+    highlight: document.getElementById('slideHighlight').value.trim(),
+    subheading: document.getElementById('slideSubheading').value.trim(),
+    buttonText: document.getElementById('slideButtonText').value.trim() || 'Our Services',
+    buttonLink: document.getElementById('slideButtonLink').value.trim() || '#services',
+    order: parseInt(document.getElementById('slideOrder').value) || 0,
+};
+    const docId = document.getElementById('slideDocId').value;
+    if (!docId) data.published = false;
+    try {
+        if (docId) await updateDoc(doc(db, 'heroSlides', docId), data);
+        else await addDoc(collection(db, 'heroSlides'), { ...data, createdAt: serverTimestamp() });
+        closeModal('slideModal');
+        showToast('Slide saved!', 'success');
+        loadSlides();
+    } catch { showToast('Error saving. Try again.', 'error'); }
+});
+       
+       // ── ABOUT PAGE ────────────────────────────────────
+const defaultValues = [
+    { icon:'fas fa-bullseye', title:'Accuracy', description:'We prioritize precision in all our annotation work, understanding that reliable data is critical for meaningful research outcomes.' },
+    { icon:'fas fa-leaf', title:'Conservation Focus', description:'Our work is driven by a commitment to wildlife preservation and habitat protection.' },
+    { icon:'fas fa-lightbulb', title:'Innovation', description:'We continuously develop new annotation methodologies and tools to address the evolving challenges in wildlife research.' },
+    { icon:'fas fa-handshake', title:'Collaboration', description:'We work closely with researchers, conservation organizations, and technology partners.' }
+];
 
-            messages.forEach(msg => {
-                const row = document.createElement('tr');
-                const date = msg.timestamp ? new Date(msg.timestamp.seconds * 1000).toLocaleDateString() : 'N/A';
-                
-                row.innerHTML = `
-                    <td>${date}</td>
-                    <td>${msg.name || 'N/A'}</td>
-                    <td>${msg.email || 'N/A'}</td>
-                    <td>${msg.subject || 'N/A'}</td>
-                    <td class="action-buttons">
-                        <button class="btn-view" onclick="viewMessage('${msg.id}')">
-                            <i class="fas fa-eye"></i> View
-                        </button>
-                        <button class="btn-delete" onclick="deleteMessage('${msg.id}')">
-                            <i class="fas fa-trash"></i> Delete
-                        </button>
-                    </td>
-                `;
-                messagesBody.appendChild(row);
-            });
+function renderValuesEditor(values) {
+    document.getElementById('valuesEditGrid').innerHTML = values.map((v, i) => `
+        <div style="border:2px solid #eee;border-radius:8px;padding:14px;">
+            <div style="font-size:.72rem;font-weight:700;color:#4a8b7f;text-transform:uppercase;margin-bottom:10px;">
+                <i class="${v.icon||'fas fa-star'}"></i> Value ${i+1}
+            </div>
+            <div class="form-group" style="margin-bottom:10px">
+                <label style="font-size:.75rem">Icon (FontAwesome)</label>
+                <input type="text" id="valIcon${i}" value="${v.icon||''}" placeholder="fas fa-bullseye">
+            </div>
+            <div class="form-group" style="margin-bottom:10px">
+                <label style="font-size:.75rem">Title</label>
+                <input type="text" id="valTitle${i}" value="${v.title||''}">
+            </div>
+            <div class="form-group" style="margin-bottom:0">
+                <label style="font-size:.75rem">Description</label>
+                <textarea id="valDesc${i}" rows="3" style="min-height:60px">${v.description||''}</textarea>
+            </div>
+        </div>`).join('');
+}
+
+async function loadAbout() {
+    try {
+        const snap = await getDoc(doc(db, 'siteSettings', 'aboutPage'));
+        document.getElementById('aboutLoading').style.display = 'none';
+        document.getElementById('aboutForms').style.display = 'block';
+        const d = snap.exists() ? snap.data() : {};
+        document.getElementById('aboutHeroTitle').value = d.heroTitle || 'About';
+        document.getElementById('aboutHeroHighlight').value = d.heroHighlight || 'WildData';
+        document.getElementById('aboutHeroSubtitle').value = d.heroSubtitle || '';
+        document.getElementById('missionTitle').value = d.missionTitle || 'Our';
+        document.getElementById('missionHighlight').value = d.missionHighlight || 'Mission';
+        document.getElementById('missionP1').value = d.missionP1 || '';
+        document.getElementById('missionP2').value = d.missionP2 || '';
+        document.getElementById('missionP3').value = d.missionP3 || '';
+        if (d.missionImage) W.mission.set(d.missionImage);
+        renderValuesEditor(d.values || defaultValues);
+    } catch(err) {
+        console.error(err);
+        document.getElementById('aboutLoading').innerHTML = '<p style="color:var(--danger)">Error loading About data</p>';
+    }
+}
+
+document.getElementById('saveAboutHeroBtn').addEventListener('click', async () => {
+    const data = {
+        heroTitle: document.getElementById('aboutHeroTitle').value.trim(),
+        heroHighlight: document.getElementById('aboutHeroHighlight').value.trim(),
+        heroSubtitle: document.getElementById('aboutHeroSubtitle').value.trim()
+    };
+    try {
+        await setDoc(doc(db, 'siteSettings', 'aboutPage'), data, { merge: true });
+        showToast('Hero text saved!', 'success');
+    } catch { showToast('Error saving.', 'error'); }
+});
+
+document.getElementById('saveAboutMissionBtn').addEventListener('click', async () => {
+    const data = {
+        missionTitle: document.getElementById('missionTitle').value.trim(),
+        missionHighlight: document.getElementById('missionHighlight').value.trim(),
+        missionP1: document.getElementById('missionP1').value.trim(),
+        missionP2: document.getElementById('missionP2').value.trim(),
+        missionP3: document.getElementById('missionP3').value.trim(),
+        missionImage: W.mission.get()
+    };
+    try {
+        await setDoc(doc(db, 'siteSettings', 'aboutPage'), data, { merge: true });
+        showToast('Mission saved!', 'success');
+    } catch { showToast('Error saving.', 'error'); }
+});
+
+document.getElementById('saveAboutValuesBtn').addEventListener('click', async () => {
+    const values = [0,1,2,3].map(i => ({
+        icon: document.getElementById(`valIcon${i}`).value.trim(),
+        title: document.getElementById(`valTitle${i}`).value.trim(),
+        description: document.getElementById(`valDesc${i}`).value.trim()
+    }));
+    try {
+        await setDoc(doc(db, 'siteSettings', 'aboutPage'), { values }, { merge: true });
+        showToast('Values saved!', 'success');
+    } catch { showToast('Error saving.', 'error'); }
+});
+
+// ── TEAM ──────────────────────────────────────────
+async function loadTeam() {
+    try {
+        const snap = await getDocs(query(collection(db, 'teamMembers'), orderBy('order', 'asc')));
+        const items = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        document.getElementById('statTeam').textContent = items.length;
+        document.getElementById('teamLoading').style.display = 'none';
+        const grid = document.getElementById('teamGrid');
+        const empty = document.getElementById('teamEmpty');
+        if (!items.length) { grid.style.display = 'none'; empty.style.display = 'block'; return; }
+        grid.style.display = 'grid'; empty.style.display = 'none';
+        grid.innerHTML = items.map(m => `
+            <div class="item-card">
+                <div class="item-card-img">${m.image ? `<img src="${m.image}" alt="${m.name}" onerror="this.src=''">` : '<i class="fas fa-user placeholder-icon"></i>'}</div>
+                <div class="item-card-body">
+                    <h4>${m.name}</h4>
+                    <p class="sub">${m.role||''}</p>
+                    <p>${m.bio||''}</p>
+                    <div style="margin-bottom:8px">
+    <span style="display:inline-block;padding:3px 9px;border-radius:20px;font-size:.72rem;font-weight:600;background:${m.published !== false ? '#dcfce7' : '#fee2e2'};color:${m.published !== false ? '#166534' : '#991b1b'}">
+        ${m.published !== false ? '● Published' : '○ Unpublished'}
+    </span>
+</div>
+<div class="item-card-actions">
+    <button class="btn btn-sm btn-outline" onclick="openTeamModal('${m.id}')"><i class="fas fa-edit"></i> Edit</button>
+    <button class="btn btn-sm btn-danger" onclick="confirmDelete('team','${m.id}')"><i class="fas fa-trash"></i></button>
+</div>
+                </div>
+            </div>`).join('');
+    } catch (err) {
+        console.error(err);
+        document.getElementById('teamLoading').innerHTML = '<p style="color:var(--danger)">Error loading team</p>';
+    }
+}
+
+window.openTeamModal = async function(id = null) {
+    document.getElementById('teamDocId').value = '';
+    document.getElementById('teamName').value = '';
+    document.getElementById('teamRole').value = '';
+    document.getElementById('teamBio').value = '';
+     W.team.reset();
+    document.getElementById('teamOrder').value = 0;
+    document.getElementById('teamModalTitle').textContent = id ? 'Edit Team Member' : 'Add Team Member';
+    if (id) {
+        try {
+            const snap = await getDoc(doc(db, 'teamMembers', id));
+            if (snap.exists()) {
+                const d = snap.data();
+                document.getElementById('teamDocId').value = id;
+                document.getElementById('teamName').value = d.name||'';
+                document.getElementById('teamRole').value = d.role||'';
+                document.getElementById('teamBio').value = d.bio||'';
+                if (d.image) W.team.set(d.image);
+                document.getElementById('teamOrder').value = d.order||0;
+            }
+        } catch {}
+    }
+ setupUnpublishState('teamUnpublishBtn', id, false);
+    openModal('teamModal');
+};
+
+document.getElementById('teamSaveBtn').addEventListener('click', async () => {
+    const name = document.getElementById('teamName').value.trim();
+    const role = document.getElementById('teamRole').value.trim();
+    if (!name || !role) { showToast('Name and role are required', 'error'); return; }
+    const docId = document.getElementById('teamDocId').value;
+   const data = { name, role, bio: document.getElementById('teamBio').value.trim(), image: W.team.get(), order: parseInt(document.getElementById('teamOrder').value)||0 };
+    if (!docId) data.published = false; // new items start as draft
+    try {
+        if (docId) await updateDoc(doc(db, 'teamMembers', docId), data);
+        else await addDoc(collection(db, 'teamMembers'), { ...data, createdAt: serverTimestamp() });
+        closeModal('teamModal');
+        showToast('Team member saved!', 'success');
+        loadTeam();
+    } catch { showToast('Error saving. Try again.', 'error'); }
+});
+
+// ── SERVICES ──────────────────────────────────────
+async function loadServices() {
+    try {
+        const snap = await getDocs(query(collection(db, 'services'), orderBy('order', 'asc')));
+        const items = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        document.getElementById('statServices').textContent = items.length;
+        document.getElementById('servicesLoading').style.display = 'none';
+        const grid = document.getElementById('servicesGrid');
+        const empty = document.getElementById('servicesEmpty');
+        if (!items.length) { grid.style.display = 'none'; empty.style.display = 'block'; return; }
+        grid.style.display = 'grid'; empty.style.display = 'none';
+        grid.innerHTML = items.map(s => `
+            <div class="item-card">
+                <div class="item-card-img" style="background:var(--green-dark)">
+                    ${s.image ? `<img src="${s.image}" alt="${s.name}">` : `<i class="${s.icon||'fas fa-cogs'} placeholder-icon" style="color:var(--lime)"></i>`}
+                </div>
+                <div class="item-card-body">
+                    <h4>${s.name}</h4>
+                    <p>${s.description||''}</p>
+                    <div style="margin-bottom:8px">
+    <span style="display:inline-block;padding:3px 9px;border-radius:20px;font-size:.72rem;font-weight:600;background:${s.published !== false ? '#dcfce7' : '#fee2e2'};color:${s.published !== false ? '#166534' : '#991b1b'}">
+        ${s.published !== false ? '● Published' : '○ Unpublished'}
+    </span>
+</div>
+<div class="item-card-actions">
+    <button class="btn btn-sm btn-outline" onclick="openServiceModal('${s.id}')"><i class="fas fa-edit"></i> Edit</button>
+    <button class="btn btn-sm btn-danger" onclick="confirmDelete('service','${s.id}')"><i class="fas fa-trash"></i></button>
+</div>
+                </div>
+            </div>`).join('');
+    } catch (err) {
+        console.error(err);
+        document.getElementById('servicesLoading').innerHTML = '<p style="color:var(--danger)">Error loading services</p>';
+    }
+}
+
+window.openServiceModal = async function(id = null) {
+    document.getElementById('serviceDocId').value = '';
+    document.getElementById('serviceName').value = '';
+    document.getElementById('serviceDesc').value = '';
+    document.getElementById('serviceIcon').value = '';
+    W.service.reset();
+    document.getElementById('serviceOrder').value = 0;
+    document.getElementById('serviceModalTitle').textContent = id ? 'Edit Service' : 'Add Service';
+    if (id) {
+        try {
+            const snap = await getDoc(doc(db, 'services', id));
+            if (snap.exists()) {
+                const d = snap.data();
+                document.getElementById('serviceDocId').value = id;
+                document.getElementById('serviceName').value = d.name||'';
+                document.getElementById('serviceDesc').value = d.description||'';
+                document.getElementById('serviceIcon').value = d.icon||'';
+                if (d.image) W.service.set(d.image);
+                document.getElementById('serviceOrder').value = d.order||0;
+            }
+        } catch {}
+    }
+ setupUnpublishState('serviceUnpublishBtn', id, false);
+    openModal('serviceModal');
+};
+
+document.getElementById('serviceSaveBtn').addEventListener('click', async () => {
+    const name = document.getElementById('serviceName').value.trim();
+    const description = document.getElementById('serviceDesc').value.trim();
+    if (!name || !description) { showToast('Name and description are required', 'error'); return; }
+    const docId = document.getElementById('serviceDocId').value;
+    const data = { name, description, icon: document.getElementById('serviceIcon').value.trim(), image: W.service.get(), order: parseInt(document.getElementById('serviceOrder').value)||0 };
+    if (!docId) data.published = false;
+    try {
+        if (docId) await updateDoc(doc(db, 'services', docId), data);
+        else await addDoc(collection(db, 'services'), { ...data, createdAt: serverTimestamp() });
+        closeModal('serviceModal');
+        showToast('Service saved!', 'success');
+        loadServices();
+    } catch { showToast('Error saving. Try again.', 'error'); }
+});
+
+// ── TOOLS ─────────────────────────────────────────
+async function loadTools() {
+    try {
+        const snap = await getDocs(query(collection(db, 'tools'), orderBy('order', 'asc')));
+        const items = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        document.getElementById('statTools').textContent = items.length;
+        document.getElementById('toolsLoading').style.display = 'none';
+        const grid = document.getElementById('toolsGrid');
+        const empty = document.getElementById('toolsEmpty');
+        if (!items.length) { grid.style.display = 'none'; empty.style.display = 'block'; return; }
+        grid.style.display = 'grid'; empty.style.display = 'none';
+        grid.innerHTML = items.map(t => `
+            <div class="item-card">
+                <div class="item-card-img" style="background:var(--green-dark)">
+                    ${t.image ? `<img src="${t.image}" alt="${t.name}" onerror="this.src='';this.parentElement.innerHTML='<i class=\\"fas fa-tools placeholder-icon\\" style=\\"color:var(--lime)\\"></i>'">` : `<i class="fas fa-tools placeholder-icon" style="color:var(--lime)"></i>`}
+                </div>
+                <div class="item-card-body">
+                    <span class="tool-type ${t.type === 'primary' ? 'tool-type-primary' : 'tool-type-recommended'}">${t.type === 'primary' ? 'Primary' : 'Recommended'}</span>
+                    <h4>${t.name}</h4>
+                    ${t.badge ? `<p class="sub">${t.badge}</p>` : ''}
+                    <p>${t.description||''}</p>
+                    <div style="margin-bottom:8px">
+    <span style="display:inline-block;padding:3px 9px;border-radius:20px;font-size:.72rem;font-weight:600;background:${t.published !== false ? '#dcfce7' : '#fee2e2'};color:${t.published !== false ? '#166534' : '#991b1b'}">
+        ${t.published !== false ? '● Published' : '○ Unpublished'}
+    </span>
+</div>
+<div class="item-card-actions">
+    <button class="btn btn-sm btn-outline" onclick="openToolModal('${t.id}')"><i class="fas fa-edit"></i> Edit</button>
+    <button class="btn btn-sm btn-danger" onclick="confirmDelete('tool','${t.id}')"><i class="fas fa-trash"></i></button>
+</div>
+                </div>
+            </div>`).join('');
+    } catch (err) {
+        console.error(err);
+        document.getElementById('toolsLoading').innerHTML = '<p style="color:var(--danger)">Error loading tools</p>';
+    }
+}
+
+window.openToolModal = async function(id = null) {
+    W.tool.reset();
+    ['toolDocId','toolName','toolBadge','toolDesc','toolLink','toolLinkText','toolFeatures'].forEach(f => document.getElementById(f).value = '');
+    document.getElementById('toolOrder').value = 0;
+    document.getElementById('toolType').value = 'primary';
+    document.getElementById('toolModalTitle').textContent = id ? 'Edit Tool' : 'Add Tool';
+    if (id) {
+        try {
+            const snap = await getDoc(doc(db, 'tools', id));
+            if (snap.exists()) {
+                const d = snap.data();
+                document.getElementById('toolDocId').value = id;
+                document.getElementById('toolType').value = d.type||'primary';
+                document.getElementById('toolName').value = d.name||'';
+                document.getElementById('toolBadge').value = d.badge||'';
+                document.getElementById('toolDesc').value = d.description||'';
+                if (d.image) W.tool.set(d.image);
+                document.getElementById('toolLink').value = d.link||'';
+                document.getElementById('toolLinkText').value = d.linkText||'';
+                document.getElementById('toolFeatures').value = (d.features||[]).join('\n');
+                document.getElementById('toolOrder').value = d.order||0;
+            }
+        } catch {}
+    }
+    setupUnpublishState('toolUnpublishBtn', id, false);
+    openModal('toolModal');
+};
+
+document.getElementById('toolSaveBtn').addEventListener('click', async () => {
+    const name = document.getElementById('toolName').value.trim();
+    const description = document.getElementById('toolDesc').value.trim();
+    if (!name || !description) { showToast('Name and description are required', 'error'); return; }
+    const featuresRaw = document.getElementById('toolFeatures').value.trim();
+    const features = featuresRaw ? featuresRaw.split('\n').map(f => f.trim()).filter(Boolean) : [];
+const data = {
+    type: document.getElementById('toolType').value,
+    name,
+    badge: document.getElementById('toolBadge').value.trim(),
+    description,
+    image: W.tool.get(),
+    link: document.getElementById('toolLink').value.trim(),
+    linkText: document.getElementById('toolLinkText').value.trim(),
+    features,
+    order: parseInt(document.getElementById('toolOrder').value)||0,
+   
+};
+    const docId = document.getElementById('toolDocId').value;
+    if (!docId) data.published = false;
+    try {
+        if (docId) await updateDoc(doc(db, 'tools', docId), data);
+        else await addDoc(collection(db, 'tools'), { ...data, createdAt: serverTimestamp() });
+        closeModal('toolModal');
+        showToast('Tool saved!', 'success');
+        loadTools();
+    } catch { showToast('Error saving. Try again.', 'error'); }
+});
+
+// ── BLOG ──────────────────────────────────────────
+async function loadBlog() {
+    try {
+        const snap = await getDocs(query(collection(db, 'blogPosts'), orderBy('createdAt', 'desc')));
+        const posts = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        document.getElementById('statBlog').textContent = posts.length;
+        document.getElementById('blogLoading').style.display = 'none';
+        const grid = document.getElementById('blogGrid');
+        const empty = document.getElementById('blogEmpty');
+        if (!posts.length) { grid.style.display = 'none'; empty.style.display = 'block'; return; }
+        grid.style.display = 'grid'; empty.style.display = 'none';
+        grid.innerHTML = posts.map(p => `
+            <div class="item-card">
+                <div class="item-card-img">${p.image ? `<img src="${p.image}" alt="${p.title}">` : '<i class="fas fa-newspaper placeholder-icon"></i>'}</div>
+                <div class="item-card-body">
+                    <h4>${p.title}</h4>
+                    <p class="sub">${p.author||'WildData Team'}</p>
+                    <p>${p.summary||''}</p>
+                   <div style="margin-bottom:8px">
+    <span style="display:inline-block;padding:3px 9px;border-radius:20px;font-size:.72rem;font-weight:600;background:${p.published !== false ? '#dcfce7' : '#fee2e2'};color:${p.published !== false ? '#166534' : '#991b1b'}">
+        ${p.published !== false ? '● Published' : '○ Unpublished'}
+    </span>
+</div>
+<div class="item-card-actions">
+    <button class="btn btn-sm btn-outline" onclick="openBlogModal('${p.id}')"><i class="fas fa-edit"></i> Edit</button>
+    <button class="btn btn-sm btn-danger" onclick="confirmDelete('blog','${p.id}')"><i class="fas fa-trash"></i></button>
+</div>
+                </div>
+            </div>`).join('');
+    } catch (err) {
+        console.error(err);
+        document.getElementById('blogLoading').innerHTML = '<p style="color:var(--danger)">Error loading posts</p>';
+    }
+}
+
+window.openBlogModal = async function(id = null) {
+    document.getElementById('blogDocId').value = '';
+    document.getElementById('blogTitle').value = '';
+    document.getElementById('blogSummary').value = '';
+    document.getElementById('blogContent').value = '';
+    W.blog.reset();
+    document.getElementById('blogLink').value = '';
+    document.getElementById('blogAuthor').value = '';
+    document.getElementById('blogModalTitle').textContent = id ? 'Edit Blog Post' : 'Add Blog Post';
+    if (id) {
+        try {
+            const snap = await getDoc(doc(db, 'blogPosts', id));
+            if (snap.exists()) {
+                const d = snap.data();
+                document.getElementById('blogDocId').value = id;
+                document.getElementById('blogTitle').value = d.title||'';
+                document.getElementById('blogSummary').value = d.summary||'';
+                document.getElementById('blogContent').value = d.content||'';
+                if (d.image) W.blog.set(d.image);
+                document.getElementById('blogLink').value = d.link||'';
+                document.getElementById('blogAuthor').value = d.author||'';
+            }
+        } catch {}
+    }
+ setupUnpublishState('blogUnpublishBtn', id, false);
+    openModal('blogModal');
+};
+
+document.getElementById('blogSaveBtn').addEventListener('click', async () => {
+    const title = document.getElementById('blogTitle').value.trim();
+    const summary = document.getElementById('blogSummary').value.trim();
+    if (!title || !summary) { showToast('Title and summary are required', 'error'); return; }
+    const docId = document.getElementById('blogDocId').value;
+    const data = { title, summary, content: document.getElementById('blogContent').value.trim(), image: W.blog.get(), link: document.getElementById('blogLink').value.trim(), author: document.getElementById('blogAuthor').value.trim()||'WildData Team' };
+    if (!docId) data.published = false;
+    
+    try {
+        if (docId) await updateDoc(doc(db, 'blogPosts', docId), data);
+        else await addDoc(collection(db, 'blogPosts'), { ...data, createdAt: serverTimestamp() });
+        closeModal('blogModal');
+        showToast('Blog post saved!', 'success');
+        loadBlog();
+    } catch { showToast('Error saving. Try again.', 'error'); }
+});
+
+// ── CONTACT INFO ──────────────────────────────────
+async function loadContactInfo() {
+    try {
+        const snap = await getDoc(doc(db, 'siteSettings', 'contactInfo'));
+        document.getElementById('ciLoading').style.display = 'none';
+        document.getElementById('contactInfoForm').style.display = 'block';
+        if (snap.exists()) {
+            const d = snap.data();
+            document.getElementById('ciPhone').value = d.phone||'';
+            document.getElementById('ciEmail').value = d.email||'';
+            document.getElementById('ciAddress').value = d.address||'';
+            document.getElementById('ciFacebook').value = d.facebook||'';
+            document.getElementById('ciTwitter').value = d.twitter||'';
+            document.getElementById('ciLinkedin').value = d.linkedin||'';
+            document.getElementById('ciInstagram').value = d.instagram||'';
         }
+    } catch (err) {
+        console.error(err);
+        document.getElementById('ciLoading').innerHTML = '<p style="color:var(--danger)">Error loading contact info</p>';
+    }
+}
 
-        // Update statistics
-        function updateStats(messages) {
-            document.getElementById('totalMessages').textContent = messages.length;
+document.getElementById('contactInfoForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const data = {
+        phone: document.getElementById('ciPhone').value.trim(),
+        email: document.getElementById('ciEmail').value.trim(),
+        address: document.getElementById('ciAddress').value.trim(),
+        facebook: document.getElementById('ciFacebook').value.trim(),
+        twitter: document.getElementById('ciTwitter').value.trim(),
+        linkedin: document.getElementById('ciLinkedin').value.trim(),
+        instagram: document.getElementById('ciInstagram').value.trim(),
+        updatedAt: serverTimestamp()
+    };
+    try {
+        await setDoc(doc(db, 'siteSettings', 'contactInfo'), data);
+        showToast('Contact info saved!', 'success');
+    } catch { showToast('Error saving. Try again.', 'error'); }
+});
 
-            // Today's messages
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-            const todayMessages = messages.filter(msg => {
-                if (!msg.timestamp) return false;
-                const msgDate = new Date(msg.timestamp.seconds * 1000);
-                msgDate.setHours(0, 0, 0, 0);
-                return msgDate.getTime() === today.getTime();
-            });
-            document.getElementById('todayMessages').textContent = todayMessages.length;
+// ── DELETE ────────────────────────────────────────
+window.confirmDelete = function(type, id) {
+    const labels = { message: 'message', slide: 'hero slide', team: 'team member', service: 'service', tool: 'tool', blog: 'blog post' };
+    document.getElementById('confirmText').textContent = `Are you sure you want to delete this ${labels[type]||'item'}? This cannot be undone.`;
+    pendingDeleteFn = async () => {
+        const colMap = { message: 'contactMessages', slide: 'heroSlides', team: 'teamMembers', service: 'services', tool: 'tools', blog: 'blogPosts' };
+        try {
+            await deleteDoc(doc(db, colMap[type], id));
+            closeModal('confirmModal');
+            showToast('Deleted successfully', 'success');
+            if (type === 'message') { allMessages = allMessages.filter(m => m.id !== id); renderMessages(allMessages); document.getElementById('statMessages').textContent = allMessages.length; updateUnreadBadge(); renderRecentMessages(allMessages.slice(0,5)); document.getElementById('msgTableWrap').style.display = allMessages.length ? 'block' : 'none'; document.getElementById('msgEmpty').style.display = allMessages.length ? 'none' : 'block'; }
+            if (type === 'slide') loadSlides();
+            if (type === 'team') loadTeam();
+            if (type === 'service') loadServices();
+            if (type === 'tool') loadTools();
+            if (type === 'blog') loadBlog();
+        } catch { showToast('Error deleting. Try again.', 'error'); }
+    };
+    openModal('confirmModal');
+};
 
-            // Unique senders
-            const uniqueEmails = new Set(messages.map(msg => msg.email));
-            document.getElementById('uniqueSenders').textContent = uniqueEmails.size;
-        }
+document.getElementById('confirmDeleteBtn').addEventListener('click', () => { if (pendingDeleteFn) pendingDeleteFn(); });
 
-        // View message details
-        window.viewMessage = function(id) {
-            const message = allMessages.find(msg => msg.id === id);
-            if (!message) return;
+// ── MODAL HELPERS ─────────────────────────────────
+window.openModal = id => document.getElementById(id).classList.add('active');
+window.closeModal = id => document.getElementById(id).classList.remove('active');
+document.querySelectorAll('.modal-overlay').forEach(m => m.addEventListener('click', e => { if (e.target === m) m.classList.remove('active'); }));
 
-            const date = message.timestamp ? new Date(message.timestamp.seconds * 1000).toLocaleString() : 'N/A';
+// ── TOAST ─────────────────────────────────────────
+function showToast(msg, type = 'success') {
+    const t = document.getElementById('toast');
+    const i = t.querySelector('i');
+    document.getElementById('toastMsg').textContent = msg;
+    t.className = 'toast ' + type;
+    i.className = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle';
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3200);
+}
+window.showToast = showToast;
 
-            messageDetails.innerHTML = `
-                <div class="message-detail">
-                    <label>Date:</label>
-                    <p>${date}</p>
-                </div>
-                <div class="message-detail">
-                    <label>Name:</label>
-                    <p>${message.name || 'N/A'}</p>
-                </div>
-                <div class="message-detail">
-                    <label>Email:</label>
-                    <p>${message.email || 'N/A'}</p>
-                </div>
-                <div class="message-detail">
-                    <label>Subject:</label>
-                    <p>${message.subject || 'N/A'}</p>
-                </div>
-                <div class="message-detail">
-                    <label>Message:</label>
-                    <p>${message.message || 'N/A'}</p>
-                </div>
-            `;
+// ── PUBLISH / UNPUBLISH ───────────────────────────
+async function togglePublish(col, id, publish) {
+    try {
+        await updateDoc(doc(db, col, id), { published: publish });
+        showToast(publish ? '✅ Published!' : '🚫 Unpublished!', 'success');
+        if (col === 'heroSlides')  { closeModal('slideModal');   loadSlides();   }
+        if (col === 'teamMembers') { closeModal('teamModal');    loadTeam();     }
+        if (col === 'services')    { closeModal('serviceModal'); loadServices(); }
+        if (col === 'tools')       { closeModal('toolModal');    loadTools();    }
+        if (col === 'blogPosts')   { closeModal('blogModal');    loadBlog();     }
+    } catch { showToast('Error. Try again.', 'error'); }
+}
 
-            messageModal.classList.add('active');
+function setupUnpublishBtn(btnId, col, docIdField) {
+    document.getElementById(btnId).addEventListener('click', async () => {
+        const id = document.getElementById(docIdField).value;
+        const btn = document.getElementById(btnId);
+        const isPublished = btn.dataset.published === 'true';
+        await togglePublish(col, id, !isPublished);
+    });
+}
+
+setupUnpublishBtn('slideUnpublishBtn',   'heroSlides',  'slideDocId');
+setupUnpublishBtn('teamUnpublishBtn',    'teamMembers', 'teamDocId');
+setupUnpublishBtn('serviceUnpublishBtn', 'services',    'serviceDocId');
+setupUnpublishBtn('toolUnpublishBtn',    'tools',       'toolDocId');
+setupUnpublishBtn('blogUnpublishBtn',    'blogPosts',   'blogDocId');
+
+async function setupUnpublishState(btnId, id, fallback) {
+    const btn = document.getElementById(btnId);
+    if (!id) { btn.style.display = 'none'; return; }
+    btn.style.display = 'inline-flex';
+    let isPublished = fallback;
+    try {
+        const colMap = {
+            slideUnpublishBtn: 'heroSlides',
+            teamUnpublishBtn: 'teamMembers',
+            serviceUnpublishBtn: 'services',
+            toolUnpublishBtn: 'tools',
+            blogUnpublishBtn: 'blogPosts'
         };
-
-        // Delete message
-        window.deleteMessage = async function(id) {
-            if (!confirm('Are you sure you want to delete this message?')) return;
-
-            try {
-                await deleteDoc(doc(db, 'contactMessages', id));
-                alert('Message deleted successfully!');
-                loadMessages();
-            } catch (error) {
-                console.error('Error deleting message:', error);
-                alert('Error deleting message. Please try again.');
-            }
-        };
-
-        // Close modal
-        document.querySelector('.close-modal').addEventListener('click', () => {
-            messageModal.classList.remove('active');
-        });
-
-        messageModal.addEventListener('click', (e) => {
-            if (e.target === messageModal) {
-                messageModal.classList.remove('active');
-            }
-        });
-
-        // Search functionality
-        searchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
-            const filtered = allMessages.filter(msg => 
-                (msg.name || '').toLowerCase().includes(searchTerm) ||
-                (msg.email || '').toLowerCase().includes(searchTerm) ||
-                (msg.subject || '').toLowerCase().includes(searchTerm)
-            );
-            displayMessages(filtered);
-        });
-
-        // Sort functionality
-        sortSelect.addEventListener('change', (e) => {
-            let sorted = [...allMessages];
-            switch(e.target.value) {
-                case 'newest':
-                    sorted.sort((a, b) => (b.timestamp?.seconds || 0) - (a.timestamp?.seconds || 0));
-                    break;
-                case 'oldest':
-                    sorted.sort((a, b) => (a.timestamp?.seconds || 0) - (b.timestamp?.seconds || 0));
-                    break;
-                case 'name':
-                    sorted.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
-                    break;
-            }
-            displayMessages(sorted);
-        });
-    </script>
+        const snap = await getDoc(doc(db, colMap[btnId], id));
+        if (snap.exists()) isPublished = snap.data().published !== false;
+    } catch {}
+    btn.dataset.published = isPublished;
+    btn.innerHTML = isPublished
+        ? '<i class="fas fa-eye-slash"></i> Unpublish'
+        : '<i class="fas fa-eye"></i> Publish';
+    btn.className = isPublished ? 'btn btn-sm btn-danger' : 'btn btn-sm';
+}
+</script>
 </body>
 </html>

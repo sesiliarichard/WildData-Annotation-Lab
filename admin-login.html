@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - WildData</title>
+    <link rel="icon" type="image/png" href="images/logo2.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            background-color: #0f2a22;
+            overflow: hidden;
+        }
+
+        /* ── LEFT PANEL ── */
+        .left-panel {
+            width: 55%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 50px;
+            overflow: hidden;
+        }
+
+        .left-panel-bg {
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            z-index: 0;
+        }
+
+        .left-panel-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(15, 42, 34, 0.3) 0%,
+                rgba(15, 42, 34, 0.85) 70%,
+                rgba(15, 42, 34, 0.98) 100%
+            );
+            z-index: 1;
+        }
+
+        .left-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 40px;
+        }
+
+        .brand-logo-icon {
+            width: 48px;
+            height: 48px;
+            background: #b4d333;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: #1a3d34;
+        }
+
+        .brand-logo-text h2 {
+            color: #ffffff;
+            font-size: 1.3rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .brand-logo-text span {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.75rem;
+        }
+
+        .left-tagline h1 {
+            color: #ffffff;
+            font-size: 2.4rem;
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 16px;
+        }
+
+        .left-tagline h1 span {
+            color: #b4d333;
+        }
+
+        .left-tagline p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            max-width: 400px;
+        }
+
+        .left-dots {
+            display: flex;
+            gap: 8px;
+            margin-top: 30px;
+        }
+
+        .left-dots span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.25);
+        }
+
+        .left-dots span.active {
+            background: #b4d333;
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        /* ── RIGHT PANEL ── */
+        .right-panel {
+            width: 45%;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 60px;
+            position: relative;
+        }
+
+        .right-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -1px;
+            width: 40px;
+            height: 100%;
+            background: #ffffff;
+            clip-path: polygon(40px 0, 100% 0, 100% 100%, 40px 100%, 0 50%);
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .login-header {
+            margin-bottom: 36px;
+        }
+
+        .login-header h2 {
+            font-size: 1.9rem;
+            color: #1a3d34;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .login-header p {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* ── FORM ── */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #1a3d34;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 13px 14px 13px 42px;
+            border: 2px solid #e8e8e8;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            color: #2b2b2b;
+            background: #fafafa;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .input-wrapper input:focus {
+            border-color: #4a8b7f;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(74,139,127,0.1);
+        }
+
+        .input-wrapper input:focus + i,
+        .input-wrapper:focus-within i {
+            color: #4a8b7f;
+        }
+
+        /* password toggle */
+        .toggle-pw {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #aaa;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+            left: auto;
+        }
+
+        .toggle-pw:hover { color: #4a8b7f; }
+
+        /* ── SUBMIT BTN ── */
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            background: #1a3d34;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.97rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 28px;
+            font-family: inherit;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-login:hover {
+            background: #234b3c;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(26,61,52,0.3);
+        }
+
+        .btn-login:active { transform: translateY(0); }
+
+        .btn-login:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-login .spinner {
+            width: 18px;
+            height: 18px;
+            border: 2.5px solid rgba(255,255,255,0.3);
+            border-top-color: #ffffff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            display: none;
+        }
+
+        .btn-login.loading .spinner { display: block; }
+        .btn-login.loading .btn-text { display: none; }
+
+        /* ── ERROR ── */
+        .error-box {
+            background: #fff0f0;
+            border: 1px solid #fca5a5;
+            border-radius: 8px;
+            padding: 12px 16px;
+            display: none;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .error-box.show { display: flex; }
+        .error-box i { color: #dc2626; font-size: 0.9rem; margin-top: 2px; flex-shrink: 0; }
+        .error-box p { color: #b91c1c; font-size: 0.85rem; line-height: 1.5; }
+
+        /* ── DIVIDER ── */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 24px 0 0;
+        }
+
+        .divider hr { flex: 1; border: none; border-top: 1px solid #eee; }
+        .divider span { color: #ccc; font-size: 0.78rem; white-space: nowrap; }
+
+        /* ── BACK LINK ── */
+        .back-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+            color: #888;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover { color: #4a8b7f; }
+        .back-link i { font-size: 0.8rem; }
+
+        /* ── AUTH LOADING SCREEN ── */
+        #authLoading {
+            position: fixed;
+            inset: 0;
+            background: #1a3d34;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            z-index: 9999;
+        }
+
+        #authLoading .loader-icon {
+            width: 56px;
+            height: 56px;
+            border: 3px solid rgba(180,211,51,0.2);
+            border-top-color: #b4d333;
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+        }
+
+        #authLoading p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.88rem;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            body { flex-direction: column; overflow: auto; }
+            .left-panel { width: 100%; min-height: 220px; padding: 30px; }
+            .left-tagline h1 { font-size: 1.6rem; }
+            .right-panel { width: 100%; padding: 40px 28px; }
+            .right-panel::before { display: none; }
+            .login-box { max-width: 100%; }
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+<!-- Auth check loading screen -->
+<div id="authLoading">
+    <div class="loader-icon"></div>
+    <p>Checking session...</p>
+</div>
+
+<!-- LEFT PANEL -->
+<div class="left-panel">
+    <div class="left-panel-bg"></div>
+    <div class="left-panel-overlay"></div>
+    <div class="left-content">
+        <div class="brand-logo">
+            <div class="brand-logo-icon"><i class="fas fa-leaf"></i></div>
+            <div class="brand-logo-text">
+                <h2>WildData</h2>
+                <span>Annotation Lab</span>
+            </div>
+        </div>
+        <div class="left-tagline">
+            <h1>Manage your <span>wildlife</span> data platform</h1>
+            <p>The admin panel gives you full control over your site content — hero slides, team members, services, tools, blog posts, and contact messages.</p>
+        </div>
+        <div class="left-dots">
+            <span class="active"></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</div>
+
+<!-- RIGHT PANEL -->
+<div class="right-panel">
+    <div class="login-box">
+        <div class="login-header">
+            <h2>Welcome back</h2>
+            <p>Sign in to access the admin dashboard</p>
+        </div>
+
+        <form id="loginForm" autocomplete="on">
+            <div class="form-group">
+                <label>Email Address</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="loginEmail" placeholder="admin@wilddata.com" required autocomplete="email">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required autocomplete="current-password">
+                    <i class="fas fa-eye toggle-pw" id="togglePw"></i>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-login" id="loginBtn">
+                <span class="btn-text"><i class="fas fa-sign-in-alt"></i> Sign In</span>
+                <div class="spinner"></div>
+            </button>
+
+            <div class="error-box" id="errorBox">
+                <i class="fas fa-exclamation-circle"></i>
+                <p id="errorMsg">Invalid email or password. Please try again.</p>
+            </div>
+        </form>
+
+        <div class="divider">
+            <hr><span>restricted area</span><hr>
+        </div>
+
+        <a href="index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> Back to WildData website
+        </a>
+    </div>
+</div>
+
+<script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAvlKl4lT6E78kBQ784xcB_ZtxhHVh2RAk",
+        authDomain: "wilddata-annotation.firebaseapp.com",
+        projectId: "wilddata-annotation",
+        storageBucket: "wilddata-annotation.firebasestorage.app",
+        messagingSenderId: "304081749559",
+        appId: "1:304081749559:web:fa05d874c04bb43031a1b2"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // If already logged in, go straight to admin
+    onAuthStateChanged(auth, user => {
+        document.getElementById('authLoading').style.display = 'none';
+        if (user) {
+            window.location.href = 'admin.html';
+        }
+    });
+
+    // Toggle password visibility
+    document.getElementById('togglePw').addEventListener('click', function () {
+        const input = document.getElementById('loginPassword');
+        const isText = input.type === 'text';
+        input.type = isText ? 'password' : 'text';
+        this.className = isText ? 'fas fa-eye toggle-pw' : 'fas fa-eye-slash toggle-pw';
+    });
+
+    // Login form submit
+    document.getElementById('loginForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const btn = document.getElementById('loginBtn');
+        const errorBox = document.getElementById('errorBox');
+        const errorMsg = document.getElementById('errorMsg');
+
+        // Reset error
+        errorBox.classList.remove('show');
+
+        // Show loading
+        btn.disabled = true;
+        btn.classList.add('loading');
+
+        const email = document.getElementById('loginEmail').value.trim();
+        const password = document.getElementById('loginPassword').value;
+
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            // onAuthStateChanged will fire and redirect to admin.html
+        } catch (err) {
+            btn.disabled = false;
+            btn.classList.remove('loading');
+
+            // Show friendly error messages
+            const code = err.code;
+            if (code === 'auth/user-not-found' || code === 'auth/wrong-password' || code === 'auth/invalid-credential') {
+                errorMsg.textContent = 'Incorrect email or password. Please try again.';
+            } else if (code === 'auth/too-many-requests') {
+                errorMsg.textContent = 'Too many failed attempts. Please wait a moment and try again.';
+            } else if (code === 'auth/invalid-email') {
+                errorMsg.textContent = 'Please enter a valid email address.';
+            } else {
+                errorMsg.textContent = 'Login failed. Please check your connection and try again.';
+            }
+            errorBox.classList.add('show');
+        }
+    });
+</script>
+</body>
+</html>

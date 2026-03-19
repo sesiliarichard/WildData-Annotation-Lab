@@ -175,6 +175,7 @@
             gap: 12px 40px;
             box-shadow: 0 16px 48px rgba(0,0,0,0.45);
             z-index: 999;
+            /* hidden by default using visibility */
             visibility: hidden;
             opacity: 0;
             pointer-events: none;
@@ -1351,11 +1352,11 @@
                         <a href="#" class="nav-link" data-page="tools">Tools <i class="fas fa-chevron-down"></i></a>
                         <div class="dropdown-menu">
                             <div class="mega-grid-items">
-                                <div class="mega-item" onclick="navigateTo('tools', '#primaryToolsSections')">
+                                <div class="mega-item" onclick="navigateTo('tools', '.content-section')">
                                     <h4><i class="fas fa-video"></i> CVAT</h4>
                                     <p>Powerful open-source platform for video and image annotation with precision and scalability</p>
                                 </div>
-                                <div class="mega-item" onclick="navigateTo('tools', '#primaryToolsSections')">
+                                <div class="mega-item" onclick="navigateTo('tools', '.mission-reverse')">
                                     <h4><i class="fas fa-map-marked-alt"></i> SurveyScope / DetWab</h4>
                                     <p>Specialized platform for annotating aerial and satellite imagery with geospatial context</p>
                                 </div>
@@ -1490,23 +1491,18 @@
     <div id="tools" class="page">
         <section class="about-hero"><div class="container hero-content"><h1>Annotation <span>Tools</span></h1><p>Professional platforms and software we use to deliver accurate wildlife data annotation services</p></div></section>
         <section class="mission"><div class="container"><h2 class="section-title">Our Technology Stack</h2><p class="section-subtitle">We use industry-leading annotation tools to ensure precision, efficiency, and quality in every wildlife research project.</p></div></section>
-
-        <!-- Primary tools: hard-coded as fallback. loadPrimaryTools() only replaces these IF Firebase has published primary tools saved. -->
-        <div id="primaryToolsSections">
-            <section class="content-section"><div class="container"><div class="content-container">
-                <div class="content-image"><img src="images/CVAT.jpeg" alt="CVAT Interface"></div>
-                <div class="content-text"><span class="badge">Video & Image Annotation</span><h2><span>CVAT</span> (Computer Vision Annotation Tool)</h2><p>CVAT is a powerful open-source annotation platform designed for computer vision tasks.</p><ul class="check-list"><li><i class="fas fa-check-circle"></i> Advanced video frame annotation</li><li><i class="fas fa-check-circle"></i> Multiple annotation formats</li><li><i class="fas fa-check-circle"></i> Track wildlife across video sequences</li><li><i class="fas fa-check-circle"></i> Collaborative team workspace</li></ul><div class="btn-group"><a href="https://www.cvat.ai/" target="_blank" rel="noopener noreferrer" class="btn">Visit CVAT Website <i class="fas fa-external-link-alt"></i></a></div></div>
-            </div></div></section>
-            <section class="mission"><div class="container"><div class="mission-container mission-reverse">
-                <div class="mission-image"><img src="images/SurveyScope  DetWab.jpg" alt="SurveyScope Interface"></div>
-                <div class="mission-text"><span class="badge">Geospatial Annotation</span><h2><span>SurveyScope</span> / DetWab</h2><p>Specialized platform for annotating aerial and satellite imagery with geospatial context.</p><ul class="check-list"><li><i class="fas fa-check-circle"></i> Location-based wildlife annotation</li><li><i class="fas fa-check-circle"></i> Aerial and drone imagery support</li><li><i class="fas fa-check-circle"></i> GPS coordinate integration</li><li><i class="fas fa-check-circle"></i> Large-scale survey management</li></ul><div class="btn-group"><a href="https://surveyscope.org/" target="_blank" rel="noopener noreferrer" class="btn">Visit SurveyScope <i class="fas fa-external-link-alt"></i></a></div></div>
-            </div></div></section>
-            <section class="content-section"><div class="container"><div class="content-container">
-                <div class="content-image"><img src="images/ScoutBeast.jpg" alt="ScoutBeast Platform"></div>
-                <div class="content-text"><span class="badge">Camera Trap Management</span><h2><span>Scout</span></h2><p>ScoutBeast is our go-to platform for managing and annotating camera trap imagery.</p><ul class="check-list"><li><i class="fas fa-check-circle"></i> Automated image organization</li><li><i class="fas fa-check-circle"></i> Species identification and tagging</li><li><i class="fas fa-check-circle"></i> Behavior classification tools</li><li><i class="fas fa-check-circle"></i> Time-series analysis support</li></ul><div class="btn-group"><a href="#" class="btn">Explore ScoutBeast <i class="fas fa-external-link-alt"></i></a></div></div>
-            </div></div></section>
-        </div>
-
+        <section class="content-section"><div class="container"><div class="content-container">
+            <div class="content-image"><img src="images/CVAT.jpeg" alt="CVAT Interface"></div>
+            <div class="content-text"><span class="badge">Video & Image Annotation</span><h2><span>CVAT</span> (Computer Vision Annotation Tool)</h2><p>CVAT is a powerful open-source annotation platform designed for computer vision tasks.</p><ul class="check-list"><li><i class="fas fa-check-circle"></i> Advanced video frame annotation</li><li><i class="fas fa-check-circle"></i> Multiple annotation formats</li><li><i class="fas fa-check-circle"></i> Track wildlife across video sequences</li><li><i class="fas fa-check-circle"></i> Collaborative team workspace</li></ul><div class="btn-group"><a href="https://www.cvat.ai/" target="_blank" rel="noopener noreferrer" class="btn">Visit CVAT Website <i class="fas fa-external-link-alt"></i></a></div></div>
+        </div></div></section>
+        <section class="mission"><div class="container"><div class="mission-container mission-reverse">
+            <div class="mission-image"><img src="images/SurveyScope  DetWab.jpg" alt="SurveyScope Interface"></div>
+            <div class="mission-text"><span class="badge">Geospatial Annotation</span><h2><span>SurveyScope</span> / DetWab</h2><p>Specialized platform for annotating aerial and satellite imagery with geospatial context.</p><ul class="check-list"><li><i class="fas fa-check-circle"></i> Location-based wildlife annotation</li><li><i class="fas fa-check-circle"></i> Aerial and drone imagery support</li><li><i class="fas fa-check-circle"></i> GPS coordinate integration</li><li><i class="fas fa-check-circle"></i> Large-scale survey management</li></ul><div class="btn-group"><a href="https://surveyscope.org/" target="_blank" rel="noopener noreferrer" class="btn">Visit SurveyScope <i class="fas fa-external-link-alt"></i></a></div></div>
+        </div></div></section>
+        <section class="content-section"><div class="container"><div class="content-container">
+            <div class="content-image"><img src="images/ScoutBeast.jpg" alt="ScoutBeast Platform"></div>
+            <div class="content-text"><span class="badge">Camera Trap Management</span><h2><span>Scout</span></h2><p>ScoutBeast is our go-to platform for managing and annotating camera trap imagery.</p><ul class="check-list"><li><i class="fas fa-check-circle"></i> Automated image organization</li><li><i class="fas fa-check-circle"></i> Species identification and tagging</li><li><i class="fas fa-check-circle"></i> Behavior classification tools</li><li><i class="fas fa-check-circle"></i> Time-series analysis support</li></ul><div class="btn-group"><a href="#" class="btn">Explore ScoutBeast <i class="fas fa-external-link-alt"></i></a></div></div>
+        </div></div></section>
         <section class="tools-recommend"><div class="container"><h2>Additional Tools We Recommend</h2><p>Depending on your project requirements, we also work with these professional annotation platforms</p><div class="tools-grid">
             <div class="tool-card"><div class="tool-icon"><img src="images/labelimg.jpg" alt="LabelImg"></div><h3>LabelImg</h3><p>Simple and efficient tool for creating bounding box annotations.</p><a href="https://github.com/tzutalin/labelImg" target="_blank" rel="noopener noreferrer" class="tool-link">Learn More <i class="fas fa-arrow-right"></i></a></div>
             <div class="tool-card"><div class="tool-icon"><img src="images/Labelbox.png" alt="Labelbox"></div><h3>Labelbox</h3><p>Enterprise-grade platform for managing large annotation teams.</p><a href="https://labelbox.com/" target="_blank" rel="noopener noreferrer" class="tool-link">Learn More <i class="fas fa-arrow-right"></i></a></div>
@@ -1525,7 +1521,7 @@
             <div class="contact-info"><h2>Get In Touch</h2><p>Have questions about our services or want to discuss a potential project? Reach out to our team.</p>
                 <div class="contact-details">
                     <div class="contact-detail"><i class="fas fa-phone"></i><div><h3>Phone</h3><p>+255717240523</p></div></div>
-                    <div class="contact-detail"><i class="fas fa-envelope"></i><div><h3>Email</h3><p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6f060109002f1806030b0b0e1b0e410c0002">[email&#160;protected]</a></p></div></div>
+                    <div class="contact-detail"><i class="fas fa-envelope"></i><div><h3>Email</h3><p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5b3636393a3c3a31626c1b3c363a323775383436">[email&#160;protected]</a></p></div></div>
                     <div class="contact-detail"><i class="fas fa-map-marker-alt"></i><div><h3>Address</h3><p>Safari Hotel - Room 411, Opposite TTCL, Regional Commissioner's Area, Arusha, Tanzania</p></div></div>
                 </div>
             </div>
@@ -1542,19 +1538,13 @@
     <!-- Image Modal -->
     <div id="imageModal" class="image-modal"><span class="modal-close">&times;</span><img class="modal-content" id="modalImage"></div>
 
-    <!-- CHANGE 8b: Added id="footerSocialLinks" div for social links injection from Firebase -->
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-column">
-                    <h3>WildData</h3>
-                    <p>Advancing wildlife research through accurate data annotation and analytics.</p>
-                    <div class="social-links" id="footerSocialLinks"></div>
-                    <a href="admin-login.html" class="admin-link"><img src="images/admins.png" alt="Admin" class="admin-img"></a>
-                </div>
+                <div class="footer-column"><h3>WildData</h3><p>Advancing wildlife research through accurate data annotation and analytics.</p><a href="admin-login.html" class="admin-link"><img src="images/admins.png" alt="Admin" class="admin-img"></a></div>
                 <div class="footer-column"><h3>Quick Links</h3><ul><li><a href="#" class="nav-link" data-page="home">Home</a></li><li><a href="#" class="nav-link" data-page="about">About</a></li><li><a href="#" class="nav-link" data-page="services">Services</a></li><li><a href="#" class="nav-link" data-page="tools">Tools</a></li><li><a href="#" class="nav-link" data-page="contact">Contact</a></li></ul></div>
                 <div class="footer-column"><h3>Our Services</h3><ul><li><a href="#" class="nav-link" data-page="services">Wildlife Image Annotation</a></li><li><a href="#" class="nav-link" data-page="services">ML Dataset Preparation</a></li></ul></div>
-                <div class="footer-column"><h3>Contact Us</h3><p><i class="fas fa-phone"></i> +255717240523</p><p><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1c75727a735c6b757078787d687d327f7371">[email&#160;protected]</a></p><p><i class="fas fa-map-marker-alt"></i> Safari Hotel - Room 411, Arusha, Tanzania</p></div>
+                <div class="footer-column"><h3>Contact Us</h3><p><i class="fas fa-phone"></i> +255717240523</p><p><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="402d2d222127212a797700272d21292c6e232f2d">[email&#160;protected]</a></p><p><i class="fas fa-map-marker-alt"></i> Safari Hotel - Room 411, Arusha, Tanzania</p></div>
             </div>
             <div class="copyright"><p>&copy; 2025 WildData Annotation Lab. All rights reserved.</p></div>
         </div>
@@ -1564,7 +1554,7 @@
     <script>emailjs.init("Vzixao8TO3nbwZ15L");</script>
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-        import { getFirestore, collection, addDoc, getDocs, getDoc, doc, orderBy, query, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+        import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
         const firebaseConfig = { apiKey: "AIzaSyAvlKl4lT6E78kBQ784xcB_ZtxhHVh2RAk", authDomain: "wilddata-annotation.firebaseapp.com", projectId: "wilddata-annotation", storageBucket: "wilddata-annotation.firebasestorage.app", messagingSenderId: "304081749559", appId: "1:304081749559:web:fa05d874c04bb43031a1b2", measurementId: "G-82FPQPVFRD" };
         const app = initializeApp(firebaseConfig);
@@ -1575,23 +1565,29 @@
             document.querySelector('nav ul').classList.toggle('active');
         });
 
-        // Dropdown
+        // Dropdown — keep open while moving mouse from link to menu
         document.querySelectorAll('.dropdown').forEach(function(dropdown) {
             let closeTimer = null;
+
             function openDropdown() {
                 clearTimeout(closeTimer);
+                // close all others first
                 document.querySelectorAll('.dropdown').forEach(function(d) {
                     if (d !== dropdown) d.classList.remove('open');
                 });
                 dropdown.classList.add('open');
             }
+
             function scheduleClose() {
                 closeTimer = setTimeout(function() {
                     dropdown.classList.remove('open');
                 }, 150);
             }
+
             dropdown.addEventListener('mouseenter', openDropdown);
             dropdown.addEventListener('mouseleave', scheduleClose);
+
+            // Mobile toggle
             dropdown.querySelector('.nav-link').addEventListener('click', function(e) {
                 if (window.innerWidth <= 768) {
                     e.preventDefault();
@@ -1600,6 +1596,7 @@
             });
         });
 
+        // Close dropdown when clicking outside
         document.addEventListener('click', function(e) {
             if (!e.target.closest('.dropdown')) {
                 document.querySelectorAll('.dropdown').forEach(function(d) {
@@ -1624,7 +1621,6 @@
         document.querySelector('.prev-btn').addEventListener('click', () => showSlide(currentSlide - 1));
         document.querySelector('.next-btn').addEventListener('click', () => showSlide(currentSlide + 1));
         if (slider) setInterval(() => showSlide(currentSlide + 1), 5000);
-        loadAll();
 
         // Page Navigation
         document.querySelectorAll('.nav-link').forEach(link => {
@@ -1640,264 +1636,6 @@
                 window.scrollTo(0, 0);
             });
         });
-
-        // ── FIREBASE CONTENT LOADER ───────────────────────
-        // CHANGE 1: Added loadPrimaryTools() to loadAll()
-        async function loadAll() {
-            loadHeroSlides();
-            loadAboutPage();
-            loadServices();
-            loadTeam();
-            loadBlog();
-            loadPrimaryTools();
-            loadRecommendedTools();
-            loadContactInfo();
-        }
-
-        // CHANGE 2: Safe regex highlight replace
-        async function loadHeroSlides() {
-            try {
-                const snap = await getDocs(query(collection(db, 'heroSlides'), orderBy('order', 'asc')));
-                const slides = snap.docs.map(d => d.data()).filter(s => s.published !== false);
-                if (!slides.length) return;
-                const sliderEl = document.querySelector('.slider');
-                const dotsEl = document.querySelector('.slider-nav');
-                sliderEl.innerHTML = slides.map(s => {
-                    let heading = s.heading || '';
-                    if (s.highlight) {
-                        const escaped = s.highlight.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                        heading = heading.replace(new RegExp(escaped), `<span>${s.highlight}</span>`);
-                    }
-                    return `
-                    <div class="slide">
-                        <img src="${s.image}" alt="${s.heading||''}">
-                        <div class="slide-overlay"><div class="slide-content">
-                            <h2>${heading}</h2>
-                            <p>${s.subheading||''}</p>
-                            <a href="${s.buttonLink||'#services'}" class="btn">${s.buttonText||'Our Services'} <i class="fas fa-arrow-right"></i></a>
-                        </div></div>
-                    </div>`;
-                }).join('');
-                dotsEl.innerHTML = slides.map((s, i) =>
-                    `<div class="slider-dot ${i===0?'active':''}" data-index="${i}"></div>`
-                ).join('');
-                const newSlides = sliderEl.querySelectorAll('.slide');
-                const newDots = dotsEl.querySelectorAll('.slider-dot');
-                let cur = 0;
-                function go(i) {
-                    if (i < 0) cur = newSlides.length - 1;
-                    else if (i >= newSlides.length) cur = 0;
-                    else cur = i;
-                    sliderEl.style.transform = `translateX(-${cur * 100}%)`;
-                    newDots.forEach((d, j) => d.classList.toggle('active', j === cur));
-                }
-                newDots.forEach((d, i) => d.addEventListener('click', () => go(i)));
-                document.querySelector('.prev-btn').onclick = () => go(cur - 1);
-                document.querySelector('.next-btn').onclick = () => go(cur + 1);
-                clearInterval(window._sliderTimer);
-                window._sliderTimer = setInterval(() => go(cur + 1), 5000);
-            } catch(e) { console.error('Slides error:', e); }
-        }
-
-        async function loadAboutPage() {
-            try {
-                const snap = await getDoc(doc(db, 'siteSettings', 'aboutPage'));
-                if (!snap.exists()) return;
-                const d = snap.data();
-                const h1 = document.querySelector('#about .hero-content h1');
-                if (h1 && d.heroTitle) {
-                    h1.innerHTML = `${d.heroTitle} <span>${d.heroHighlight||'WildData'}</span>`;
-                }
-                const heroP = document.querySelector('#about .hero-content p');
-                if (heroP && d.heroSubtitle) heroP.textContent = d.heroSubtitle;
-                const mh2 = document.querySelector('.mission-text h2');
-                if (mh2 && d.missionTitle) mh2.innerHTML = `${d.missionTitle} <span>${d.missionHighlight||'Mission'}</span>`;
-                const mPs = document.querySelectorAll('.mission-text p');
-                if (mPs[0] && d.missionP1) mPs[0].textContent = d.missionP1;
-                if (mPs[1] && d.missionP2) mPs[1].textContent = d.missionP2;
-                if (mPs[2] && d.missionP3) mPs[2].textContent = d.missionP3;
-                const mImg = document.querySelector('.mission-image img');
-                if (mImg && d.missionImage) mImg.src = d.missionImage;
-                if (d.values && d.values.length) {
-                    document.querySelector('.values-grid').innerHTML = d.values.map(v => `
-                        <div class="value-card">
-                            <div class="value-icon"><i class="${v.icon||'fas fa-star'}"></i></div>
-                            <h3>${v.title||''}</h3>
-                            <p>${v.description||''}</p>
-                        </div>`).join('');
-                }
-            } catch(e) { console.error('About error:', e); }
-        }
-
-        async function loadServices() {
-            try {
-                const snap = await getDocs(query(collection(db, 'services'), orderBy('order', 'asc')));
-                const items = snap.docs.map(d => d.data()).filter(s => s.published !== false);
-                if (!items.length) return;
-                const html = items.map(s => `
-                    <div class="service-card">
-                        <div class="service-icon">
-                            ${s.image ? `<img src="${s.image}" alt="${s.name}">` : `<i class="${s.icon||'fas fa-cogs'}" style="font-size:2rem;color:#4a8b7f"></i>`}
-                        </div>
-                        <h3>${s.name}</h3>
-                        <p>${s.description||''}</p>
-                    </div>`).join('');
-                const homeGrid = document.querySelector('#home .services-grid');
-                if (homeGrid) homeGrid.innerHTML = html;
-                const pageGrid = document.querySelector('#services-section .services-grid');
-                if (pageGrid) pageGrid.innerHTML = html;
-            } catch(e) { console.error('Services error:', e); }
-        }
-
-        // CHANGE 3: Filter unpublished team members
-        async function loadTeam() {
-            try {
-                const snap = await getDocs(query(collection(db, 'teamMembers'), orderBy('order', 'asc')));
-                const items = snap.docs.map(d => ({ id: d.id, ...d.data() })).filter(m => m.published !== false);
-                if (!items.length) return;
-                window._fbProfiles = {};
-                items.forEach(m => { window._fbProfiles[m.id] = m; });
-                document.querySelector('.team-grid').innerHTML = items.map(m => `
-                    <div class="team-member">
-                        <div class="member-image">
-                            <img src="${m.image||''}" alt="${m.name}" onerror="this.style.display='none'">
-                        </div>
-                        <div class="member-info">
-                            <h3>${m.name}</h3>
-                            <p class="member-role">${m.role||''}</p>
-                            <button class="read-more-btn" onclick="openFbProfile('${m.id}')">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>`).join('');
-            } catch(e) { console.error('Team error:', e); }
-        }
-
-        // CHANGE 4: Show author name on blog cards
-        async function loadBlog() {
-            try {
-                const snap = await getDocs(query(collection(db, 'blogPosts'), orderBy('createdAt', 'desc')));
-                const posts = snap.docs.map(d => d.data()).filter(p => p.published !== false);
-                if (!posts.length) return;
-                document.querySelector('.blog-grid').innerHTML = posts.map(p => `
-                    <div class="blog-card">
-                        <div class="blog-image">
-                            <img src="${p.image||'https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=1200&q=80'}" alt="${p.title}">
-                        </div>
-                        <div class="blog-content">
-                            ${p.author ? `<p style="font-size:0.78rem;color:#4a8b7f;font-weight:600;margin-bottom:6px;">${p.author}</p>` : ''}
-                            <h3>${p.title}</h3>
-                            <p>${p.summary||''}</p>
-                            ${p.link ? `<a href="${p.link}" target="_blank" rel="noopener noreferrer" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>` : ''}
-                        </div>
-                    </div>`).join('');
-            } catch(e) { console.error('Blog error:', e); }
-        }
-
-        // CHANGE 7: New function — loads primary tools dynamically from Firebase
-        async function loadPrimaryTools() {
-            try {
-                const snap = await getDocs(query(collection(db, 'tools'), orderBy('order', 'asc')));
-                const items = snap.docs.map(d => d.data()).filter(t => t.type === 'primary' && t.published !== false);
-                if (!items.length) return;
-                const container = document.getElementById('primaryToolsSections');
-                if (!container) return;
-                container.innerHTML = items.map((t, i) => {
-                    const featuresHtml = (t.features || []).map(f =>
-                        `<li><i class="fas fa-check-circle"></i> ${f}</li>`
-                    ).join('');
-                    const reversed = i % 2 !== 0 ? 'mission-reverse' : '';
-                    const imgSection = t.image
-                        ? `<img src="${t.image}" alt="${t.name}">`
-                        : `<div style="display:flex;align-items:center;justify-content:center;height:100%;background:#234b3c"><i class="fas fa-tools" style="font-size:4rem;color:#b4d333"></i></div>`;
-                    return `
-                    <section class="content-section" style="background-color:#f5f3ed;">
-                      <div class="container">
-                        <div class="content-container ${reversed}">
-                          <div class="content-image">${imgSection}</div>
-                          <div class="content-text">
-                            ${t.badge ? `<span class="badge">${t.badge}</span>` : ''}
-                            <h2><span>${t.name}</span></h2>
-                            <p>${t.description||''}</p>
-                            ${featuresHtml ? `<ul class="check-list">${featuresHtml}</ul>` : ''}
-                            ${t.link ? `<div class="btn-group"><a href="${t.link}" target="_blank" rel="noopener noreferrer" class="btn">${t.linkText||'Visit Website'} <i class="fas fa-external-link-alt"></i></a></div>` : ''}
-                          </div>
-                        </div>
-                      </div>
-                    </section>`;
-                }).join('');
-            } catch(e) { console.error('Primary tools error:', e); }
-        }
-
-        // CHANGE 5: Show badge + use linkText in recommended tools
-        async function loadRecommendedTools() {
-            try {
-                const snap = await getDocs(query(collection(db, 'tools'), orderBy('order', 'asc')));
-                const items = snap.docs.map(d => d.data()).filter(t => t.type === 'recommended' && t.published !== false);
-                if (!items.length) return;
-                document.querySelector('.tools-grid').innerHTML = items.map(t => `
-                    <div class="tool-card">
-                        <div class="tool-icon">
-                            ${t.image ? `<img src="${t.image}" alt="${t.name}">` : `<i class="${t.icon||'fas fa-tools'}" style="font-size:2rem;color:#4a8b7f"></i>`}
-                        </div>
-                        ${t.badge ? `<p style="display:inline-block;background:#4a8b7f;color:#fff;padding:3px 12px;border-radius:20px;font-size:0.75rem;font-weight:600;margin-bottom:8px;">${t.badge}</p>` : ''}
-                        <h3>${t.name}</h3>
-                        <p>${t.description||''}</p>
-                        ${t.link ? `<a href="${t.link}" target="_blank" rel="noopener noreferrer" class="tool-link">${t.linkText||'Learn More'} <i class="fas fa-arrow-right"></i></a>` : ''}
-                    </div>`).join('');
-            } catch(e) { console.error('Tools error:', e); }
-        }
-
-        // CHANGE 6: Inject social links from Firebase into footer
-        async function loadContactInfo() {
-            try {
-                const snap = await getDoc(doc(db, 'siteSettings', 'contactInfo'));
-                if (!snap.exists()) return;
-                const d = snap.data();
-                const details = document.querySelectorAll('.contact-detail');
-                details.forEach(el => {
-                    const icon = el.querySelector('i');
-                    const p = el.querySelector('p');
-                    if (!icon || !p) return;
-                    if (icon.classList.contains('fa-phone') && d.phone) p.textContent = d.phone;
-                    if (icon.classList.contains('fa-envelope') && d.email) p.textContent = d.email;
-                    if (icon.classList.contains('fa-map-marker-alt') && d.address) p.textContent = d.address;
-                });
-                const footerPs = document.querySelectorAll('.footer-column p');
-                footerPs.forEach(p => {
-                    const icon = p.querySelector('i');
-                    if (!icon) return;
-                    if (icon.classList.contains('fa-phone') && d.phone) p.innerHTML = `<i class="fas fa-phone"></i> ${d.phone}`;
-                    if (icon.classList.contains('fa-map-marker-alt') && d.address) p.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${d.address}`;
-                });
-                const socialLinks = document.getElementById('footerSocialLinks');
-                if (socialLinks) {
-                    const networks = [
-                        { key: 'facebook',  icon: 'fab fa-facebook-f' },
-                        { key: 'twitter',   icon: 'fab fa-twitter' },
-                        { key: 'linkedin',  icon: 'fab fa-linkedin-in' },
-                        { key: 'instagram', icon: 'fab fa-instagram' }
-                    ];
-                    socialLinks.innerHTML = networks
-                        .filter(n => d[n.key])
-                        .map(n => `<a href="${d[n.key]}" target="_blank" rel="noopener noreferrer" class="social-link"><i class="${n.icon}"></i></a>`)
-                        .join('');
-                }
-               
-            } catch(e) { console.error('Contact info error:', e); }
-        }
-
-        // Firebase team profile modal
-        window.openFbProfile = function(id) {
-            const p = window._fbProfiles && window._fbProfiles[id];
-            if (!p) return;
-            document.getElementById('profileModalImage').src = p.image || '';
-            document.getElementById('profileModalImage').alt = p.name;
-            document.getElementById('profileModalName').textContent = p.name;
-            document.getElementById('profileModalRole').textContent = p.role || '';
-            document.getElementById('profileModalBio').textContent = p.bio || '';
-            document.getElementById('profileModal').classList.add('active');
-        };
 
         // Contact Form
         const contactForm = document.getElementById('contactForm');
