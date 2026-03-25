@@ -553,87 +553,421 @@
             font-weight: 600; 
             margin-bottom: 6px;
          }
-        .item-card-body p { 
-            font-size: .8rem; 
-            color: #777;
-            margin-bottom: 12px; 
-            line-height: 1.5; 
-            display: -webkit-box; 
-            -webkit-line-clamp: 2; 
-            -webkit-box-orient: vertical; 
-            overflow: hidden; 
+.item-card-body p { 
+    font-size: .8rem; 
+    color: #777;
+    margin-bottom: 12px; 
+    line-height: 1.5; 
+    display: -webkit-box; 
+    -webkit-line-clamp: 2; 
+    line-clamp: 2;              
+    -webkit-box-orient: vertical; 
+    overflow: hidden; 
+}
+        .item-card-actions { 
+            display: flex; 
+            gap: 7px; 
         }
-        .item-card-actions { display: flex; gap: 7px; }
 
         /* SLIDE PREVIEW CARD */
-        .slide-preview { position: relative; height: 120px; border-radius: 8px; overflow: hidden; background: var(--green-dark); margin-bottom: 10px; }
-        .slide-preview img { width: 100%; height: 100%; object-fit: cover; opacity: .6; }
-        .slide-preview-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 12px; }
-        .slide-preview-overlay h5 { color: #fff; font-size: .82rem; line-height: 1.3; margin-bottom: 3px; }
-        .slide-preview-overlay span { color: rgba(255,255,255,.7); font-size: .72rem; }
-        .slide-order-badge { position: absolute; top: 8px; left: 8px; background: var(--lime); color: var(--charcoal); border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: .72rem; font-weight: 700; }
+        .slide-preview { 
+            position: relative; 
+            height: 120px; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            background: var(--green-dark); 
+            margin-bottom: 10px; 
+        }
+        .slide-preview img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            opacity: .6;
+         }
+        .slide-preview-overlay { 
+            position: absolute; 
+            inset: 0; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: flex-end; 
+            padding: 12px; 
+        }
+        .slide-preview-overlay h5 { 
+            color: #fff; 
+            font-size: .82rem; 
+            line-height: 1.3; 
+            margin-bottom: 3px; 
+        }
+        .slide-preview-overlay span { 
+            color: rgba(255,255,255,.7); 
+            font-size: .72rem; 
+        }
+        .slide-order-badge { 
+            position: absolute; 
+            top: 8px; 
+            left: 8px; 
+            background: var(--lime); 
+            color: var(--charcoal); 
+            border-radius: 50%; 
+            width: 24px; 
+            height: 24px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: .72rem; 
+            font-weight: 700; 
+        }
 
         /* TOOL TYPE BADGE */
-        .tool-type { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: .7rem; font-weight: 600; margin-bottom: 6px; }
-        .tool-type-primary { background: rgba(74,139,127,.15); color: var(--green-light); }
-        .tool-type-recommended { background: rgba(180,211,51,.15); color: var(--lime-dark); }
+        .tool-type { 
+            display: inline-block; 
+            padding: 2px 8px; 
+            border-radius: 12px; 
+            font-size: .7rem; 
+            font-weight: 600; 
+            margin-bottom: 6px; 
+        }
+        .tool-type-primary { 
+            background: rgba(74,139,127,.15); 
+            color: var(--green-light);
+         }
+        .tool-type-recommended { 
+            background: rgba(180,211,51,.15); 
+            color: var(--lime-dark); 
+        }
 
         /* CONTACT INFO GRID */
-        .ci-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
-        .ci-full { grid-column: 1 / -1; }
-        @media (max-width: 580px) { .ci-grid { grid-template-columns: 1fr; } }
+        .ci-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 0 20px; 
+        }
+        .ci-full { 
+            grid-column: 1 / -1; 
+        }
+        @media (max-width: 580px) { 
+            .ci-grid { 
+                grid-template-columns: 1fr; 
+            } 
+        }
 
         /* TOAST */
-        .toast { position: fixed; bottom: 22px; right: 22px; background: var(--green-dark); color: var(--white); padding: 13px 18px; border-radius: 8px; font-size: .88rem; box-shadow: 0 4px 16px rgba(0,0,0,.25); transform: translateY(70px); opacity: 0; transition: all .3s; z-index: 9999; display: flex; align-items: center; gap: 9px; min-width: 220px; }
-        .toast.show { transform: translateY(0); opacity: 1; }
-        .toast.success i { color: var(--lime); }
-        .toast.error i { color: #f87171; }
+        .toast { 
+            position: fixed; 
+            bottom: 22px; 
+            right: 22px; 
+            background: var(--green-dark); 
+            color: var(--white); 
+            padding: 13px 18px; 
+            border-radius: 8px; 
+            font-size: .88rem; 
+            box-shadow: 0 4px 16px rgba(0,0,0,.25); 
+            transform: translateY(70px); 
+            opacity: 0; 
+            transition: all .3s; 
+            z-index: 9999; 
+            display: flex; 
+            align-items: center; 
+            gap: 9px; 
+            min-width: 220px; 
+        }
+        .toast.show { 
+            transform: translateY(0); 
+            opacity: 1; 
+        }
+        .toast.success i { 
+            color: var(--lime);
+         }
+        .toast.error i { 
+            color: #f87171;
+         }
 
         /* EMPTY STATE */
-        .empty-state { text-align: center; padding: 48px 20px; color: #bbb; }
-        .empty-state i { font-size: 2.8rem; margin-bottom: 12px; display: block; }
-        .empty-state p { font-size: .9rem; }
+        .empty-state { 
+            text-align: center; 
+            padding: 48px 20px; 
+            color: #bbb;
+         }
+        .empty-state i { 
+            font-size: 2.8rem; 
+            margin-bottom: 12px; 
+            display: block; 
+        }
+        .empty-state p { 
+            font-size: .9rem; 
+        }
 
         /* LOADING */
-        .loading-inline { text-align: center; padding: 40px; color: #bbb; }
-        .loading-inline i { font-size: 2rem; animation: spin 1s linear infinite; }
+        .loading-inline { 
+            text-align: center; 
+            padding: 40px; 
+            color: #bbb;
+         }
+        .loading-inline i { 
+            font-size: 2rem; 
+            animation: spin 1s linear infinite;
+         }
 
         /* SEARCH BAR */
-        .search-row { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
-        .search-row input, .search-row select { padding: 9px 12px; border: 2px solid #ddd; border-radius: 6px; font-size: .88rem; font-family: inherit; }
-        .search-row input { flex: 1; min-width: 180px; }
-        .search-row input:focus, .search-row select:focus { outline: none; border-color: var(--green-light); }
+        .search-row { 
+            display: flex; 
+            gap: 10px; 
+            margin-bottom: 16px; 
+            flex-wrap: wrap; 
+        }
+        .search-row input, .search-row select { 
+            padding: 9px 12px; 
+            border: 2px solid #ddd; 
+            border-radius: 6px; 
+            font-size: .88rem; 
+            font-family: inherit; 
+        }
+        .search-row input { 
+            flex: 1; 
+            min-width: 180px; 
+        }
+        .search-row input:focus, .search-row select:focus { 
+            outline: none; 
+            border-color: var(--green-light); 
+        }
 
         /* INFO NOTE */
-        .info-note { background: rgba(74,139,127,.1); border-left: 4px solid var(--green-light); padding: 12px 16px; border-radius: 0 6px 6px 0; font-size: .84rem; color: var(--charcoal); margin-bottom: 18px; line-height: 1.5; }
-        .info-note i { color: var(--green-light); margin-right: 6px; }
+        .info-note { 
+            background: rgba(74,139,127,.1); 
+            border-left: 4px solid var(--green-light);
+             padding: 12px 16px; 
+             border-radius: 0 6px 6px 0; 
+             font-size: .84rem; 
+             color: var(--charcoal); 
+             margin-bottom: 18px; 
+             line-height: 1.5;
+             }
+        .info-note i { 
+            color: var(--green-light); 
+            margin-right: 6px;
+         }
 
-        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes spin { 
+            to { 
+            transform: rotate(360deg); 
+        } 
+    }
 
         /* IMAGE UPLOAD WIDGET */
-.img-widget { border: 2px solid #eee; border-radius: 8px; overflow: hidden; }
-.img-widget-tabs { display: flex; border-bottom: 2px solid #eee; }
-.img-widget-tab { flex: 1; padding: 9px; text-align: center; font-size: .8rem; font-weight: 600; cursor: pointer; color: #999; background: #fafafa; border: none; font-family: inherit; border-bottom: 3px solid transparent; transition: all .2s; }
-.img-widget-tab.active { color: var(--green-dark); background: #fff; border-bottom-color: var(--lime); }
-.img-widget-body { padding: 14px; }
-.img-tab-pane { display: none; }
-.img-tab-pane.active { display: block; }
-.img-url-field { border: 2px solid #ddd; border-radius: 6px; padding: 10px 12px; width: 100%; font-size: .88rem; font-family: inherit; outline: none; transition: border-color .3s; }
-.img-url-field:focus { border-color: var(--green-light); }
-.img-drop-zone { border: 2px dashed #e0e0e0; border-radius: 6px; padding: 22px; text-align: center; cursor: pointer; transition: all .2s; background: #fafafa; }
-.img-drop-zone:hover, .img-drop-zone.over { border-color: var(--green-light); background: rgba(74,139,127,.05); }
-.img-drop-zone i { font-size: 1.8rem; color: #ccc; display: block; margin-bottom: 8px; }
-.img-drop-zone p { font-size: .82rem; color: #aaa; margin-bottom: 10px; }
-.img-drop-zone input[type="file"] { display: none; }
-.img-choose-btn { display: inline-block; padding: 7px 16px; background: var(--lime); color: var(--charcoal); border-radius: 4px; font-size: .8rem; font-weight: 600; cursor: pointer; }
-.img-preview-wrap { margin-top: 10px; display: none; position: relative; }
-.img-preview-wrap img { width: 100%; max-height: 160px; object-fit: cover; border-radius: 6px; display: block; }
-.img-preview-remove { position: absolute; top: 6px; right: 6px; background: rgba(0,0,0,.55); color: #fff; border: none; border-radius: 50%; width: 26px; height: 26px; cursor: pointer; font-size: .8rem; display: flex; align-items: center; justify-content: center; }
-.img-upload-bar { margin-top: 8px; display: none; }
-.img-upload-bar-track { height: 5px; background: #eee; border-radius: 3px; overflow: hidden; }
-.img-upload-bar-fill { height: 100%; background: var(--lime); width: 0%; transition: width .3s; border-radius: 3px; }
-.img-upload-status { font-size: .75rem; color: #888; margin-top: 4px; }
+.img-widget { 
+    border: 2px solid #eee; 
+    border-radius: 8px; 
+    overflow: hidden; 
+}
+.img-widget-tabs { 
+    display: flex; 
+    border-bottom: 2px solid #eee;
+ }
+.img-widget-tab { 
+    flex: 1; 
+    padding: 9px; 
+    text-align: center; 
+    font-size: .8rem; 
+    font-weight: 600; 
+    cursor: pointer; 
+    color: #999; 
+    background: #fafafa; 
+    border: none; 
+    font-family: inherit; 
+    border-bottom: 3px solid transparent; 
+    transition: all .2s; 
+}
+.img-widget-tab.active { 
+    color: var(--green-dark); 
+    background: #fff; 
+    border-bottom-color: var(--lime); 
+}
+.img-widget-body { 
+    padding: 14px; 
+}
+.img-tab-pane { 
+    display: none;
+ }
+.img-tab-pane.active { 
+    display: block;
+ }
+.img-url-field { 
+    border: 2px solid #ddd; 
+    border-radius: 6px; 
+    padding: 10px 12px; 
+    width: 100%; 
+    font-size: .88rem; 
+    font-family: inherit; 
+    outline: none; 
+    transition: border-color .3s;
+ }
+.img-url-field:focus { 
+    border-color: var(--green-light); 
+}
+.img-drop-zone { 
+    border: 2px dashed #e0e0e0; 
+    border-radius: 6px; 
+    padding: 22px; 
+    text-align: center; 
+    cursor: pointer; 
+    transition: all .2s; 
+    background: #fafafa; 
+}
+.img-drop-zone:hover, .img-drop-zone.over { 
+    border-color: var(--green-light); 
+    background: rgba(74,139,127,.05);
+ }
+.img-drop-zone i { 
+    font-size: 1.8rem; 
+    color: #ccc; 
+    display: block; 
+    margin-bottom: 8px; 
+}
+.img-drop-zone p { 
+    font-size: .82rem; 
+    color: #aaa; 
+    margin-bottom: 10px; 
+}
+.img-drop-zone input[type="file"] { 
+    display: none; 
+}
+.img-choose-btn { 
+    display: inline-block; 
+    padding: 7px 16px; 
+    background: var(--lime); 
+    color: var(--charcoal); 
+    border-radius: 4px; 
+    font-size: .8rem; 
+    font-weight: 600; 
+    cursor: pointer;
+ }
+.img-preview-wrap { 
+    margin-top: 10px; 
+    display: none;
+    position: relative;
+ }
+.img-preview-wrap img { 
+    width: 100%; 
+    max-height: 160px; 
+    object-fit: cover; 
+    border-radius: 6px; 
+    display: block; 
+}
+.img-preview-remove { 
+    position: absolute; 
+    top: 6px; 
+    right: 6px; 
+    background: rgba(0,0,0,.55); 
+    color: #fff; 
+    border: none; 
+    border-radius: 50%; 
+    width: 26px; 
+    height: 26px; 
+    cursor: pointer; 
+    font-size: .8rem; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+ }
+.img-upload-bar { 
+    margin-top: 8px; 
+    display: none; 
+}
+.img-upload-bar-track { 
+    height: 5px; 
+    background: #eee; 
+    border-radius: 3px; 
+    overflow: hidden; 
+}
+.img-upload-bar-fill { 
+    height: 100%; 
+    background: var(--lime); 
+    width: 0%; 
+    transition: width .3s; 
+    border-radius: 3px; 
+}
+.img-upload-status { 
+    font-size: .75rem; 
+    color: #888; 
+    margin-top: 4px;
+ }
+ #logoutBtn {
+    justify-content: center;
+}
+.table-loading {
+    text-align: center;
+    color: #aaa;
+    padding: 20px;
+}
+#msgTableWrap,
+#msgEmpty {
+    display: none;
+}
+#aboutForms {
+    display: none;
+}
 
+.admin-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.07);
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.admin-card-header {
+    padding: 14px 20px;
+    background: #1a3d34;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-card-title {
+    font-size: .95rem;
+}
+
+.admin-card-icon {
+    color: #b4d333;
+}
+
+.admin-card-body {
+    padding: 22px;
+}
+
+.values-edit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+#saveAboutValuesBtn {
+    margin-top: 16px;
+}
+#slidesGrid,
+#slidesEmpty {
+    display: none;
+}
+#teamGrid, #teamEmpty,
+#servicesGrid, #servicesEmpty,
+#toolsGrid, #toolsEmpty,
+#blogGrid, #blogEmpty {
+    display: none;
+}
+#contactInfoForm {
+    display: none;
+}
+.form-hint {
+    color: #888;
+    font-size: .78rem;
+    margin-top: 4px;
+    display: block;
+}
+
+#slideUnpublishBtn {
+    display: none;
+}
     </style>
 </head>
 <body>
@@ -680,9 +1014,9 @@
                     <span>Administrator</span>
                 </div>
             </div>
-            <button class="btn btn-ghost btn-full" id="logoutBtn" style="justify-content:center">
-                <i class="fas fa-sign-out-alt"></i> Sign Out
-            </button>
+           <button class="btn btn-ghost btn-full" id="logoutBtn">
+          <i class="fas fa-sign-out-alt"></i> Logout
+         </button>
         </div>
     </aside>
 
@@ -712,10 +1046,24 @@
                     </div>
                     <div class="card-body">
                         <div class="table-wrap">
-                            <table>
-                                <thead><tr><th>Name</th><th>Email</th><th>Subject</th><th>Date</th><th>Status</th></tr></thead>
-                                <tbody id="recentMsgBody"><tr><td colspan="5" style="text-align:center;color:#aaa;padding:20px">Loading...</td></tr></tbody>
+    
+                                 <table>
+                                <thead>
+                                    <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Subject</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                  </tr>
+                               </thead>
+                                <tbody id="recentMsgBody">
+                                    <tr>
+                                <td colspan="5" class="table-loading">Loading...</td>
+                            </tr>
+                        </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>
@@ -739,13 +1087,13 @@
                             </select>
                         </div>
                         <div id="msgLoading" class="loading-inline"><i class="fas fa-spinner"></i></div>
-                        <div class="table-wrap" id="msgTableWrap" style="display:none">
+                        <div class="table-wrap" id="msgTableWrap">
                             <table>
                                 <thead><tr><th>Date</th><th>Name</th><th>Email</th><th>Subject</th><th>Status</th><th>Actions</th></tr></thead>
                                 <tbody id="msgBody"></tbody>
                             </table>
                         </div>
-                        <div id="msgEmpty" class="empty-state" style="display:none"><i class="fas fa-inbox"></i><p>No messages found</p></div>
+                        <div id="msgEmpty" class="empty-state"><i class="fas fa-inbox"></i><p>No messages found</p></div>
                     </div>
                 </div>
             </div>
@@ -757,22 +1105,22 @@
                     These slides appear in the homepage hero slider. Each slide has an image URL, heading, subheading, and button link. Use <strong>Display Order</strong> (0, 1, 2…) to control sequence.
                 </div>
                 <div id="slidesLoading" class="loading-inline"><i class="fas fa-spinner"></i></div>
-                <div class="items-grid" id="slidesGrid" style="display:none"></div>
-                <div id="slidesEmpty" class="empty-state" style="display:none"><i class="fas fa-images"></i><p>No hero slides yet. Add one!</p></div>
+                <div class="items-grid" id="slidesGrid"></div>
+                <div id="slidesEmpty" class="empty-state"><i class="fas fa-images"></i><p>No hero slides yet. Add one!</p></div>
             </div>
 
-            <!-- ABOUT PAGE -->
+           <!-- ABOUT PAGE -->
 <div class="panel" id="panel-about">
     <div class="info-note"><i class="fas fa-info-circle"></i> Manage all content on the <strong>About Us</strong> page — hero text, mission section, and values cards.</div>
     <div id="aboutLoading" class="loading-inline"><i class="fas fa-spinner"></i></div>
-    <div id="aboutForms" style="display:none">
+    <div id="aboutForms">
 
         <!-- Hero -->
-        <div style="background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.07);margin-bottom:20px;overflow:hidden;">
-            <div style="padding:14px 20px;background:#1a3d34;color:#fff;display:flex;align-items:center;gap:10px;">
-                <i class="fas fa-star" style="color:#b4d333"></i><h3 style="font-size:.95rem">Page Hero (Title &amp; Subtitle)</h3>
+        <div class="admin-card">
+            <div class="admin-card-header">
+                <i class="fas fa-star admin-card-icon"></i><h3 class="admin-card-title">Page Hero (Title &amp; Subtitle)</h3>
             </div>
-            <div style="padding:22px">
+            <div class="admin-card-body">
                 <div class="form-group"><label>Hero Title</label><input type="text" id="aboutHeroTitle" placeholder="e.g. About WildData"></div>
                 <div class="form-group"><label>Title Highlight (lime coloured word)</label><input type="text" id="aboutHeroHighlight" placeholder="e.g. WildData"></div>
                 <div class="form-group"><label>Subtitle / Description</label><textarea id="aboutHeroSubtitle" rows="2"></textarea></div>
@@ -781,11 +1129,11 @@
         </div>
 
         <!-- Mission -->
-        <div style="background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.07);margin-bottom:20px;overflow:hidden;">
-            <div style="padding:14px 20px;background:#1a3d34;color:#fff;display:flex;align-items:center;gap:10px;">
-                <i class="fas fa-bullseye" style="color:#b4d333"></i><h3 style="font-size:.95rem">Our Mission</h3>
+        <div class="admin-card">
+            <div class="admin-card-header">
+                <i class="fas fa-bullseye admin-card-icon"></i><h3 class="admin-card-title">Our Mission</h3>
             </div>
-            <div style="padding:22px">
+            <div class="admin-card-body">
                 <div class="form-group"><label>Section Title</label><input type="text" id="missionTitle" placeholder="Our"></div>
                 <div class="form-group"><label>Title Highlight (lime word)</label><input type="text" id="missionHighlight" placeholder="Mission"></div>
                 <div class="form-group"><label>Paragraph 1</label><textarea id="missionP1" rows="3"></textarea></div>
@@ -797,58 +1145,57 @@
         </div>
 
         <!-- Values -->
-        <div style="background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.07);margin-bottom:20px;overflow:hidden;">
-            <div style="padding:14px 20px;background:#1a3d34;color:#fff;display:flex;align-items:center;gap:10px;">
-                <i class="fas fa-leaf" style="color:#b4d333"></i><h3 style="font-size:.95rem">Our Values (4 Cards)</h3>
+        <div class="admin-card">
+            <div class="admin-card-header">
+                <i class="fas fa-leaf admin-card-icon"></i><h3 class="admin-card-title">Our Values (4 Cards)</h3>
             </div>
-            <div style="padding:22px">
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;" id="valuesEditGrid"></div>
-                <button class="btn btn-sm" style="margin-top:16px" id="saveAboutValuesBtn"><i class="fas fa-save"></i> Save Values</button>
+            <div class="admin-card-body">
+                <div class="values-edit-grid" id="valuesEditGrid"></div>
+                <button class="btn btn-sm" id="saveAboutValuesBtn"><i class="fas fa-save"></i> Save Values</button>
             </div>
         </div>
 
     </div>
 </div>
 
-            <!-- TEAM -->
-            <div class="panel" id="panel-team">
-                <div id="teamLoading" class="loading-inline"><i class="fas fa-spinner"></i></div>
-                <div class="items-grid" id="teamGrid" style="display:none"></div>
-                <div id="teamEmpty" class="empty-state" style="display:none"><i class="fas fa-users"></i><p>No team members yet. Add one!</p></div>
-            </div>
+           <!-- TEAM -->
+<div class="panel" id="panel-team">
+    <div id="teamLoading" class="loading-inline"><i class="fas fa-spinner"></i></div>
+    <div class="items-grid" id="teamGrid"></div>
+    <div id="teamEmpty" class="empty-state"><i class="fas fa-users"></i><p>No team members yet. Add one!</p></div>
+</div>
 
-            <!-- SERVICES -->
-            <div class="panel" id="panel-services">
-                <div id="servicesLoading" class="loading-inline"><i class="fas fa-spinner"></i></div>
-                <div class="items-grid" id="servicesGrid" style="display:none"></div>
-                <div id="servicesEmpty" class="empty-state" style="display:none"><i class="fas fa-cogs"></i><p>No services yet. Add one!</p></div>
-            </div>
+<!-- SERVICES -->
+<div class="panel" id="panel-services">
+    <div id="servicesLoading" class="loading-inline"><i class="fas fa-spinner"></i></div>
+    <div class="items-grid" id="servicesGrid"></div>
+    <div id="servicesEmpty" class="empty-state"><i class="fas fa-cogs"></i><p>No services yet. Add one!</p></div>
+</div>
 
-            <!-- TOOLS -->
-            <div class="panel" id="panel-tools">
-                <div class="info-note">
-                    <i class="fas fa-info-circle"></i>
-                    Manage the annotation tools shown on the Tools page. Set <strong>Type</strong> to <em>Primary</em> for featured tools (shown with full detail sections: CVAT, SurveyScope, Scout) or <em>Recommended</em> for the additional tools grid at the bottom of the page.
-                </div>
-                <div id="toolsLoading" class="loading-inline"><i class="fas fa-spinner"></i></div>
-                <div class="items-grid" id="toolsGrid" style="display:none"></div>
-                <div id="toolsEmpty" class="empty-state" style="display:none"><i class="fas fa-tools"></i><p>No tools yet. Add one!</p></div>
-            </div>
+<!-- TOOLS -->
+<div class="panel" id="panel-tools">
+    <div class="info-note">
+        <i class="fas fa-info-circle"></i>
+        Manage the annotation tools shown on the Tools page. Set <strong>Type</strong> to <em>Primary</em> for featured tools (shown with full detail sections: CVAT, SurveyScope, Scout) or <em>Recommended</em> for the additional tools grid at the bottom of the page.
+    </div>
+    <div id="toolsLoading" class="loading-inline"><i class="fas fa-spinner"></i></div>
+    <div class="items-grid" id="toolsGrid"></div>
+    <div id="toolsEmpty" class="empty-state"><i class="fas fa-tools"></i><p>No tools yet. Add one!</p></div>
+</div>
 
-            <!-- BLOG -->
-            <div class="panel" id="panel-blog">
-                <div id="blogLoading" class="loading-inline"><i class="fas fa-spinner"></i></div>
-                <div class="items-grid" id="blogGrid" style="display:none"></div>
-                <div id="blogEmpty" class="empty-state" style="display:none"><i class="fas fa-newspaper"></i><p>No blog posts yet. Add one!</p></div>
-            </div>
-
+<!-- BLOG -->
+<div class="panel" id="panel-blog">
+    <div id="blogLoading" class="loading-inline"><i class="fas fa-spinner"></i></div>
+    <div class="items-grid" id="blogGrid"></div>
+    <div id="blogEmpty" class="empty-state"><i class="fas fa-newspaper"></i><p>No blog posts yet. Add one!</p></div>
+</div>
             <!-- CONTACT INFO -->
             <div class="panel" id="panel-contactinfo">
                 <div class="card">
                     <div class="card-header"><h2>Site Contact Information</h2></div>
                     <div class="card-body">
                         <div id="ciLoading" class="loading-inline"><i class="fas fa-spinner"></i></div>
-                        <form id="contactInfoForm" style="display:none">
+                        <form id="contactInfoForm">
                             <div class="ci-grid">
                                 <div class="form-group"><label>Phone Number</label><input type="text" id="ciPhone" placeholder="+255..."></div>
                                 <div class="form-group"><label>Email Address</label><input type="email" id="ciEmail" placeholder="info@wilddata.com"></div>
@@ -895,7 +1242,7 @@
 
                 <label>Heading Highlight (coloured part)</label>
                 <input type="text" id="slideHighlight" placeholder="e.g. Solutions">
-                <small style="color:#888;font-size:.78rem;margin-top:4px;display:block">This word/phrase will be shown in lime green inside the heading</small>
+                <small class="form-hint">This word/phrase will be shown in lime green inside the heading</small>
             </div>
             <div class="form-group"><label>Subheading / Description</label><textarea id="slideSubheading" rows="3" placeholder="Short description shown below the heading..."></textarea></div>
             <div class="form-group"><label>Button Text</label><input type="text" id="slideButtonText" placeholder="e.g. Our Services"></div>
@@ -904,7 +1251,7 @@
         </div>
         <div class="modal-footer">
            <button class="btn btn-sm btn-outline" onclick="closeModal('slideModal')">Cancel</button>
-            <button class="btn btn-sm btn-danger" id="slideUnpublishBtn" style="display:none"><i class="fas fa-eye-slash"></i> Unpublish</button>
+            <button class="btn btn-sm btn-danger" id="slideUnpublishBtn"><i class="fas fa-eye-slash"></i> Unpublish</button>
              <button class="btn btn-sm" id="slideSaveBtn">Save Slide</button>
         </div>
     </div>
@@ -924,7 +1271,7 @@
         </div>
         <div class="modal-footer">
             <button class="btn btn-sm btn-outline" onclick="closeModal('teamModal')">Cancel</button>
-            <button class="btn btn-sm btn-danger" id="teamUnpublishBtn" style="display:none"><i class="fas fa-eye-slash"></i> Unpublish</button>
+            <button class="btn btn-sm btn-danger" id="teamUnpublishBtn"><i class="fas fa-eye-slash"></i> Unpublish</button>
             <button class="btn btn-sm" id="teamSaveBtn">Save Member</button>
         </div>
     </div>
@@ -944,7 +1291,7 @@
         </div>
         <div class="modal-footer">
            <button class="btn btn-sm btn-outline" onclick="closeModal('serviceModal')">Cancel</button>
-           <button class="btn btn-sm btn-danger" id="serviceUnpublishBtn" style="display:none"><i class="fas fa-eye-slash"></i> Unpublish</button>
+           <button class="btn btn-sm btn-danger" id="serviceUnpublishBtn"><i class="fas fa-eye-slash"></i> Unpublish</button>
         <button class="btn btn-sm" id="serviceSaveBtn">Save Service</button>
         </div>
     </div>
@@ -972,13 +1319,13 @@
             <div id="toolFeaturesGroup" class="form-group">
                 <label>Key Features (one per line)</label>
                 <textarea id="toolFeatures" rows="5" placeholder="Advanced video frame annotation&#10;Multiple annotation formats&#10;Track wildlife across video sequences"></textarea>
-                <small style="color:#888;font-size:.78rem;margin-top:4px;display:block">Each line becomes a bullet point on the Tools page (Primary tools only)</small>
+                <small class="form-hint">Each line becomes a bullet point on the Tools page (Primary tools only)</small>
             </div>
             <div class="form-group"><label>Display Order</label><input type="number" id="toolOrder" value="0" min="0"></div>
         </div>
         <div class="modal-footer">
       <button class="btn btn-sm btn-outline" onclick="closeModal('toolModal')">Cancel</button>
-      <button class="btn btn-sm btn-danger" id="toolUnpublishBtn" style="display:none"><i class="fas fa-eye-slash"></i> Unpublish</button>
+      <button class="btn btn-sm btn-danger" id="toolUnpublishBtn"><i class="fas fa-eye-slash"></i> Unpublish</button>
       <button class="btn btn-sm" id="toolSaveBtn">Save Tool</button>
         </div>
     </div>
@@ -999,7 +1346,7 @@
         </div>
         <div class="modal-footer">
       <button class="btn btn-sm btn-outline" onclick="closeModal('blogModal')">Cancel</button>
-      <button class="btn btn-sm btn-danger" id="blogUnpublishBtn" style="display:none"><i class="fas fa-eye-slash"></i> Unpublish</button>
+      <button class="btn btn-sm btn-danger" id="blogUnpublishBtn"><i class="fas fa-eye-slash"></i> Unpublish</button>
       <button class="btn btn-sm" id="blogSaveBtn">Save Post</button>
         </div>
     </div>
@@ -1007,9 +1354,9 @@
 
 <!-- Confirm Delete -->
 <div class="modal-overlay" id="confirmModal">
-    <div class="modal-box" style="max-width:420px">
+    <div class="modal-box modal-box-sm">
         <div class="modal-head"><h3>Confirm Delete</h3><span class="modal-close" onclick="closeModal('confirmModal')">&times;</span></div>
-        <div class="modal-body"><p id="confirmText" style="line-height:1.6">Are you sure you want to delete this item? This cannot be undone.</p></div>
+        <div class="modal-body"><p id="confirmText" class="confirm-text">Are you sure you want to delete this item? This cannot be undone.</p></div>
         <div class="modal-footer">
             <button class="btn btn-sm btn-outline" onclick="closeModal('confirmModal')">Cancel</button>
             <button class="btn btn-sm btn-danger" id="confirmDeleteBtn"><i class="fas fa-trash"></i> Delete</button>

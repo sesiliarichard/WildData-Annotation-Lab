@@ -249,14 +249,14 @@
             position: relative;
             overflow: hidden;
         }
-        .dropdown-promo::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: url('https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=400&q=80') center/cover no-repeat;
-            opacity: 0.25;
-            border-radius: 10px;
-        }
+     .dropdown-promo::before {
+         content: '';
+          position: absolute;
+          inset: 0;
+          background: url('images/Excellent IT Services.jpeg') center/cover no-repeat;
+          opacity: 0.5;
+          border-radius: 10px;
+     }
         .promo-content { 
             position: relative; 
             z-index: 1; 
@@ -1282,6 +1282,15 @@
                 text-align: center; 
             } 
         }
+        .process-image {
+    height: auto;
+}
+.process-image img {
+    height: auto;
+    object-fit: contain;
+}
+
+
     </style>
 </head>
 <body>
@@ -1482,7 +1491,7 @@
         </div></div></section>
         <section class="content-section"><div class="container"><div class="content-container">
             <div class="content-text"><h2>Our <span>Process</span></h2><p><strong>How We Deliver Excellence</strong></p><p>Our annotation process follows a rigorous methodology to ensure the highest quality results:</p><ul class="process-list"><li>Initial consultation to understand project requirements</li><li>Data assessment and quality evaluation</li><li>Annotation guideline development</li><li>Multi-stage annotation with quality checks</li><li>Final validation and delivery</li></ul><p>We work closely with our clients throughout the process to ensure the final output meets their specific research needs.</p><a href="#" class="btn nav-link" data-page="contact">Get Started <i class="fas fa-arrow-right"></i></a></div>
-            <div class="content-image"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80" alt="Data Process"></div>
+            <div class="content-image process-image"><img src="images/process.jpeg" alt="Data Process"></div>
         </div></div></section>
     </div>
 
@@ -1507,14 +1516,14 @@
             </div></div></section>
         </div>
 
-        <section class="tools-recommend"><div class="container"><h2>Additional Tools We Recommend</h2><p>Depending on your project requirements, we also work with these professional annotation platforms</p><div class="tools-grid">
-            <div class="tool-card"><div class="tool-icon"><img src="images/labelimg.jpg" alt="LabelImg"></div><h3>LabelImg</h3><p>Simple and efficient tool for creating bounding box annotations.</p><a href="https://github.com/tzutalin/labelImg" target="_blank" rel="noopener noreferrer" class="tool-link">Learn More <i class="fas fa-arrow-right"></i></a></div>
-            <div class="tool-card"><div class="tool-icon"><img src="images/Labelbox.png" alt="Labelbox"></div><h3>Labelbox</h3><p>Enterprise-grade platform for managing large annotation teams.</p><a href="https://labelbox.com/" target="_blank" rel="noopener noreferrer" class="tool-link">Learn More <i class="fas fa-arrow-right"></i></a></div>
-            <div class="tool-card"><div class="tool-icon"><img src="images/Roboflow.jpg" alt="Roboflow"></div><h3>Roboflow</h3><p>Complete solution for dataset preparation, annotation, and augmentation.</p><a href="https://roboflow.com/" target="_blank" rel="noopener noreferrer" class="tool-link">Learn More <i class="fas fa-arrow-right"></i></a></div>
-            <div class="tool-card"><div class="tool-icon"><img src="images/Wildlife Insights.jpg" alt="Wildlife Insights"></div><h3>Wildlife Insights</h3><p>Specialized platform for camera trap data with AI-assisted species identification.</p><a href="https://www.wildlifeinsights.org/" target="_blank" rel="noopener noreferrer" class="tool-link">Learn More <i class="fas fa-arrow-right"></i></a></div>
-            <div class="tool-card"><div class="tool-icon"><img src="images/VGG Image Annotator.jpg" alt="VGG Image Annotator"></div><h3>VGG Image Annotator</h3><p>Lightweight browser-based tool for manual annotation. No installation required.</p><a href="https://www.robots.ox.ac.uk/~vgg/software/via/" target="_blank" rel="noopener noreferrer" class="tool-link">Learn More <i class="fas fa-arrow-right"></i></a></div>
-            <div class="tool-card"><div class="tool-icon"><img src="images/Timelapse.jpg" alt="Timelapse"></div><h3>Timelapse</h3><p>Desktop application for reviewing and annotating camera trap images.</p><a href="http://saul.cpsc.ucalgary.ca/timelapse/" target="_blank" rel="noopener noreferrer" class="tool-link">Learn More <i class="fas fa-arrow-right"></i></a></div>
-        </div></div></section>
+        <section class="tools-recommend">
+            <div class="container">
+                <h2>Recommended Tools</h2>
+                <p>Additional platforms we recommend for wildlife annotation projects.</p>
+                <div class="tools-grid"></div>
+            </div>
+        </section>
+
         <section class="mission"><div class="container cta-container"><h2>Need Help Choosing the Right Tool?</h2><p class="cta-text">Our team of experts can recommend the best annotation platform for your specific wildlife research project.</p><a href="#" class="btn nav-link" data-page="contact">Contact Our Team <i class="fas fa-arrow-right"></i></a></div></section>
     </div>
 
@@ -1556,11 +1565,11 @@
                 <div class="footer-column"><h3>Our Services</h3><ul><li><a href="#" class="nav-link" data-page="services">Wildlife Image Annotation</a></li><li><a href="#" class="nav-link" data-page="services">ML Dataset Preparation</a></li></ul></div>
                 <div class="footer-column"><h3>Contact Us</h3><p><i class="fas fa-phone"></i> +255717240523</p><p><i class="fas fa-envelope"></i> mmbagaj97@gmail.com</p><p><i class="fas fa-map-marker-alt"></i> Safari Hotel - Room 411, Arusha, Tanzania</p></div>
             </div>
-            <div class="copyright"><p>&copy; 2025 WildData Annotation Lab. All rights reserved.</p></div>
+            <div class="copyright"><p>&copy; 2026 WildData Annotation Lab. All rights reserved.</p></div>
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>emailjs.init("Vzixao8TO3nbwZ15L");</script>
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
@@ -1835,7 +1844,9 @@
                 const snap = await getDocs(query(collection(db, 'tools'), orderBy('order', 'asc')));
                 const items = snap.docs.map(d => d.data()).filter(t => t.type === 'recommended' && t.published !== false);
                 if (!items.length) return;
-                document.querySelector('.tools-grid').innerHTML = items.map(t => `
+                const toolsGrid = document.querySelector('.tools-grid');
+                if (!toolsGrid) return;
+                toolsGrid.innerHTML = items.map(t => `
                     <div class="tool-card">
                         <div class="tool-icon">
                             ${t.image ? `<img src="${t.image}" alt="${t.name}">` : `<i class="${t.icon||'fas fa-tools'}" style="font-size:2rem;color:#4a8b7f"></i>`}
