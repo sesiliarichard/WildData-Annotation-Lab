@@ -1242,12 +1242,16 @@
             display: inline-block; 
             margin-top: 15px; 
         }
-        .admin-img { 
-            width: 150px; 
-            height: auto; 
-            border-radius: 8px; 
-            transition: transform 0.3s ease; 
-        }
+       .admin-img { 
+    width: 150px; 
+    height: auto; 
+    border-radius: 8px; 
+    transition: transform 0.3s ease;
+    opacity: 0;
+}
+.admin-img:hover {
+    opacity: 0.3;
+}
 
         @media (max-width: 992px) { 
             .content-container, .mission-container, .contact-container { 
