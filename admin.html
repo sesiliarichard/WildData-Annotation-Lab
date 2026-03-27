@@ -968,6 +968,21 @@
 #slideUnpublishBtn {
     display: none;
 }
+#whatWeOfferForm,
+#footerSettingsForm,
+#processForm,
+#ddAboutForm,
+#ddServicesForm,
+#ddToolsForm {
+    display: none;
+}
+.form-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
     </style>
 </head>
 <body>
@@ -1005,6 +1020,11 @@
             <div class="nav-item" data-panel="tools"><i class="fas fa-tools"></i> Tools</div>
             <div class="nav-item" data-panel="blog"><i class="fas fa-newspaper"></i> Blog / Research</div>
             <div class="nav-item" data-panel="contactinfo"><i class="fas fa-address-card"></i> Contact Info</div>
+            <div class="nav-section">Appearance</div>
+            <div class="nav-item" data-panel="footer"><i class="fas fa-shoe-prints"></i> Footer</div>
+            <div class="nav-item" data-panel="whatweoffer"><i class="fas fa-briefcase"></i> What We Offer</div>
+            <div class="nav-item" data-panel="process"><i class="fas fa-tasks"></i> Our Process</div>
+            <div class="nav-item" data-panel="dropdowns"><i class="fas fa-bars"></i> Dropdown Promos</div>
         </nav>
         <div class="sidebar-footer">
             <div class="sidebar-user">
@@ -1189,6 +1209,191 @@
     <div class="items-grid" id="blogGrid"></div>
     <div id="blogEmpty" class="empty-state"><i class="fas fa-newspaper"></i><p>No blog posts yet. Add one!</p></div>
 </div>
+<!-- WHAT WE OFFER -->
+<div class="panel" id="panel-whatweoffer">
+    <div class="card">
+        <div class="card-header"><h2>What We Offer Section (Home Page)</h2></div>
+        <div class="card-body">
+            <div class="info-note">
+                <i class="fas fa-info-circle"></i>
+                This controls the "What We Offer" section on the Home page — the heading, subtitle, description text, and the image on the right side.
+            </div>
+            <div id="whatWeOfferLoading" class="loading-inline"><i class="fas fa-spinner"></i></div>
+            <form id="whatWeOfferForm">
+                <div class="form-group">
+                    <label>Section Heading</label>
+                    <input type="text" id="wwoHeading" placeholder="WHAT WE OFFER">
+                </div>
+                <div class="form-group">
+                    <label>Subtitle (bold teal text)</label>
+                    <input type="text" id="wwoSubtitle" placeholder="Excellent IT Services">
+                </div>
+                <div class="form-group">
+                    <label>Description Paragraph</label>
+                    <textarea id="wwoDescription" rows="4" placeholder="WildData Annotation Lab is dedicated to advancing wildlife research..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Section Image (right side)</label>
+                    <div id="wwoImgWidget"></div>
+                </div>
+                <div class="form-actions">
+           <button type="submit" class="btn"><i class="fas fa-save"></i> Save What We Offer</button>
+          <button type="button" class="btn btn-sm" id="wwoPublishBtn" onclick="toggleSectionPublish('whatWeOffer','wwoPublishBtn')"><i class="fas fa-eye"></i> Publish</button>
+           </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER SETTINGS -->
+<div class="panel" id="panel-footer">
+    <div class="card">
+        <div class="card-header"><h2>Footer Settings</h2></div>
+        <div class="card-body">
+            <div id="footerLoading" class="loading-inline"><i class="fas fa-spinner"></i></div>
+            <form id="footerSettingsForm">
+                <div class="form-group">
+                    <label>Footer Tagline (text below WildData logo)</label>
+                    <textarea id="footerTagline" rows="2" placeholder="Advancing wildlife research through accurate data annotation and analytics."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Admin Button Image URL</label>
+                    <div id="footerAdminImgWidget"></div>
+                    <small class="form-hint">This is the admin office button image shown in the footer</small>
+                </div>
+                <div class="form-group">
+                    <label>Copyright Text</label>
+                    <input type="text" id="footerCopyright" placeholder="© 2026 WildData Annotation Lab. All rights reserved.">
+                </div>
+              <div class="form-actions">
+             <button type="submit" class="btn"><i class="fas fa-save"></i> Save Footer Settings</button>
+            <button type="button" class="btn btn-sm" id="footerPublishBtn" onclick="toggleSectionPublish('footerSettings','footerPublishBtn')"><i class="fas fa-eye"></i> Publish</button>
+          </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- OUR PROCESS SECTION -->
+<div class="panel" id="panel-process">
+    <div class="card">
+        <div class="card-header"><h2>Our Process Section (Services Page)</h2></div>
+        <div class="card-body">
+            <div class="info-note">
+                <i class="fas fa-info-circle"></i>
+                This controls the "Our Process" section on the Services page — the heading, bullet steps, and the image on the right side.
+            </div>
+            <div id="processLoading" class="loading-inline"><i class="fas fa-spinner"></i></div>
+            <form id="processForm">
+                <div class="form-group">
+                    <label>Section Title</label>
+                    <input type="text" id="processTitle" placeholder="Our">
+                </div>
+                <div class="form-group">
+                    <label>Title Highlight (lime coloured word)</label>
+                    <input type="text" id="processHighlight" placeholder="Process">
+                </div>
+                <div class="form-group">
+                    <label>Subtitle (bold green text)</label>
+                    <input type="text" id="processSubtitle" placeholder="How We Deliver Excellence">
+                </div>
+                <div class="form-group">
+                    <label>Intro Paragraph</label>
+                    <textarea id="processIntro" rows="3" placeholder="Our annotation process follows a rigorous methodology..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Process Steps (one per line — these become bullet points)</label>
+                    <textarea id="processSteps" rows="7" placeholder="Initial consultation to understand project requirements&#10;Data assessment and quality evaluation&#10;Annotation guideline development&#10;Multi-stage annotation with quality checks&#10;Final validation and delivery"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Closing Paragraph</label>
+                    <textarea id="processClosing" rows="2" placeholder="We work closely with our clients throughout the process..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Process Image (right side)</label>
+                    <div id="processImgWidget"></div>
+                </div>
+                <div class="form-actions">
+                <button type="submit" class="btn"><i class="fas fa-save"></i> Save Process Section</button>
+               <button type="button" class="btn btn-sm" id="processPublishBtn" onclick="toggleSectionPublish('processSection','processPublishBtn')"><i class="fas fa-eye"></i> Publish</button>
+             </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- DROPDOWN PROMO CARDS -->
+<div class="panel" id="panel-dropdowns">
+    <div class="info-note">
+        <i class="fas fa-info-circle"></i>
+        These control the promo cards (right side image + text + button) that appear inside the navigation dropdown menus.
+    </div>
+    <div class="card">
+        <div class="card-header"><h2>About Dropdown Promo</h2></div>
+        <div class="card-body">
+            <div id="ddAboutLoading" class="loading-inline"><i class="fas fa-spinner"></i></div>
+            <form id="ddAboutForm">
+                <div class="form-group">
+                    <label>Promo Background Image</label>
+                    <div id="ddAboutImgWidget"></div>
+                </div>
+                <div class="form-group">
+                    <label>Promo Heading Text</label>
+                    <input type="text" id="ddAboutText" placeholder="Advancing wildlife research through accurate data annotation">
+                </div>
+                <div class="form-group">
+                    <label>Button Text</label>
+                    <input type="text" id="ddAboutBtn" placeholder="Get In Touch">
+                </div>
+                <button type="submit" class="btn btn-sm"><i class="fas fa-save"></i> Save</button>
+            </form>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header"><h2>Services Dropdown Promo</h2></div>
+        <div class="card-body">
+            <div id="ddServicesLoading" class="loading-inline"><i class="fas fa-spinner"></i></div>
+           <form id="ddServicesForm">
+                <div class="form-group">
+                    <label>Promo Background Image</label>
+                    <div id="ddServicesImgWidget"></div>
+                </div>
+                <div class="form-group">
+                    <label>Promo Heading Text</label>
+                    <input type="text" id="ddServicesText" placeholder="Specialized annotation services for wildlife research & conservation">
+                </div>
+                <div class="form-group">
+                    <label>Button Text</label>
+                    <input type="text" id="ddServicesBtn" placeholder="Start a Project">
+                </div>
+                <button type="submit" class="btn btn-sm"><i class="fas fa-save"></i> Save</button>
+            </form>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header"><h2>Tools Dropdown Promo</h2></div>
+        <div class="card-body">
+            <div id="ddToolsLoading" class="loading-inline"><i class="fas fa-spinner"></i></div>
+           <form id="ddToolsForm">
+                <div class="form-group">
+                    <label>Promo Background Image</label>
+                    <div id="ddToolsImgWidget"></div>
+                </div>
+                <div class="form-group">
+                    <label>Promo Heading Text</label>
+                    <input type="text" id="ddToolsText" placeholder="Industry-leading annotation tools for every wildlife project">
+                </div>
+                <div class="form-group">
+                    <label>Button Text</label>
+                    <input type="text" id="ddToolsBtn" placeholder="Get Advice">
+                </div>
+                <button type="submit" class="btn btn-sm"><i class="fas fa-save"></i> Save</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
             <!-- CONTACT INFO -->
             <div class="panel" id="panel-contactinfo">
                 <div class="card">
@@ -1509,6 +1714,12 @@ function initWidgets() {
     W.tool    = makeImgWidget('toolImgWidget',    'tools');
     W.blog    = makeImgWidget('blogImgWidget',    'blog');
     W.mission = makeImgWidget('missionImgWidget', 'about');
+    W.wwo = makeImgWidget('wwoImgWidget', 'whatweoffer');
+    W.footerAdmin = makeImgWidget('footerAdminImgWidget', 'footer');
+    W.process     = makeImgWidget('processImgWidget', 'process');
+    W.dd_about    = makeImgWidget('ddAboutImgWidget', 'dropdowns');
+    W.dd_services = makeImgWidget('ddServicesImgWidget', 'dropdowns');
+    W.dd_tools    = makeImgWidget('ddToolsImgWidget', 'dropdowns');
 }
 
 // ── AUTH ──────────────────────────────────────────
@@ -1537,6 +1748,13 @@ function initDashboard() {
     loadTools();
     loadBlog();
     loadContactInfo();
+    loadWhatWeOffer();
+    loadFooterSettings();
+    loadProcess();
+    loadDropdownPromos();
+    loadSectionPublishState('whatWeOffer', 'wwoPublishBtn');
+    loadSectionPublishState('footerSettings', 'footerPublishBtn');
+    loadSectionPublishState('processSection', 'processPublishBtn');
 }
 
 // ── NAVIGATION ────────────────────────────────────
@@ -1561,7 +1779,11 @@ window.switchPanel = function(name) {
         services: 'Services',
         tools: 'Tools',
         blog: 'Blog / Research Posts',
-        contactinfo: 'Contact Information'
+        contactinfo: 'Contact Information',
+        whatweoffer: 'What We Offer Section',
+        footer:    'Footer Settings',
+        process:   'Our Process Section',
+       dropdowns: 'Dropdown Promo Cards'
     };
     document.getElementById('topbarTitle').textContent = titles[name] || name;
 
@@ -2233,6 +2455,140 @@ document.getElementById('blogSaveBtn').addEventListener('click', async () => {
     } catch { showToast('Error saving. Try again.', 'error'); }
 });
 
+// ── WHAT WE OFFER ─────────────────────────────────
+async function loadWhatWeOffer() {
+    try {
+        const snap = await getDoc(doc(db, 'siteSettings', 'whatWeOffer'));
+        document.getElementById('whatWeOfferLoading').style.display = 'none';
+        document.getElementById('whatWeOfferForm').style.display = 'block';
+        if (snap.exists()) {
+            const d = snap.data();
+            document.getElementById('wwoHeading').value = d.heading || '';
+            document.getElementById('wwoSubtitle').value = d.subtitle || '';
+            document.getElementById('wwoDescription').value = d.description || '';
+            if (d.image) W.wwo.set(d.image);
+        }
+    } catch(err) { console.error(err); }
+}
+
+document.getElementById('whatWeOfferForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    try {
+        await setDoc(doc(db, 'siteSettings', 'whatWeOffer'), {
+            heading: document.getElementById('wwoHeading').value.trim(),
+            subtitle: document.getElementById('wwoSubtitle').value.trim(),
+            description: document.getElementById('wwoDescription').value.trim(),
+            image: W.wwo.get(),
+            published: true,
+            updatedAt: serverTimestamp()
+        });
+        showToast('What We Offer saved!', 'success');
+        loadWhatWeOffer();
+    } catch { showToast('Error saving.', 'error'); }
+});
+// ── FOOTER SETTINGS ───────────────────────────────
+async function loadFooterSettings() {
+    try {
+        const snap = await getDoc(doc(db, 'siteSettings', 'footerSettings'));
+        document.getElementById('footerLoading').style.display = 'none';
+        document.getElementById('footerSettingsForm').style.display = 'block';
+        if (snap.exists()) {
+            const d = snap.data();
+            document.getElementById('footerTagline').value = d.tagline || '';
+            document.getElementById('footerCopyright').value = d.copyright || '';
+            if (d.adminImage) W.footerAdmin.set(d.adminImage);
+        }
+    } catch(err) { console.error(err); }
+}
+
+document.getElementById('footerSettingsForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    try {
+        await setDoc(doc(db, 'siteSettings', 'footerSettings'), {
+            tagline: document.getElementById('footerTagline').value.trim(),
+            copyright: document.getElementById('footerCopyright').value.trim(),
+            adminImage: W.footerAdmin.get(),
+            published: true, 
+            updatedAt: serverTimestamp()
+        });
+        showToast('Footer settings saved!', 'success');
+    } catch { showToast('Error saving.', 'error'); }
+});
+
+// ── OUR PROCESS ───────────────────────────────────
+async function loadProcess() {
+    try {
+        const snap = await getDoc(doc(db, 'siteSettings', 'processSection'));
+        document.getElementById('processLoading').style.display = 'none';
+        document.getElementById('processForm').style.display = 'block';
+        if (snap.exists()) {
+            const d = snap.data();
+            document.getElementById('processTitle').value = d.title || 'Our';
+            document.getElementById('processHighlight').value = d.highlight || 'Process';
+            document.getElementById('processSubtitle').value = d.subtitle || '';
+            document.getElementById('processIntro').value = d.intro || '';
+            document.getElementById('processSteps').value = (d.steps || []).join('\n');
+            document.getElementById('processClosing').value = d.closing || '';
+            if (d.image) W.process.set(d.image);
+        }
+    } catch(err) { console.error(err); }
+}
+
+document.getElementById('processForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const stepsRaw = document.getElementById('processSteps').value.trim();
+    const steps = stepsRaw ? stepsRaw.split('\n').map(s => s.trim()).filter(Boolean) : [];
+    try {
+      await setDoc(doc(db, 'siteSettings', 'processSection'), {
+            title: document.getElementById('processTitle').value.trim(),
+            highlight: document.getElementById('processHighlight').value.trim(),
+            subtitle: document.getElementById('processSubtitle').value.trim(),
+            intro: document.getElementById('processIntro').value.trim(),
+            steps,
+            closing: document.getElementById('processClosing').value.trim(),
+            image: W.process.get(),
+            published: true,
+            updatedAt: serverTimestamp()
+        });
+        showToast('Process section saved!', 'success');
+    } catch { showToast('Error saving.', 'error'); }
+});
+
+// ── DROPDOWN PROMOS ───────────────────────────────
+async function loadDropdownPromos() {
+    const keys = ['about', 'services', 'tools'];
+    for (const key of keys) {
+        try {
+            const snap = await getDoc(doc(db, 'siteSettings', `dropdown_${key}`));
+            document.getElementById(`dd${key.charAt(0).toUpperCase()+key.slice(1)}Loading`).style.display = 'none';
+            document.getElementById(`dd${key.charAt(0).toUpperCase()+key.slice(1)}Form`).style.display = 'block';
+            if (snap.exists()) {
+                const d = snap.data();
+                document.getElementById(`dd${key.charAt(0).toUpperCase()+key.slice(1)}Text`).value = d.text || '';
+                document.getElementById(`dd${key.charAt(0).toUpperCase()+key.slice(1)}Btn`).value = d.buttonText || '';
+                if (d.image) W[`dd_${key}`].set(d.image);
+            }
+        } catch(err) { console.error(err); }
+    }
+}
+
+['about', 'services', 'tools'].forEach(key => {
+    const cap = key.charAt(0).toUpperCase() + key.slice(1);
+    document.getElementById(`dd${cap}Form`).addEventListener('submit', async e => {
+        e.preventDefault();
+        try {
+          await setDoc(doc(db, 'siteSettings', `dropdown_${key}`), {
+                text: document.getElementById(`dd${cap}Text`).value.trim(),
+                buttonText: document.getElementById(`dd${cap}Btn`).value.trim(),
+                image: W[`dd_${key}`].get(),
+                published: true,
+                updatedAt: serverTimestamp()
+            });
+            showToast(`${cap} dropdown saved!`, 'success');
+        } catch { showToast('Error saving.', 'error'); }
+    });
+});
+
 // ── CONTACT INFO ──────────────────────────────────
 async function loadContactInfo() {
     try {
@@ -2300,6 +2656,31 @@ document.getElementById('confirmDeleteBtn').addEventListener('click', () => { if
 window.openModal = id => document.getElementById(id).classList.add('active');
 window.closeModal = id => document.getElementById(id).classList.remove('active');
 document.querySelectorAll('.modal-overlay').forEach(m => m.addEventListener('click', e => { if (e.target === m) m.classList.remove('active'); }));
+
+// ── SECTION PUBLISH TOGGLE ────────────────────────
+async function loadSectionPublishState(docKey, btnId) {
+    try {
+        const snap = await getDoc(doc(db, 'siteSettings', docKey));
+        const btn = document.getElementById(btnId);
+        if (!btn) return;
+        const isPublished = snap.exists() ? snap.data().published !== false : false;
+        btn.dataset.published = isPublished;
+        btn.innerHTML = isPublished
+            ? '<i class="fas fa-eye-slash"></i> Unpublish'
+            : '<i class="fas fa-eye"></i> Publish';
+        btn.className = isPublished ? 'btn btn-sm btn-danger' : 'btn btn-sm';
+    } catch(e) { console.error(e); }
+}
+
+window.toggleSectionPublish = async function(docKey, btnId) {
+    try {
+        const btn = document.getElementById(btnId);
+        const isPublished = btn.dataset.published === 'true';
+        await setDoc(doc(db, 'siteSettings', docKey), { published: !isPublished }, { merge: true });
+        showToast(!isPublished ? '✅ Published!' : '🚫 Unpublished!', 'success');
+        loadSectionPublishState(docKey, btnId);
+    } catch { showToast('Error. Try again.', 'error'); }
+};
 
 // ── TOAST ─────────────────────────────────────────
 function showToast(msg, type = 'success') {

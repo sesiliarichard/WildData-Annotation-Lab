@@ -249,14 +249,19 @@
             position: relative;
             overflow: hidden;
         }
-     .dropdown-promo::before {
-         content: '';
-          position: absolute;
-          inset: 0;
-          background: url('images/Excellent IT Services.jpeg') center/cover no-repeat;
-          opacity: 0.5;
-          border-radius: 10px;
-     }
+.dropdown-promo::before {
+     content: '';
+      position: absolute;
+      inset: 0;
+      background: inherit;
+      background-size: cover !important;
+      background-position: center !important;
+      opacity: 0.5;
+      border-radius: 10px;
+ }
+ .dropdown-promo {
+    background-image: url('images/Excellent IT Services.jpeg');
+}
         .promo-content { 
             position: relative; 
             z-index: 1; 
@@ -1661,6 +1666,10 @@
             loadPrimaryTools();
             loadRecommendedTools();
             loadContactInfo();
+             loadFooterSettings();
+            loadProcessSection();
+            loadDropdownPromos();
+            loadWhatWeOffer();
         }
 
         // CHANGE 2: Safe regex highlight replace
@@ -1933,7 +1942,93 @@
                 }
             });
         }
+        
+      async function loadFooterSettings() {
+    try {
+        const snap = await getDoc(doc(db, 'siteSettings', 'footerSettings'));
+        if (!snap.exists()) return;
+        const d = snap.data();
+        const taglineEl = document.querySelector('.footer-column p:first-of-type')
+        if (taglineEl && d.tagline) taglineEl.textContent = d.tagline;
+        const copyrightEl = document.querySelector('.copyright p');
+        if (copyrightEl && d.copyright) copyrightEl.textContent = d.copyright;
+        const adminImg = document.querySelector('.admin-img');
+        if (adminImg && d.adminImage) adminImg.src = d.adminImage;
+    } catch(e) { console.error('Footer error:', e); }
+}
 
+async function loadProcessSection() {
+    try {
+        const snap = await getDoc(doc(db, 'siteSettings', 'processSection'));
+        if (!snap.exists()) return;
+        const d = snap.data();
+        const h2 = document.querySelector('#services-page .content-text h2');
+        if (h2 && d.title) h2.innerHTML = `${d.title} <span>${d.highlight || ''}</span>`;
+        const strong = document.querySelector('#services-page .content-text strong');
+        if (strong && d.subtitle) strong.textContent = d.subtitle;
+        const paras = document.querySelectorAll('#services-page .content-text p');
+        if (paras[1] && d.intro) paras[1].textContent = d.intro;
+        if (d.steps && d.steps.length) {
+            const ul = document.querySelector('#services-page .process-list');
+            if (ul) ul.innerHTML = d.steps.map(s => `<li>${s}</li>`).join('');
+        }
+        const closingParas = document.querySelectorAll('#services-page .content-text p');
+        if (closingParas[closingParas.length - 1] && d.closing)
+            closingParas[closingParas.length - 1].textContent = d.closing;
+        const img = document.querySelector('#services-page .process-image img');
+        if (img && d.image) img.src = d.image;
+    } catch(e) { console.error('Process error:', e); }
+}
+
+async function loadDropdownPromos() {
+    try {
+        const keys = ['about', 'services', 'tools'];
+        const navLinks = document.querySelectorAll('nav ul li.dropdown');
+        // Map key to actual dropdown element by matching its nav-link data-page
+        const dropdownMap = {};
+        navLinks.forEach(li => {
+            const link = li.querySelector('a.nav-link');
+            if (link) dropdownMap[link.getAttribute('data-page')] = li;
+        });
+
+        for (const key of keys) {
+            const snap = await getDoc(doc(db, 'siteSettings', `dropdown_${key}`));
+            if (!snap.exists()) continue;
+            const d = snap.data();
+            const dropdown = dropdownMap[key];
+            if (!dropdown) continue;
+            const promo = dropdown.querySelector('.dropdown-promo');
+            if (!promo) continue;
+            if (d.image) {
+                promo.style.backgroundImage = `url('${d.image}')`;
+                promo.style.backgroundSize = 'cover';
+                promo.style.backgroundPosition = 'center';
+            }
+            const h3 = promo.querySelector('h3');
+            if (h3 && d.text) h3.textContent = d.text;
+            const btn = promo.querySelector('.promo-btn');
+            if (btn && d.buttonText) btn.textContent = d.buttonText;
+        }
+    } catch(e) { console.error('Dropdown promos error:', e); }
+}
+
+async function loadWhatWeOffer() {
+    try {
+        const snap = await getDoc(doc(db, 'siteSettings', 'whatWeOffer'));
+        if (!snap.exists()) return;
+        const d = snap.data();
+        const section = document.querySelector('#home .content-section');
+        if (!section) return;
+        const h2 = section.querySelector('.content-text h2');
+        if (h2 && d.heading) h2.innerHTML = `<span>${d.heading}</span>`;
+        const strong = section.querySelector('.content-text strong');
+        if (strong && d.subtitle) strong.textContent = d.subtitle;
+        const allParas = section.querySelectorAll('.content-text p');
+        if (allParas[1] && d.description) allParas[1].textContent = d.description;
+        const img = section.querySelector('.content-image img');
+        if (img && d.image) img.src = d.image;
+    } catch(e) { console.error('What We Offer error:', e); }
+}
         // Image Modal (tool icons only)
         const modal = document.getElementById('imageModal');
         const modalImg = document.getElementById('modalImage');
@@ -1978,6 +2073,7 @@
                 }, 200);
             }
         };
+
     </script>
 </body>
 </html>
